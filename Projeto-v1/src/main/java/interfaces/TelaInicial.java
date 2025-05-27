@@ -56,6 +56,11 @@ public class TelaInicial extends javax.swing.JFrame {
         });
 
         jMenu1.setText("Sair");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu1ActionPerformed(evt);
@@ -108,20 +113,30 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(usuarioField.getText() != "Amanda"){
+        
+        System.out.println(usuarioField.getText());
+        System.out.println(senhaField.getText());
+        
+        String usuario = usuarioField.getText();
+        String senha = senhaField.getText();
+        
+        if(!usuario.equals("Amanda")){
             JOptionPane.showMessageDialog(null, "Usuário Incorreto");
-        } else if(usuarioField.getText().equals("Amanda") && senhaField.getText() != "1234"){
-            JOptionPane.showMessageDialog(null, "Senha Incorreto");
+        } else if (usuario.equals("Amanda") && !senha.equals("1234")){
+            JOptionPane.showMessageDialog(null, "Senha Incorreta");
         } else {
-            JOptionPane.showMessageDialog(null, "Seja bem-vinda, Amanda!");
-            System.exit(0);
+            JOptionPane.showMessageDialog(null, "Tudo certo! Seja bem-vindo!");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jMenu1MouseClicked
 
     /**
      * @param args the command line arguments
