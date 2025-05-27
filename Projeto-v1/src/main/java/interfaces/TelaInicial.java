@@ -34,7 +34,7 @@ public class TelaInicial extends javax.swing.JFrame {
         senhaField = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        sair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,18 +55,18 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
-        jMenu1.setText("Sair");
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+        sair.setText("Sair");
+        sair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
+                sairMouseClicked(evt);
             }
         });
-        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+        sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1ActionPerformed(evt);
+                sairActionPerformed(evt);
             }
         });
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(sair);
 
         setJMenuBar(jMenuBar1);
 
@@ -111,9 +111,9 @@ public class TelaInicial extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+    private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu1ActionPerformed
+    }//GEN-LAST:event_sairActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -130,13 +130,17 @@ public class TelaInicial extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Senha Incorreta");
         } else {
             JOptionPane.showMessageDialog(null, "Tudo certo! Seja bem-vindo!");
+            dispose();
+            TelaAdministrador telaAdm = new TelaAdministrador();
+            telaAdm.setVisible(true);
+            telaAdm.setLocationRelativeTo(null);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+    private void sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseClicked
         // TODO add your handling code here:
         System.exit(0);
-    }//GEN-LAST:event_jMenu1MouseClicked
+    }//GEN-LAST:event_sairMouseClicked
 
     /**
      * @param args the command line arguments
@@ -177,8 +181,8 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu sair;
     private javax.swing.JTextField senhaField;
     private javax.swing.JTextField usuarioField;
     // End of variables declaration//GEN-END:variables

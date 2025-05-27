@@ -14,8 +14,9 @@ public class Main {
 
     public static void main(String[] args) {
         
-        TelaInicial telaIncInicial = new TelaInicial();
-        telaIncInicial.setVisible(true);
+        TelaInicial telaInicial = new TelaInicial();
+        telaInicial.setLocationRelativeTo(null);
+        telaInicial.setVisible(true);
         
     }
 }
