@@ -4,12 +4,7 @@
 
 package com.mycompany.projeto.v1;
 
-import classes.Administracao;
-import classes.Endereco;
-import interfaces.CadAdministracao;
 import interfaces.TelaInicial;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  *
@@ -19,11 +14,9 @@ public class Main {
 
     public static void main(String[] args) {
         
-        /*CadAdministracao cadAdministracao = new CadAdministracao();
-        cadAdministracao.setVisible(true);        */
-        
-        TelaInicial telaIncInicial = new TelaInicial();
-        telaIncInicial.setVisible(true);
+        TelaInicial telaInicial = new TelaInicial();
+        telaInicial.setLocationRelativeTo(null);
+        telaInicial.setVisible(true);
         
     }
 }
