@@ -26,15 +26,35 @@ public class TelaAdministrador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         sair = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        gerenciar = new javax.swing.JMenu();
+        leitos = new javax.swing.JMenu();
+        cadastrarLeito = new javax.swing.JMenuItem();
+        alterarLeito = new javax.swing.JMenuItem();
+        alterarStatus = new javax.swing.JMenuItem();
+        verificarLeitos = new javax.swing.JMenuItem();
+        suprimentos = new javax.swing.JMenu();
+        novoSuprimento = new javax.swing.JMenuItem();
+        alterarEstoque = new javax.swing.JMenuItem();
+        verificarSuprimentos = new javax.swing.JMenuItem();
+        internacoes = new javax.swing.JMenu();
+        verificarInternacoes = new javax.swing.JMenuItem();
+        recursosHumanos = new javax.swing.JMenu();
+        medicos = new javax.swing.JMenu();
+        novoMedico = new javax.swing.JMenuItem();
+        alterarDadosMedico = new javax.swing.JMenuItem();
+        listaMedicos = new javax.swing.JMenuItem();
+        buscarMedicos = new javax.swing.JMenu();
+        especialidadeMedico = new javax.swing.JMenuItem();
+        dataAdmissaoMedico = new javax.swing.JMenuItem();
+        enfermeiros = new javax.swing.JMenu();
+        tecnicos = new javax.swing.JMenu();
+        farmaceuticos = new javax.swing.JMenu();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,30 +75,101 @@ public class TelaAdministrador extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Gerenciar");
+        gerenciar.setText("Gerenciamento Hospitalar");
 
-        jMenu3.setText("Leitos");
+        leitos.setText("Leitos");
 
-        jMenuItem1.setText("Cadastrar");
-        jMenu3.add(jMenuItem1);
+        cadastrarLeito.setText("Cadastrar");
+        leitos.add(cadastrarLeito);
 
-        jMenuItem2.setText("Alterar");
-        jMenu3.add(jMenuItem2);
+        alterarLeito.setText("Alterar");
+        leitos.add(alterarLeito);
 
-        jMenuItem3.setText("Alterar Status");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        alterarStatus.setText("Alterar Status");
+        alterarStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                alterarStatusActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem3);
+        leitos.add(alterarStatus);
 
-        jMenuItem4.setText("Verificar Leitos");
-        jMenu3.add(jMenuItem4);
+        verificarLeitos.setText("Verificar Leitos");
+        leitos.add(verificarLeitos);
 
-        jMenu2.add(jMenu3);
+        gerenciar.add(leitos);
 
-        jMenuBar1.add(jMenu2);
+        suprimentos.setText("Suprimentos");
+
+        novoSuprimento.setText("Cadastrar Novo Suprimento");
+        novoSuprimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novoSuprimentoActionPerformed(evt);
+            }
+        });
+        suprimentos.add(novoSuprimento);
+
+        alterarEstoque.setText("Alterar Estoque");
+        alterarEstoque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alterarEstoqueActionPerformed(evt);
+            }
+        });
+        suprimentos.add(alterarEstoque);
+
+        verificarSuprimentos.setText("Verificar Suprimentos");
+        suprimentos.add(verificarSuprimentos);
+
+        gerenciar.add(suprimentos);
+
+        internacoes.setText("Internações");
+
+        verificarInternacoes.setText("Verificar Internações");
+        internacoes.add(verificarInternacoes);
+
+        gerenciar.add(internacoes);
+
+        jMenuBar1.add(gerenciar);
+
+        recursosHumanos.setText("Recursos Humanos");
+
+        medicos.setText("Médicos");
+
+        novoMedico.setText("Novo Médico");
+        medicos.add(novoMedico);
+
+        alterarDadosMedico.setText("Alterar Dados do Médico");
+        medicos.add(alterarDadosMedico);
+
+        listaMedicos.setText("Lista de Médicos");
+        medicos.add(listaMedicos);
+
+        buscarMedicos.setText("Buscar Médicos");
+
+        especialidadeMedico.setText("Por Especialidade");
+        buscarMedicos.add(especialidadeMedico);
+
+        dataAdmissaoMedico.setText("Por Data de Admisssão");
+        dataAdmissaoMedico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataAdmissaoMedicoActionPerformed(evt);
+            }
+        });
+        buscarMedicos.add(dataAdmissaoMedico);
+
+        medicos.add(buscarMedicos);
+
+        recursosHumanos.add(medicos);
+
+        enfermeiros.setText("Enfermeiros");
+        recursosHumanos.add(enfermeiros);
+
+        tecnicos.setText("Técnicos de Enfermagem");
+        recursosHumanos.add(tecnicos);
+
+        farmaceuticos.setText("Farmaceuticos");
+        recursosHumanos.add(farmaceuticos);
+
+        jMenuBar1.add(recursosHumanos);
 
         setJMenuBar(jMenuBar1);
 
@@ -105,9 +196,21 @@ public class TelaAdministrador extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_sairActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void alterarStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarStatusActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_alterarStatusActionPerformed
+
+    private void novoSuprimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoSuprimentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_novoSuprimentoActionPerformed
+
+    private void alterarEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarEstoqueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_alterarEstoqueActionPerformed
+
+    private void dataAdmissaoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataAdmissaoMedicoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dataAdmissaoMedicoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,14 +248,32 @@ public class TelaAdministrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem alterarDadosMedico;
+    private javax.swing.JMenuItem alterarEstoque;
+    private javax.swing.JMenuItem alterarLeito;
+    private javax.swing.JMenuItem alterarStatus;
+    private javax.swing.JMenu buscarMedicos;
+    private javax.swing.JMenuItem cadastrarLeito;
+    private javax.swing.JMenuItem dataAdmissaoMedico;
+    private javax.swing.JMenu enfermeiros;
+    private javax.swing.JMenuItem especialidadeMedico;
+    private javax.swing.JMenu farmaceuticos;
+    private javax.swing.JMenu gerenciar;
+    private javax.swing.JMenu internacoes;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenu leitos;
+    private javax.swing.JMenuItem listaMedicos;
+    private javax.swing.JMenu medicos;
+    private javax.swing.JMenuItem novoMedico;
+    private javax.swing.JMenuItem novoSuprimento;
+    private javax.swing.JMenu recursosHumanos;
     private javax.swing.JMenuItem sair;
+    private javax.swing.JMenu suprimentos;
+    private javax.swing.JMenu tecnicos;
+    private javax.swing.JMenuItem verificarInternacoes;
+    private javax.swing.JMenuItem verificarLeitos;
+    private javax.swing.JMenuItem verificarSuprimentos;
     // End of variables declaration//GEN-END:variables
 }
