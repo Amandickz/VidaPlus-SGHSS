@@ -39,6 +39,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Cadastrar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cadastrarLeitoActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="alterarLeito">
                   <Properties>
@@ -153,16 +156,67 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Enfermeiros"/>
               </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="novoEnfermeiro">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Novo Enfermeiro"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="alterarDadosEnfermeiro">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Alterar Dados do Enfermeiro"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="listaEnfermeiros">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Lista de Enfermeiros"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
             </Menu>
             <Menu class="javax.swing.JMenu" name="tecnicos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="T&#xe9;cnicos de Enfermagem"/>
               </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="novoTecnico">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Novo T&#xe9;cnico"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="alterarDadosTecnico">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Alterar Dados do T&#xe9;cnico"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="listaTecnicos">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Lista de T&#xe9;cnicos"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
             </Menu>
             <Menu class="javax.swing.JMenu" name="farmaceuticos">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Farmaceuticos"/>
+                <Property name="text" type="java.lang.String" value="Farmac&#xea;uticos"/>
               </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="novoFarmaceutico">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Novo Farmac&#xea;utico"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="alterarDadosFarmaceutico">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Alterar Dados do Farmac&#xea;utico"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="listaFarmaceuticos">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Lista de Farmac&#xea;uticos"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
             </Menu>
           </SubComponents>
         </Menu>

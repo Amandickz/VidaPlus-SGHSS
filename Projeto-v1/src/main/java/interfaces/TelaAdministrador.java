@@ -15,6 +15,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
      */
     public TelaAdministrador() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -51,8 +52,17 @@ public class TelaAdministrador extends javax.swing.JFrame {
         especialidadeMedico = new javax.swing.JMenuItem();
         dataAdmissaoMedico = new javax.swing.JMenuItem();
         enfermeiros = new javax.swing.JMenu();
+        novoEnfermeiro = new javax.swing.JMenuItem();
+        alterarDadosEnfermeiro = new javax.swing.JMenuItem();
+        listaEnfermeiros = new javax.swing.JMenuItem();
         tecnicos = new javax.swing.JMenu();
+        novoTecnico = new javax.swing.JMenuItem();
+        alterarDadosTecnico = new javax.swing.JMenuItem();
+        listaTecnicos = new javax.swing.JMenuItem();
         farmaceuticos = new javax.swing.JMenu();
+        novoFarmaceutico = new javax.swing.JMenuItem();
+        alterarDadosFarmaceutico = new javax.swing.JMenuItem();
+        listaFarmaceuticos = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -80,6 +90,11 @@ public class TelaAdministrador extends javax.swing.JFrame {
         leitos.setText("Leitos");
 
         cadastrarLeito.setText("Cadastrar");
+        cadastrarLeito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarLeitoActionPerformed(evt);
+            }
+        });
         leitos.add(cadastrarLeito);
 
         alterarLeito.setText("Alterar");
@@ -161,12 +176,42 @@ public class TelaAdministrador extends javax.swing.JFrame {
         recursosHumanos.add(medicos);
 
         enfermeiros.setText("Enfermeiros");
+
+        novoEnfermeiro.setText("Novo Enfermeiro");
+        enfermeiros.add(novoEnfermeiro);
+
+        alterarDadosEnfermeiro.setText("Alterar Dados do Enfermeiro");
+        enfermeiros.add(alterarDadosEnfermeiro);
+
+        listaEnfermeiros.setText("Lista de Enfermeiros");
+        enfermeiros.add(listaEnfermeiros);
+
         recursosHumanos.add(enfermeiros);
 
         tecnicos.setText("Técnicos de Enfermagem");
+
+        novoTecnico.setText("Novo Técnico");
+        tecnicos.add(novoTecnico);
+
+        alterarDadosTecnico.setText("Alterar Dados do Técnico");
+        tecnicos.add(alterarDadosTecnico);
+
+        listaTecnicos.setText("Lista de Técnicos");
+        tecnicos.add(listaTecnicos);
+
         recursosHumanos.add(tecnicos);
 
-        farmaceuticos.setText("Farmaceuticos");
+        farmaceuticos.setText("Farmacêuticos");
+
+        novoFarmaceutico.setText("Novo Farmacêutico");
+        farmaceuticos.add(novoFarmaceutico);
+
+        alterarDadosFarmaceutico.setText("Alterar Dados do Farmacêutico");
+        farmaceuticos.add(alterarDadosFarmaceutico);
+
+        listaFarmaceuticos.setText("Lista de Farmacêuticos");
+        farmaceuticos.add(listaFarmaceuticos);
+
         recursosHumanos.add(farmaceuticos);
 
         jMenuBar1.add(recursosHumanos);
@@ -212,6 +257,11 @@ public class TelaAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_dataAdmissaoMedicoActionPerformed
 
+    private void cadastrarLeitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarLeitoActionPerformed
+        // TODO add your handling code here:
+        new TelaCadastroLeito().setVisible(true);
+    }//GEN-LAST:event_cadastrarLeitoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -248,7 +298,10 @@ public class TelaAdministrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem alterarDadosEnfermeiro;
+    private javax.swing.JMenuItem alterarDadosFarmaceutico;
     private javax.swing.JMenuItem alterarDadosMedico;
+    private javax.swing.JMenuItem alterarDadosTecnico;
     private javax.swing.JMenuItem alterarEstoque;
     private javax.swing.JMenuItem alterarLeito;
     private javax.swing.JMenuItem alterarStatus;
@@ -264,10 +317,16 @@ public class TelaAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu leitos;
+    private javax.swing.JMenuItem listaEnfermeiros;
+    private javax.swing.JMenuItem listaFarmaceuticos;
     private javax.swing.JMenuItem listaMedicos;
+    private javax.swing.JMenuItem listaTecnicos;
     private javax.swing.JMenu medicos;
+    private javax.swing.JMenuItem novoEnfermeiro;
+    private javax.swing.JMenuItem novoFarmaceutico;
     private javax.swing.JMenuItem novoMedico;
     private javax.swing.JMenuItem novoSuprimento;
+    private javax.swing.JMenuItem novoTecnico;
     private javax.swing.JMenu recursosHumanos;
     private javax.swing.JMenuItem sair;
     private javax.swing.JMenu suprimentos;
