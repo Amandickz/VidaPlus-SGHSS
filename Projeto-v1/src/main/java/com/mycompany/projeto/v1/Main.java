@@ -4,6 +4,8 @@
 
 package com.mycompany.projeto.v1;
 
+import interfaces.TelaAdministrador;
+import interfaces.TelaCadastroLeito;
 import interfaces.TelaInicial;
 
 /**
@@ -14,9 +16,16 @@ public class Main {
 
     public static void main(String[] args) {
         
-        TelaInicial telaInicial = new TelaInicial();
+        /*TelaInicial telaInicial = new TelaInicial();
         telaInicial.setLocationRelativeTo(null);
-        telaInicial.setVisible(true);
+        telaInicial.setVisible(true);*/
+        
+        /*TelaCadastroLeito telaLeito = new TelaCadastroLeito();
+        telaLeito.setLocationRelativeTo(null);
+        telaLeito.setVisible(true);*/
+        
+        TelaAdministrador telaAdministrador = new TelaAdministrador();
+        telaAdministrador.setVisible(true);
         
     }
 }
