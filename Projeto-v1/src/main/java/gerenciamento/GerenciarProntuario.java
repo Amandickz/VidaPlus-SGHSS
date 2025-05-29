@@ -12,14 +12,14 @@ import java.util.ArrayList;
  *
  * @author Amanda
  */
-public class GerernciarProntuario {
+public class GerenciarProntuario {
     
     private int id;
     private String dataAtualizacao;
     private ArrayList<Consulta> consultas;
     private ArrayList<Internacao> internacaos;
 
-    public GerernciarProntuario() {
+    public GerenciarProntuario() {
     }
 
     public int getId() {
