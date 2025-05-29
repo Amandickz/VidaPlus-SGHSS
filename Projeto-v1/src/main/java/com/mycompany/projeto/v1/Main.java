@@ -4,9 +4,11 @@
 
 package com.mycompany.projeto.v1;
 
+import enums.TiposLeitos;
 import interfaces.TelaAdministrador;
 import interfaces.TelaCadastroLeito;
 import interfaces.TelaInicial;
+import java.util.ArrayList;
 
 /**
  *
@@ -24,8 +26,14 @@ public class Main {
         telaLeito.setLocationRelativeTo(null);
         telaLeito.setVisible(true);*/
         
+        
+        
         TelaAdministrador telaAdministrador = new TelaAdministrador();
         telaAdministrador.setVisible(true);
+        
+        /*for(TiposLeitos tl : TiposLeitos.values()){
+            System.out.println(tl.getTipoLeito());
+        }*/
         
     }
 }
