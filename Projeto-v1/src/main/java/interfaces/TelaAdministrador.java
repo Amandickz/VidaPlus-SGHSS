@@ -265,6 +265,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
     private void cadastrarLeitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarLeitoActionPerformed
         // TODO add your handling code here:
         new TelaCadastroLeito(admHospital).setVisible(true);
+        dispose();
     }//GEN-LAST:event_cadastrarLeitoActionPerformed
 
 
