@@ -6,6 +6,7 @@ package interfaces;
 
 import classes.Leito;
 import enums.TiposLeitos;
+import gerenciamento.AdministrarHospital;
 
 /**
  *
@@ -13,15 +14,17 @@ import enums.TiposLeitos;
  */
 public class TelaCadastroLeito extends javax.swing.JFrame {
 
+    AdministrarHospital admHospital;
     /**
-     * Creates new form TelaCadastroLeito
+     * Creates new form TelaAdministrador
      */
-    public TelaCadastroLeito() {
+    public TelaCadastroLeito(AdministrarHospital admHospital) {
         initComponents();
         tipoLeitos.removeAllItems();
         for (TiposLeitos tipos : TiposLeitos.values()){
             tipoLeitos.addItem(tipos.getTipoLeito());
         }
+        this.admHospital = admHospital;
         this.setLocationRelativeTo(null);
     }
 
@@ -34,13 +37,9 @@ public class TelaCadastroLeito extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        disponibilidadeLeito = new javax.swing.JCheckBox();
+        jLabel6 = new javax.swing.JLabel();
         numeroLeito = new javax.swing.JTextField();
         valorLeito = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -48,29 +47,55 @@ public class TelaCadastroLeito extends javax.swing.JFrame {
         cadastrar = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
         tipoLeitos = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        disponibilidadeLeito = new javax.swing.JCheckBox();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        sair = new javax.swing.JMenuItem();
+        gerenciar = new javax.swing.JMenu();
+        leitos = new javax.swing.JMenu();
+        cadastrarLeito = new javax.swing.JMenuItem();
+        alterarLeito = new javax.swing.JMenuItem();
+        alterarStatus = new javax.swing.JMenuItem();
+        verificarLeitos = new javax.swing.JMenuItem();
+        suprimentos = new javax.swing.JMenu();
+        novoSuprimento = new javax.swing.JMenuItem();
+        alterarEstoque = new javax.swing.JMenuItem();
+        verificarSuprimentos = new javax.swing.JMenuItem();
+        internacoes = new javax.swing.JMenu();
+        verificarInternacoes = new javax.swing.JMenuItem();
+        recursosHumanos = new javax.swing.JMenu();
+        medicos = new javax.swing.JMenu();
+        novoMedico = new javax.swing.JMenuItem();
+        alterarDadosMedico = new javax.swing.JMenuItem();
+        listaMedicos = new javax.swing.JMenuItem();
+        buscarMedicos = new javax.swing.JMenu();
+        especialidadeMedico = new javax.swing.JMenuItem();
+        dataAdmissaoMedico = new javax.swing.JMenuItem();
+        enfermeiros = new javax.swing.JMenu();
+        novoEnfermeiro = new javax.swing.JMenuItem();
+        alterarDadosEnfermeiro = new javax.swing.JMenuItem();
+        listaEnfermeiros = new javax.swing.JMenuItem();
+        tecnicos = new javax.swing.JMenu();
+        novoTecnico = new javax.swing.JMenuItem();
+        alterarDadosTecnico = new javax.swing.JMenuItem();
+        listaTecnicos = new javax.swing.JMenuItem();
+        farmaceuticos = new javax.swing.JMenu();
+        novoFarmaceutico = new javax.swing.JMenuItem();
+        alterarDadosFarmaceutico = new javax.swing.JMenuItem();
+        listaFarmaceuticos = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastrar Leito");
 
-        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.setPreferredSize(new java.awt.Dimension(400, 426));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("Número do Leito:");
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Tipo de Leito:");
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("Valor:");
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Disponibilidade:");
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setText("Anotações:");
-
-        disponibilidadeLeito.setText("Disponível");
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel6.setText("Cadastro de Leito");
 
         anotacoesLeito.setColumns(20);
         anotacoesLeito.setRows(5);
@@ -92,110 +117,300 @@ public class TelaCadastroLeito extends javax.swing.JFrame {
 
         tipoLeitos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel6.setText("Cadastro de Leito");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setText("Número do Leito:");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("Tipo de Leito:");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setText("Valor:");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setText("Disponibilidade:");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setText("Anotações:");
+
+        disponibilidadeLeito.setText("Disponível");
+        disponibilidadeLeito.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(130, 130, 130)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(valorLeito, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(disponibilidadeLeito, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tipoLeitos, 0, 164, Short.MAX_VALUE)
-                            .addComponent(numeroLeito)))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(98, 98, 98)
-                            .addComponent(cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(47, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(97, 97, 97)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(numeroLeito))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(valorLeito, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(85, 85, 85)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tipoLeitos, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(disponibilidadeLeito, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap(134, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(320, 320, 320))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(64, 64, 64)
                 .addComponent(jLabel6)
-                .addGap(18, 18, 18)
+                .addGap(60, 60, 60)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(numeroLeito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(numeroLeito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(tipoLeitos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(valorLeito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(valorLeito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(disponibilidadeLeito))
-                .addGap(18, 18, 18)
+                .addGap(45, 45, 45)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cadastrar)
                     .addComponent(cancelar))
-                .addGap(34, 34, 34))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
+
+        jMenu1.setText("Geral");
+
+        sair.setText("Sair");
+        sair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sairMouseClicked(evt);
+            }
+        });
+        sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sairActionPerformed(evt);
+            }
+        });
+        jMenu1.add(sair);
+
+        jMenuBar1.add(jMenu1);
+
+        gerenciar.setText("Gerenciamento Hospitalar");
+
+        leitos.setText("Leitos");
+
+        cadastrarLeito.setText("Cadastrar");
+        cadastrarLeito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarLeitoActionPerformed(evt);
+            }
+        });
+        leitos.add(cadastrarLeito);
+
+        alterarLeito.setText("Alterar");
+        leitos.add(alterarLeito);
+
+        alterarStatus.setText("Alterar Status");
+        alterarStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alterarStatusActionPerformed(evt);
+            }
+        });
+        leitos.add(alterarStatus);
+
+        verificarLeitos.setText("Verificar Leitos");
+        leitos.add(verificarLeitos);
+
+        gerenciar.add(leitos);
+
+        suprimentos.setText("Suprimentos");
+
+        novoSuprimento.setText("Cadastrar Novo Suprimento");
+        novoSuprimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novoSuprimentoActionPerformed(evt);
+            }
+        });
+        suprimentos.add(novoSuprimento);
+
+        alterarEstoque.setText("Alterar Estoque");
+        alterarEstoque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alterarEstoqueActionPerformed(evt);
+            }
+        });
+        suprimentos.add(alterarEstoque);
+
+        verificarSuprimentos.setText("Verificar Suprimentos");
+        suprimentos.add(verificarSuprimentos);
+
+        gerenciar.add(suprimentos);
+
+        internacoes.setText("Internações");
+
+        verificarInternacoes.setText("Verificar Internações");
+        internacoes.add(verificarInternacoes);
+
+        gerenciar.add(internacoes);
+
+        jMenuBar1.add(gerenciar);
+
+        recursosHumanos.setText("Recursos Humanos");
+
+        medicos.setText("Médicos");
+
+        novoMedico.setText("Novo Médico");
+        medicos.add(novoMedico);
+
+        alterarDadosMedico.setText("Alterar Dados do Médico");
+        medicos.add(alterarDadosMedico);
+
+        listaMedicos.setText("Lista de Médicos");
+        medicos.add(listaMedicos);
+
+        buscarMedicos.setText("Buscar Médicos");
+
+        especialidadeMedico.setText("Por Especialidade");
+        buscarMedicos.add(especialidadeMedico);
+
+        dataAdmissaoMedico.setText("Por Data de Admisssão");
+        dataAdmissaoMedico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataAdmissaoMedicoActionPerformed(evt);
+            }
+        });
+        buscarMedicos.add(dataAdmissaoMedico);
+
+        medicos.add(buscarMedicos);
+
+        recursosHumanos.add(medicos);
+
+        enfermeiros.setText("Enfermeiros");
+
+        novoEnfermeiro.setText("Novo Enfermeiro");
+        enfermeiros.add(novoEnfermeiro);
+
+        alterarDadosEnfermeiro.setText("Alterar Dados do Enfermeiro");
+        enfermeiros.add(alterarDadosEnfermeiro);
+
+        listaEnfermeiros.setText("Lista de Enfermeiros");
+        enfermeiros.add(listaEnfermeiros);
+
+        recursosHumanos.add(enfermeiros);
+
+        tecnicos.setText("Técnicos de Enfermagem");
+
+        novoTecnico.setText("Novo Técnico");
+        tecnicos.add(novoTecnico);
+
+        alterarDadosTecnico.setText("Alterar Dados do Técnico");
+        tecnicos.add(alterarDadosTecnico);
+
+        listaTecnicos.setText("Lista de Técnicos");
+        tecnicos.add(listaTecnicos);
+
+        recursosHumanos.add(tecnicos);
+
+        farmaceuticos.setText("Farmacêuticos");
+
+        novoFarmaceutico.setText("Novo Farmacêutico");
+        farmaceuticos.add(novoFarmaceutico);
+
+        alterarDadosFarmaceutico.setText("Alterar Dados do Farmacêutico");
+        farmaceuticos.add(alterarDadosFarmaceutico);
+
+        listaFarmaceuticos.setText("Lista de Farmacêuticos");
+        farmaceuticos.add(listaFarmaceuticos);
+
+        recursosHumanos.add(farmaceuticos);
+
+        jMenuBar1.add(recursosHumanos);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sairMouseClicked
+
+    private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_sairActionPerformed
+
+    private void alterarStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarStatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_alterarStatusActionPerformed
+
+    private void novoSuprimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoSuprimentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_novoSuprimentoActionPerformed
+
+    private void alterarEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarEstoqueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_alterarEstoqueActionPerformed
+
+    private void dataAdmissaoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataAdmissaoMedicoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dataAdmissaoMedicoActionPerformed
+
+    private void cadastrarLeitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarLeitoActionPerformed
+        // TODO add your handling code here:
+        new TelaCadastroLeito(admHospital).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_cadastrarLeitoActionPerformed
+
     private void cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarActionPerformed
         // TODO add your handling code here:
-        
+
         int numLeito = Integer.parseInt(numeroLeito.getText());
-        
+
         int tipo = 0;
         for (TiposLeitos tl : TiposLeitos.values()){
             tipo++;
             if(tipoLeitos.getSelectedItem().toString().equals(tl.getTipoLeito())){
                 System.out.println(tipo + " - " + tl.getTipoLeito());
+                break;
             }
         }
-        
+
         double valor = Double.parseDouble(valorLeito.getText());
         boolean disponibilidade = false;
 
@@ -203,13 +418,17 @@ public class TelaCadastroLeito extends javax.swing.JFrame {
             System.out.println("true");
             disponibilidade = true;
         }
-        
+
         String anotacoes = anotacoesLeito.getText();
-        
+
         Leito leito = new Leito(numLeito, tipo, valor, disponibilidade, anotacoes);
-        
-        System.out.println(leito);
-        
+
+        boolean cadastro = admHospital.cadastrarNovoLeito(leito);
+        System.out.println(cadastro);
+
+        TelaAdministrador telaAdministrador = new TelaAdministrador(admHospital);
+        telaAdministrador.setVisible(true);
+
         dispose();
     }//GEN-LAST:event_cadastrarActionPerformed
 
@@ -218,56 +437,58 @@ public class TelaCadastroLeito extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_cancelarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroLeito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroLeito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroLeito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroLeito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaCadastroLeito().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem alterarDadosEnfermeiro;
+    private javax.swing.JMenuItem alterarDadosFarmaceutico;
+    private javax.swing.JMenuItem alterarDadosMedico;
+    private javax.swing.JMenuItem alterarDadosTecnico;
+    private javax.swing.JMenuItem alterarEstoque;
+    private javax.swing.JMenuItem alterarLeito;
+    private javax.swing.JMenuItem alterarStatus;
     private javax.swing.JTextArea anotacoesLeito;
+    private javax.swing.JMenu buscarMedicos;
     private javax.swing.JButton cadastrar;
+    private javax.swing.JMenuItem cadastrarLeito;
     private javax.swing.JButton cancelar;
+    private javax.swing.JMenuItem dataAdmissaoMedico;
     private javax.swing.JCheckBox disponibilidadeLeito;
+    private javax.swing.JMenu enfermeiros;
+    private javax.swing.JMenuItem especialidadeMedico;
+    private javax.swing.JMenu farmaceuticos;
+    private javax.swing.JMenu gerenciar;
+    private javax.swing.JMenu internacoes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenu leitos;
+    private javax.swing.JMenuItem listaEnfermeiros;
+    private javax.swing.JMenuItem listaFarmaceuticos;
+    private javax.swing.JMenuItem listaMedicos;
+    private javax.swing.JMenuItem listaTecnicos;
+    private javax.swing.JMenu medicos;
+    private javax.swing.JMenuItem novoEnfermeiro;
+    private javax.swing.JMenuItem novoFarmaceutico;
+    private javax.swing.JMenuItem novoMedico;
+    private javax.swing.JMenuItem novoSuprimento;
+    private javax.swing.JMenuItem novoTecnico;
     private javax.swing.JTextField numeroLeito;
+    private javax.swing.JMenu recursosHumanos;
+    private javax.swing.JMenuItem sair;
+    private javax.swing.JMenu suprimentos;
+    private javax.swing.JMenu tecnicos;
     private javax.swing.JComboBox<String> tipoLeitos;
     private javax.swing.JTextField valorLeito;
+    private javax.swing.JMenuItem verificarInternacoes;
+    private javax.swing.JMenuItem verificarLeitos;
+    private javax.swing.JMenuItem verificarSuprimentos;
     // End of variables declaration//GEN-END:variables
 }

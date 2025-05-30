@@ -13,10 +13,9 @@ import java.util.ArrayList;
  */
 public class AdministrarHospital {
     
-    ArrayList<Leito> leitos = new ArrayList<>();;
+    ArrayList<Leito> leitos = new ArrayList<>();
 
     public AdministrarHospital() {
-        
     }
     
     public boolean cadastrarNovoLeito(Leito leito){        
@@ -26,12 +25,17 @@ public class AdministrarHospital {
                     return false;
                 }
             }
-            leito.setId(leitos.size() + 1);
-            leitos.add(leito);
-            return true;
         }
         
-        return false;
+        leito.setId(leitos.size() + 1);
+        leitos.add(leito);
+        return true;
+    }
+    
+    public void leitosCadastrados(){
+        for(Leito l : leitos){
+            System.out.println(l.toString());
+        }
     }
     
 }

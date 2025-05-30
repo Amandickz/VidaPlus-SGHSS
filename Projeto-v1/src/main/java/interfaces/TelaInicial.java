@@ -131,9 +131,9 @@ public class TelaInicial extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Tudo certo! Seja bem-vindo!");
             dispose();
-            TelaAdministrador telaAdm = new TelaAdministrador();
+            /*TelaAdministrador telaAdm = new TelaAdministrador();
             telaAdm.setVisible(true);
-            telaAdm.setLocationRelativeTo(null);
+            telaAdm.setLocationRelativeTo(null);*/
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

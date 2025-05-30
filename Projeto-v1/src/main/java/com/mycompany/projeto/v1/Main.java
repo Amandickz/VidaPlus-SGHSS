@@ -5,6 +5,7 @@
 package com.mycompany.projeto.v1;
 
 import enums.TiposLeitos;
+import gerenciamento.AdministrarHospital;
 import interfaces.TelaAdministrador;
 import interfaces.TelaCadastroLeito;
 import interfaces.TelaInicial;
@@ -27,8 +28,8 @@ public class Main {
         telaLeito.setVisible(true);*/
         
         
-        
-        TelaAdministrador telaAdministrador = new TelaAdministrador();
+        AdministrarHospital admHospital = new AdministrarHospital();
+        TelaAdministrador telaAdministrador = new TelaAdministrador(admHospital);
         telaAdministrador.setVisible(true);
         
         /*for(TiposLeitos tl : TiposLeitos.values()){
