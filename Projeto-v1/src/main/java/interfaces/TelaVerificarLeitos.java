@@ -5,22 +5,29 @@
 package interfaces;
 
 import gerenciamento.AdministrarHospital;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Amanda
  */
-public class TelaAdministrador extends javax.swing.JFrame {
+public class TelaVerificarLeitos extends javax.swing.JFrame {
 
-    AdministrarHospital admHospital = new AdministrarHospital();
+    AdministrarHospital admHospital;
     /**
      * Creates new form TelaAdministrador
      */
-    public TelaAdministrador(AdministrarHospital admHospital) {
+    public TelaVerificarLeitos(AdministrarHospital admHospital) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.admHospital = admHospital;
         admHospital.leitosCadastrados();
+        
+        DefaultTableModel todosLeitos = (DefaultTableModel) tabelaLeitos.getModel();
+        todosLeitos.addColumn("Quarto");
+        todosLeitos.addColumn("Tipo");
+        todosLeitos.addColumn("Valor");
+        todosLeitos.addColumn("Status");
     }
 
     /**
@@ -33,6 +40,9 @@ public class TelaAdministrador extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaLeitos = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         sair = new javax.swing.JMenuItem();
@@ -72,6 +82,25 @@ public class TelaAdministrador extends javax.swing.JFrame {
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jScrollPane1.setViewportView(tabelaLeitos);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(101, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71))
+        );
 
         jMenu1.setText("Geral");
 
@@ -114,11 +143,6 @@ public class TelaAdministrador extends javax.swing.JFrame {
         leitos.add(alterarStatus);
 
         verificarLeitos.setText("Verificar Leitos");
-        verificarLeitos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                verificarLeitosActionPerformed(evt);
-            }
-        });
         leitos.add(verificarLeitos);
 
         gerenciar.add(leitos);
@@ -232,11 +256,11 @@ public class TelaAdministrador extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 834, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 616, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -273,12 +297,6 @@ public class TelaAdministrador extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_cadastrarLeitoActionPerformed
 
-    private void verificarLeitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verificarLeitosActionPerformed
-        // TODO add your handling code here:
-        new TelaVerificarLeitos(admHospital).setVisible(true);
-        dispose();
-    }//GEN-LAST:event_verificarLeitosActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem alterarDadosEnfermeiro;
@@ -299,6 +317,8 @@ public class TelaAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenu leitos;
     private javax.swing.JMenuItem listaEnfermeiros;
     private javax.swing.JMenuItem listaFarmaceuticos;
@@ -313,6 +333,7 @@ public class TelaAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenu recursosHumanos;
     private javax.swing.JMenuItem sair;
     private javax.swing.JMenu suprimentos;
+    private javax.swing.JTable tabelaLeitos;
     private javax.swing.JMenu tecnicos;
     private javax.swing.JMenuItem verificarInternacoes;
     private javax.swing.JMenuItem verificarLeitos;
