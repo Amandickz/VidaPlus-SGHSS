@@ -6,6 +6,7 @@ package interfaces;
 
 import classes.Leito;
 import enums.TiposLeitos;
+import gerenciamento.AdministrarHospital;
 
 /**
  *
@@ -13,15 +14,18 @@ import enums.TiposLeitos;
  */
 public class TelaCadastroLeito extends javax.swing.JFrame {
 
+    AdministrarHospital admHospital;
     /**
      * Creates new form TelaCadastroLeito
+     * @param admHospital
      */
-    public TelaCadastroLeito() {
+    public TelaCadastroLeito(AdministrarHospital admHospital) {
         initComponents();
         tipoLeitos.removeAllItems();
         for (TiposLeitos tipos : TiposLeitos.values()){
             tipoLeitos.addItem(tipos.getTipoLeito());
         }
+        this.admHospital = admHospital;
         this.setLocationRelativeTo(null);
     }
 
@@ -170,10 +174,7 @@ public class TelaCadastroLeito extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,7 +209,11 @@ public class TelaCadastroLeito extends javax.swing.JFrame {
         
         Leito leito = new Leito(numLeito, tipo, valor, disponibilidade, anotacoes);
         
-        System.out.println(leito);
+        boolean cadastro = admHospital.cadastrarNovoLeito(leito);
+        System.out.println(cadastro);
+        
+        TelaAdministrador telaAdministrador = new TelaAdministrador(admHospital);
+        telaAdministrador.setVisible(true);
         
         dispose();
     }//GEN-LAST:event_cadastrarActionPerformed
@@ -248,7 +253,7 @@ public class TelaCadastroLeito extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaCadastroLeito().setVisible(true);
+                
             }
         });
     }
