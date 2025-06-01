@@ -4,7 +4,10 @@
  */
 package interfaces;
 
+import classes.Leito;
 import gerenciamento.AdministrarHospital;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,13 +24,23 @@ public class TelaVerificarLeitos extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.admHospital = admHospital;
-        admHospital.leitosCadastrados();
+        ArrayList<Leito> listaLeitos;
+        listaLeitos = this.admHospital.leitosCadastrados();
         
         DefaultTableModel todosLeitos = (DefaultTableModel) tabelaLeitos.getModel();
         todosLeitos.addColumn("Quarto");
         todosLeitos.addColumn("Tipo");
         todosLeitos.addColumn("Valor");
         todosLeitos.addColumn("Status");
+        
+        if(!listaLeitos.isEmpty()){
+            for(Leito l : listaLeitos){
+                todosLeitos.addRow(new Object[]{l.getNumero(),
+                    this.admHospital.tipoLeito(l.getTipo()),
+                    l.getValor(),
+                    this.admHospital.disponibilidade(l.isStatus())});
+            }
+        }
     }
 
     /**

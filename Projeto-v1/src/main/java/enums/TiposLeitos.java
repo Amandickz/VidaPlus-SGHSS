@@ -30,8 +30,5 @@ public enum TiposLeitos {
     public String getTipoLeito() {
         return tipoLeito;
     }
-    
-    
-    
-    
+        
 }
