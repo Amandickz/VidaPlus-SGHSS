@@ -5,6 +5,7 @@
 package interfaces;
 
 import gerenciamento.AdministrarHospital;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -160,6 +161,11 @@ public class TelaAdministrador extends javax.swing.JFrame {
         medicos.setText("Médicos");
 
         novoMedico.setText("Novo Médico");
+        novoMedico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novoMedicoActionPerformed(evt);
+            }
+        });
         medicos.add(novoMedico);
 
         alterarDadosMedico.setText("Alterar Dados do Médico");
@@ -275,9 +281,19 @@ public class TelaAdministrador extends javax.swing.JFrame {
 
     private void verificarLeitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verificarLeitosActionPerformed
         // TODO add your handling code here:
-        new TelaVerificarLeitos(admHospital).setVisible(true);
-        dispose();
+        if(admHospital.leitosCadastrados().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nenhum Leito Cadastrado!");
+        } else {
+            new TelaVerificarLeitos(admHospital).setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_verificarLeitosActionPerformed
+
+    private void novoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoMedicoActionPerformed
+        // TODO add your handling code here:
+        new TelaCadastrarPessoa(admHospital, 1).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_novoMedicoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
