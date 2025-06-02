@@ -4,7 +4,9 @@
  */
 package gerenciamento;
 
+import classes.Endereco;
 import classes.Leito;
+import classes.Pessoa;
 import enums.TiposLeitos;
 import java.util.ArrayList;
 
@@ -15,6 +17,8 @@ import java.util.ArrayList;
 public class AdministrarHospital {
     
     ArrayList<Leito> leitos = new ArrayList<>();
+    ArrayList<Pessoa> pessoas = new ArrayList<>();
+    ArrayList<Endereco> enderecos = new ArrayList<>();
 
     public AdministrarHospital() {
     }

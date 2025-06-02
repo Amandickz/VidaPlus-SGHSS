@@ -4,6 +4,11 @@
  */
 package classes;
 
+import enums.Estado;
+import enums.Nacionalidade;
+import enums.RacaCorEtnia;
+import enums.Sexo;
+
 /**
  *
  * @author Amanda
@@ -15,20 +20,21 @@ public class Pessoa {
     private String nomeCompleto;
     private String nomeSocial;
     private String dataNascimento;
-    private char sexo;
+    private Sexo sexo;
     private String nomeMae;
     private String nomePai;
     private String naturalidade;
-    private String uf;
-    private String nacionalidade;
-    private String raca;
+    private Estado uf;
+    private Nacionalidade nacionalidade;
+    private RacaCorEtnia raca;
     private String telefone;
     private String email;
+    private int idEndereco;
 
     public Pessoa() {
     }
 
-    public Pessoa(String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, char sexo, String nomeMae, String nomePai, String naturalidade, String uf, String nacionalidade, String raca, String telefone, String email) {
+    public Pessoa(String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco) {
         this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
         this.nomeSocial = nomeSocial;
@@ -42,9 +48,10 @@ public class Pessoa {
         this.raca = raca;
         this.telefone = telefone;
         this.email = email;
+        this.idEndereco = idEndereco;
     }
 
-    public Pessoa(int id, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, char sexo, String nomeMae, String nomePai, String naturalidade, String uf, String nacionalidade, String raca, String telefone, String email) {
+    public Pessoa(int id, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco) {
         this.id = id;
         this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
@@ -59,6 +66,7 @@ public class Pessoa {
         this.raca = raca;
         this.telefone = telefone;
         this.email = email;
+        this.idEndereco = idEndereco;
     }
 
     public int getId() {
@@ -101,11 +109,11 @@ public class Pessoa {
         this.dataNascimento = dataNascimento;
     }
 
-    public char getSexo() {
+    public Sexo getSexo() {
         return sexo;
     }
 
-    public void setSexo(char sexo) {
+    public void setSexo(Sexo sexo) {
         this.sexo = sexo;
     }
 
@@ -133,27 +141,27 @@ public class Pessoa {
         this.naturalidade = naturalidade;
     }
 
-    public String getUf() {
+    public Estado getUf() {
         return uf;
     }
 
-    public void setUf(String uf) {
+    public void setUf(Estado uf) {
         this.uf = uf;
     }
 
-    public String getNacionalidade() {
+    public Nacionalidade getNacionalidade() {
         return nacionalidade;
     }
 
-    public void setNacionalidade(String nacionalidade) {
+    public void setNacionalidade(Nacionalidade nacionalidade) {
         this.nacionalidade = nacionalidade;
     }
 
-    public String getRaca() {
+    public RacaCorEtnia getRaca() {
         return raca;
     }
 
-    public void setRaca(String raca) {
+    public void setRaca(RacaCorEtnia raca) {
         this.raca = raca;
     }
 
@@ -173,11 +181,17 @@ public class Pessoa {
         this.email = email;
     }
 
+    public int getIdEndereco() {
+        return idEndereco;
+    }
+
+    public void setIdEndereco(int idEndereco) {
+        this.idEndereco = idEndereco;
+    }
+
     @Override
     public String toString() {
-        return "Pessoa{" + "id=" + id + ", cpf=" + cpf + ", nomeCompleto=" + nomeCompleto + ", nomeSocial=" + nomeSocial + ", dataNascimento=" + dataNascimento + ", sexo=" + sexo + ", nomeMae=" + nomeMae + ", nomePai=" + nomePai + ", naturalidade=" + naturalidade + ", uf=" + uf + ", nacionalidade=" + nacionalidade + ", raca=" + raca + ", telefone=" + telefone + ", email=" + email + '}';
-    }
-    
-    
+        return "Pessoa{" + "id=" + id + ", cpf=" + cpf + ", nomeCompleto=" + nomeCompleto + ", nomeSocial=" + nomeSocial + ", dataNascimento=" + dataNascimento + ", sexo=" + sexo + ", nomeMae=" + nomeMae + ", nomePai=" + nomePai + ", naturalidade=" + naturalidade + ", uf=" + uf + ", nacionalidade=" + nacionalidade + ", raca=" + raca + ", telefone=" + telefone + ", email=" + email + ", idEndereco=" + idEndereco + '}';
+    }    
     
 }

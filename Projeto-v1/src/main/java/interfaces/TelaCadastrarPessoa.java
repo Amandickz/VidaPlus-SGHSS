@@ -4,13 +4,13 @@
  */
 package interfaces;
 
-import enums.Nacionalidades;
+import classes.Pessoa;
+import enums.Estado;
+import enums.Nacionalidade;
 import enums.RacaCorEtnia;
+import enums.Sexo;
 import gerenciamento.AdministrarHospital;
-import java.text.ParseException;
 import javax.swing.JOptionPane;
-import javax.swing.text.MaskFormatter;
-
 /**
  *
  * @author Amanda
@@ -19,7 +19,6 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
 
     AdministrarHospital admHospital = new AdministrarHospital();
     int tipoCadastro;
-    MaskFormatter maskCpf, maskDataNascimento, maskTelefone, maskCep;
     /**
      * Creates new form TelaAdministrador
      */
@@ -28,18 +27,11 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.admHospital = admHospital;
         this.tipoCadastro = tipoCadastro;
-        
-        try {
-            maskCpf = new MaskFormatter("###.###.###-##");
-            maskDataNascimento = new MaskFormatter("##/##/####");
-            maskTelefone = new MaskFormatter("(##)#####-####");
-            maskCep = new MaskFormatter("#####-###");
-        } catch (ParseException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao aplicar a formatacao.");
-        }
-        
         preencheListaRaca();
         preencheListaNacionalidade();
+        preencherListaSexo();
+        preencherListasEstados();
+        nomeSocial.setEditable(nomeSocialCheck.isSelected());
     }
     
     private void preencheListaRaca(){
@@ -51,8 +43,24 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
     
     private void preencheListaNacionalidade(){
         listaNacionalidade.removeAllItems();
-        for(Nacionalidades n : Nacionalidades.values()){
+        for(Nacionalidade n : Nacionalidade.values()){
             listaNacionalidade.addItem(n.getNacionalidades());
+        }
+    }
+    
+    private void preencherListaSexo(){
+        listaSexo.removeAllItems();
+        for(Sexo s : Sexo.values()){
+            listaSexo.addItem(s.getSexo());
+        }
+    }
+    
+    private void preencherListasEstados(){
+        listaEstados.removeAllItems();
+        listaEstadoCEP.removeAllItems();
+        for(Estado e : Estado.values()){
+            listaEstados.addItem(e.getEstado());
+            listaEstadoCEP.addItem(e.getEstado());
         }
     }
 
@@ -67,7 +75,7 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
-        cpfPessoa = new javax.swing.JFormattedTextField(maskCpf);
+        cpfPessoa = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
         nomeCompleto = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -75,7 +83,7 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         nomeSocialCheck = new javax.swing.JCheckBox();
         jLabel5 = new javax.swing.JLabel();
-        dataNascimento = new javax.swing.JFormattedTextField(maskDataNascimento);
+        dataNascimento = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
         listaSexo = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
@@ -91,11 +99,11 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         listaRaca = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
-        telefone = new javax.swing.JFormattedTextField(maskTelefone);
+        telefone = new javax.swing.JFormattedTextField();
         jLabel15 = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        cep = new javax.swing.JFormattedTextField(maskCep);
+        cep = new javax.swing.JFormattedTextField();
         jLabel17 = new javax.swing.JLabel();
         logradouro = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
@@ -111,8 +119,8 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
         listaEstadoCEP = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel23 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        continuar = new javax.swing.JButton();
+        cancelar = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -156,17 +164,32 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
 
         jLabel1.setText("CPF:");
 
+        try {
+            cpfPessoa.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         jLabel2.setText("Nome Completo:");
 
         jLabel3.setText("Nome Social:");
 
-        nomeSocial.setEnabled(false);
-
         jLabel4.setText("Adicionar Nome Social?");
 
         nomeSocialCheck.setText("Sim");
+        nomeSocialCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeSocialCheckActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Data de Nascimento:");
+
+        try {
+            dataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         jLabel6.setText("Sexo:");
 
@@ -192,6 +215,11 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
 
         jLabel14.setText("Telefone:");
 
+        try {
+            telefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         telefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 telefoneActionPerformed(evt);
@@ -201,6 +229,12 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
         jLabel15.setText("E-mail:");
 
         jLabel16.setText("CEP:");
+
+        try {
+            cep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         jLabel17.setText("Logradouro:");
 
@@ -226,9 +260,19 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel23.setText("Cadastro de Pessoa Física");
 
-        jButton1.setText("Continuar");
+        continuar.setText("Continuar");
+        continuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                continuarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Cancelar");
+        cancelar.setText("Cancelar");
+        cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarActionPerformed(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel13.setText("Endereço");
@@ -417,10 +461,10 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(dataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(listaSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(listaSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -465,9 +509,9 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
                                     .addComponent(listaEstadoCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(0, 0, Short.MAX_VALUE))))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(continuar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -510,9 +554,9 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel23)
-                .addGap(26, 26, 26)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(nomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -582,10 +626,10 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(cancelar)
                         .addGap(28, 28, 28))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(continuar)
                         .addGap(20, 20, 20))))
         );
 
@@ -639,11 +683,60 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
 
     private void semNumeroCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_semNumeroCheckActionPerformed
         // TODO add your handling code here:
+        numero.setEditable(!semNumeroCheck.isSelected());
     }//GEN-LAST:event_semNumeroCheckActionPerformed
 
     private void telefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefoneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_telefoneActionPerformed
+
+    private void continuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuarActionPerformed
+        // TODO add your handling code here:
+        Pessoa p = new Pessoa();
+        p.setCpf(cpfPessoa.getText());
+        p.setNomeCompleto(nomeCompleto.getText());
+        if(nomeSocialCheck.isSelected()){
+            p.setNomeSocial(nomeSocial.getText());
+        }
+        p.setDataNascimento(dataNascimento.getText());
+        for(Sexo s : Sexo.values()){
+            if(listaSexo.getSelectedItem().toString().equals(s.getSexo())){
+                p.setSexo(s);
+            }
+        }
+        p.setNomeMae(nomeMae.getText());
+        p.setNomePai(nomePai.getText());
+        for(Estado e : Estado.values()){
+            if(listaEstados.getSelectedItem().toString().equals(e.getEstado())){
+                p.setUf(e);
+            }
+        }
+        for(Nacionalidade n : Nacionalidade.values()){
+            if(listaNacionalidade.getSelectedItem().toString().equals(n.getNacionalidades())){
+                p.setNacionalidade(n);
+            }
+        }
+        for(RacaCorEtnia r : RacaCorEtnia.values()){
+            if(listaRaca.getSelectedItem().toString().equals(r.getRacaCorEtnia())){
+                p.setRaca(r);
+            }
+        }
+        p.setTelefone(telefone.getText());
+        p.setEmail(email.getText());
+        
+        System.out.println(p);
+    }//GEN-LAST:event_continuarActionPerformed
+
+    private void nomeSocialCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeSocialCheckActionPerformed
+        // TODO add your handling code here:
+        nomeSocial.setEditable(nomeSocialCheck.isSelected());
+    }//GEN-LAST:event_nomeSocialCheckActionPerformed
+
+    private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
+        // TODO add your handling code here:
+        new TelaAdministrador(admHospital).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_cancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -657,8 +750,10 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
     private javax.swing.JTextField bairro;
     private javax.swing.JMenu buscarMedicos;
     private javax.swing.JMenuItem cadastrarLeito;
+    private javax.swing.JButton cancelar;
     private javax.swing.JFormattedTextField cep;
     private javax.swing.JTextField complemento;
+    private javax.swing.JButton continuar;
     private javax.swing.JFormattedTextField cpfPessoa;
     private javax.swing.JMenuItem dataAdmissaoMedico;
     private javax.swing.JFormattedTextField dataNascimento;
@@ -668,8 +763,6 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
     private javax.swing.JMenu farmaceuticos;
     private javax.swing.JMenu gerenciar;
     private javax.swing.JMenu internacoes;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

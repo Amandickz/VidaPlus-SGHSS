@@ -8,7 +8,7 @@ package enums;
  *
  * @author Amanda
  */
-public enum Nacionalidades {
+public enum Nacionalidade {
     
     UM("BRASILEIRO"),
     DOIS("ESTRANGEIRO"),
@@ -16,7 +16,7 @@ public enum Nacionalidades {
     
     private String nacionalidades;
 
-    Nacionalidades(String nacionalidades) {
+    Nacionalidade(String nacionalidades) {
         this.nacionalidades = nacionalidades;
     }
 

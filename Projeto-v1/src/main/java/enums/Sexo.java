@@ -8,6 +8,19 @@ package enums;
  *
  * @author Amanda
  */
-public enum Estados {
+public enum Sexo {
+    
+    F("FEMININO"),
+    M("MASCULINO");
+    
+    private String sexo;
+
+    Sexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
     
 }

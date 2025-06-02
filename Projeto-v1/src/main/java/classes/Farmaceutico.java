@@ -4,6 +4,11 @@
  */
 package classes;
 
+import enums.Estado;
+import enums.Nacionalidade;
+import enums.RacaCorEtnia;
+import enums.Sexo;
+
 /**
  *
  * @author Amanda
@@ -27,8 +32,8 @@ public class Farmaceutico extends ProfissionalSaude{
         this.dataExpedicao = dataExpedicao;
     }
 
-    public Farmaceutico(String crf, String ufCRF, String categoriaProfissional, String instituicaoDiploma, String dataConclusao, String dataExpedicao, String grupoSanguineo, String dataAdminissao, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, char sexo, String nomeMae, String nomePai, String naturalidade, String uf, String nacionalidade, String raca, String telefone, String email) {
-        super(grupoSanguineo, dataAdminissao, cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email);
+    public Farmaceutico(String crf, String ufCRF, String categoriaProfissional, String instituicaoDiploma, String dataConclusao, String dataExpedicao, String grupoSanguineo, String dataAdminissao, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco) {
+        super(grupoSanguineo, dataAdminissao, cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco);
         this.crf = crf;
         this.ufCRF = ufCRF;
         this.categoriaProfissional = categoriaProfissional;
@@ -37,8 +42,8 @@ public class Farmaceutico extends ProfissionalSaude{
         this.dataExpedicao = dataExpedicao;
     }
 
-    public Farmaceutico(String crf, String ufCRF, String categoriaProfissional, String instituicaoDiploma, String dataConclusao, String dataExpedicao, String grupoSanguineo, String dataAdminissao, int id, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, char sexo, String nomeMae, String nomePai, String naturalidade, String uf, String nacionalidade, String raca, String telefone, String email) {
-        super(grupoSanguineo, dataAdminissao, id, cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email);
+    public Farmaceutico(String crf, String ufCRF, String categoriaProfissional, String instituicaoDiploma, String dataConclusao, String dataExpedicao, String grupoSanguineo, String dataAdminissao, int id, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco) {
+        super(grupoSanguineo, dataAdminissao, id, cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco);
         this.crf = crf;
         this.ufCRF = ufCRF;
         this.categoriaProfissional = categoriaProfissional;
