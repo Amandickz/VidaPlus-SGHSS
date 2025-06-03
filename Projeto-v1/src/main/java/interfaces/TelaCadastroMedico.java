@@ -4,9 +4,13 @@
  */
 package interfaces;
 
+import classes.Endereco;
+import classes.Login;
+import classes.Medico;
 import classes.Pessoa;
 import enums.Especialidades;
 import enums.Estado;
+import enums.TipoConta;
 import enums.TipoSanguineo;
 import gerenciamento.AdministrarHospital;
 import javax.swing.JOptionPane;
@@ -18,17 +22,22 @@ import javax.swing.JOptionPane;
 public class TelaCadastroMedico extends javax.swing.JFrame {
 
     AdministrarHospital admHospital = new AdministrarHospital();
-    Pessoa pessoa;
+    Medico medico;
+    Endereco endereco;
     /**
      * Creates new form TelaAdministrador
      */
-    public TelaCadastroMedico(AdministrarHospital admHospital, Pessoa pessoa) {
+    public TelaCadastroMedico(AdministrarHospital admHospital, Pessoa pessoa, Endereco endereco) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.admHospital = admHospital;
-        this.pessoa = pessoa;
-        nomeMedico.setText(this.pessoa.getNomeCompleto().toUpperCase());
-        login.setText(this.pessoa.getCpf());
+        this.endereco = endereco;
+        medico = new Medico(null, null, null, null, null, null, null, pessoa.getId(), pessoa.getCpf(),
+                pessoa.getNomeCompleto(), pessoa.getNomeSocial(), pessoa.getDataNascimento(), pessoa.getSexo(),
+                pessoa.getNomeMae(), pessoa.getNomePai(), pessoa.getNaturalidade(), pessoa.getUf(), pessoa.getNacionalidade(),
+                pessoa.getRaca(), pessoa.getTelefone(), pessoa.getEmail(), pessoa.getIdEndereco(), 0);
+        nomeMedico.setText(this.medico.getNomeCompleto().toUpperCase());
+        login.setText(this.medico.getCpf());
         preencherListaTipoSanguineo();
         preencherListasEstados();
         preencherListaEspecialidades();
@@ -85,7 +94,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         listaEspecialidades = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        observacoes = new javax.swing.JTextArea();
         jSeparator4 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -93,7 +102,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         senhaLogin = new javax.swing.JPasswordField();
         cancelar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        cadastrar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         sair = new javax.swing.JMenuItem();
@@ -185,9 +194,9 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
 
         jLabel9.setText("Observações:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        observacoes.setColumns(20);
+        observacoes.setRows(5);
+        jScrollPane1.setViewportView(observacoes);
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel10.setText("Informações da Cédula de Identidade de Médico");
@@ -199,8 +208,6 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
 
         jLabel13.setText("Senha:");
 
-        senhaLogin.setText("jPasswordField1");
-
         cancelar.setText("Cancelar");
         cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,10 +215,10 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Cadastrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        cadastrar.setText("Cadastrar");
+        cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                cadastrarActionPerformed(evt);
             }
         });
 
@@ -440,12 +447,12 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(senhaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(senhaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(346, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))))
         );
         layout.setVerticalGroup(
@@ -500,7 +507,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelar)
-                    .addComponent(jButton1))
+                    .addComponent(cadastrar))
                 .addGap(19, 19, 19))
         );
 
@@ -560,10 +567,62 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_cancelarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
+        
+        //Pega Informações do Médico
+        TipoSanguineo tipoSangue = null;
+        for(TipoSanguineo t : TipoSanguineo.values()){
+            if(listaTipoSanguineo.getSelectedItem().toString().equals(t.getTipoSanguineo())){
+                tipoSangue = t;
+            }
+        }
+        String admissao = dataAdmissaoMedico.getText();
+        String observacao = observacoes.getText();
+        String crmMedico = numeroCRM.getText();
+        Estado estado = null;
+        for(Estado e : Estado.values()){
+            if(listaEstado.getSelectedItem().toString().equals(e.getEstado())){
+                estado = e;
+            }
+        }
+        String dataCRM = dataInscricao.getText();
+        Especialidades especialidade = null;
+        for(Especialidades ep : Especialidades.values()){
+            if(listaEspecialidades.getSelectedItem().toString().equals(ep.getEspecialidade())){
+                especialidade = ep;
+            }
+        }
+        
+        //Pega informações do Login
+        String usuario = login.getText();
+        char[] senha = senhaLogin.getPassword();
+        String senha2 = new String(senha);
+        
+        
+        //Cria Objeto Login
+        Login login = new Login(usuario, senha2, TipoConta.M);
+        login = admHospital.retornaIdLogin(login);
+        
+        //Insere dados faltantes do Médico
+        medico.setCrm(crmMedico);
+        medico.setUfCRM(estado);
+        medico.setDataIncricao(dataCRM);
+        medico.setEspecialidade(especialidade);
+        medico.setTipoSanguineo(tipoSangue);
+        medico.setDataAdminissao(admissao);
+        medico.setObservaoes(observacao);
+        medico.setIdLogin(login.getId());
+        
+        if(admHospital.cadastraMedico(medico, endereco, login)){
+            JOptionPane.showMessageDialog(null, "Cadastro do Médico Realizado!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Algo deu errado!");
+        }
+        
+        new TelaAdministrador(admHospital).setVisible(true);
+        dispose();        
+    }//GEN-LAST:event_cadastrarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem alterarDadosEnfermeiro;
@@ -574,6 +633,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
     private javax.swing.JMenuItem alterarLeito;
     private javax.swing.JMenuItem alterarStatus;
     private javax.swing.JMenu buscarMedicos;
+    private javax.swing.JButton cadastrar;
     private javax.swing.JMenuItem cadastrarLeito;
     private javax.swing.JButton cancelar;
     private javax.swing.JMenuItem dataAdmissaoMedico;
@@ -583,7 +643,6 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
     private javax.swing.JMenu farmaceuticos;
     private javax.swing.JMenu gerenciar;
     private javax.swing.JMenu internacoes;
-    private javax.swing.JButton jButton1;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -606,7 +665,6 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JMenu leitos;
     private javax.swing.JMenuItem listaEnfermeiros;
     private javax.swing.JComboBox<String> listaEspecialidades;
@@ -624,6 +682,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
     private javax.swing.JMenuItem novoSuprimento;
     private javax.swing.JMenuItem novoTecnico;
     private javax.swing.JFormattedTextField numeroCRM;
+    private javax.swing.JTextArea observacoes;
     private javax.swing.JMenu recursosHumanos;
     private javax.swing.JMenuItem sair;
     private javax.swing.JPasswordField senhaLogin;

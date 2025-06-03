@@ -4,10 +4,12 @@
  */
 package classes;
 
+import enums.Especialidades;
 import enums.Estado;
 import enums.Nacionalidade;
 import enums.RacaCorEtnia;
 import enums.Sexo;
+import enums.TipoSanguineo;
 
 /**
  *
@@ -16,34 +18,34 @@ import enums.Sexo;
 public class Medico extends ProfissionalSaude{
     
     private String crm;
-    private String ufCRM;
+    private Estado ufCRM;
     private String dataIncricao;
-    private int especialidade;
+    private Especialidades especialidade;
 
-    public Medico(String crm, String ufCRM, String dataIncricao, int especialidade, String grupoSanguineo, String dataAdminissao, String observaoes) {
-        super(grupoSanguineo, dataAdminissao, observaoes);
+    public Medico(String crm, Estado ufCRM, String dataIncricao, Especialidades especialidade, TipoSanguineo tipoSanguineo, String dataAdminissao, String observaoes) {
+        super(tipoSanguineo, dataAdminissao, observaoes);
         this.crm = crm;
         this.ufCRM = ufCRM;
         this.dataIncricao = dataIncricao;
         this.especialidade = especialidade;
     }
 
-    public Medico(String crm, String ufCRM, String dataIncricao, int especialidade, String grupoSanguineo, String dataAdminissao, String observaoes, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
-        super(grupoSanguineo, dataAdminissao, observaoes, cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco, idLogin);
+    public Medico(String crm, Estado ufCRM, String dataIncricao, Especialidades especialidade, TipoSanguineo tipoSanguineo, String dataAdminissao, String observaoes, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
+        super(tipoSanguineo, dataAdminissao, observaoes, cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco, idLogin);
         this.crm = crm;
         this.ufCRM = ufCRM;
         this.dataIncricao = dataIncricao;
         this.especialidade = especialidade;
     }
 
-    public Medico(String crm, String ufCRM, String dataIncricao, int especialidade, String grupoSanguineo, String dataAdminissao, String observaoes, int id, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
-        super(grupoSanguineo, dataAdminissao, observaoes, id, cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco, idLogin);
+    public Medico(String crm, Estado ufCRM, String dataIncricao, Especialidades especialidade, TipoSanguineo tipoSanguineo, String dataAdminissao, String observaoes, int id, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
+        super(tipoSanguineo, dataAdminissao, observaoes, id, cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco, idLogin);
         this.crm = crm;
         this.ufCRM = ufCRM;
         this.dataIncricao = dataIncricao;
         this.especialidade = especialidade;
     }
-    
+
     public String getCrm() {
         return crm;
     }
@@ -52,11 +54,11 @@ public class Medico extends ProfissionalSaude{
         this.crm = crm;
     }
 
-    public String getUfCRM() {
+    public Estado getUfCRM() {
         return ufCRM;
     }
 
-    public void setUfCRM(String ufCRM) {
+    public void setUfCRM(Estado ufCRM) {
         this.ufCRM = ufCRM;
     }
 
@@ -68,11 +70,11 @@ public class Medico extends ProfissionalSaude{
         this.dataIncricao = dataIncricao;
     }
 
-    public int getEspecialidade() {
+    public Especialidades getEspecialidade() {
         return especialidade;
     }
 
-    public void setEspecialidade(int especialidade) {
+    public void setEspecialidade(Especialidades especialidade) {
         this.especialidade = especialidade;
     }
 

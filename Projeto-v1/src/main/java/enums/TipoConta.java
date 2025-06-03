@@ -10,6 +10,7 @@ package enums;
  */
 public enum TipoConta {
     
+    A("ADMINISTRADOR"),
     P("PACIENTE"),
     M("MÉDICO"),
     E("ENFERMEIRO"),

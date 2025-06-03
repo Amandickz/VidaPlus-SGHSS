@@ -695,64 +695,65 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         //Criar Objeto Pessoa
-        Pessoa p = new Pessoa();
-        p.setCpf(cpfPessoa.getText());
-        p.setNomeCompleto(nomeCompleto.getText());
+        Pessoa pessoa = new Pessoa();
+        pessoa.setCpf(cpfPessoa.getText());
+        pessoa.setNomeCompleto(nomeCompleto.getText());
         if(nomeSocialCheck.isSelected()){
-            p.setNomeSocial(nomeSocial.getText());
+            pessoa.setNomeSocial(nomeSocial.getText());
         }
-        p.setDataNascimento(dataNascimento.getText());
+        pessoa.setDataNascimento(dataNascimento.getText());
         for(Sexo s : Sexo.values()){
             if(listaSexo.getSelectedItem().toString().equals(s.getSexo())){
-                p.setSexo(s);
+                pessoa.setSexo(s);
             }
         }
-        p.setNomeMae(nomeMae.getText());
-        p.setNomePai(nomePai.getText());
+        pessoa.setNomeMae(nomeMae.getText());
+        pessoa.setNomePai(nomePai.getText());
+        pessoa.setNaturalidade(naturalidade.getText());
         for(Estado e : Estado.values()){
             if(listaEstados.getSelectedItem().toString().equals(e.getEstado())){
-                p.setUf(e);
+                pessoa.setUf(e);
             }
         }
         for(Nacionalidade n : Nacionalidade.values()){
             if(listaNacionalidade.getSelectedItem().toString().equals(n.getNacionalidades())){
-                p.setNacionalidade(n);
+                pessoa.setNacionalidade(n);
             }
         }
         for(RacaCorEtnia r : RacaCorEtnia.values()){
             if(listaRaca.getSelectedItem().toString().equals(r.getRacaCorEtnia())){
-                p.setRaca(r);
+                pessoa.setRaca(r);
             }
         }
-        p.setTelefone(telefone.getText());
-        p.setEmail(email.getText());
+        pessoa.setTelefone(telefone.getText());
+        pessoa.setEmail(email.getText());
         
         //Cria Objeto Endereço
-        Endereco e = new Endereco();
-        e.setCep(cep.getText());
-        e.setLogradouro(logradouro.getText());
+        Endereco endereco = new Endereco();
+        endereco.setCep(cep.getText());
+        endereco.setLogradouro(logradouro.getText());
         if(semNumeroCheck.isSelected()){
-            e.setNumero(0);
+            endereco.setNumero(0);
         } else {
-            e.setNumero(Integer.parseInt(numero.getText()));
+            endereco.setNumero(Integer.parseInt(numero.getText()));
         }
-        e.setComplemento(complemento.getText());
-        e.setBairro(bairro.getText());
-        e.setMunicipio(municipio.getText());
+        endereco.setComplemento(complemento.getText());
+        endereco.setBairro(bairro.getText());
+        endereco.setMunicipio(municipio.getText());
         for(Estado uf : Estado.values()){
             if(listaEstadoCEP.getSelectedItem().toString().equals(uf.getEstado())){
-                e.setUf(uf);
+                endereco.setUf(uf);
             }
         }
         
         //Adiciona ao sistema        
-        e = admHospital.cadastrarEndereco(e);
-        p.setIdEndereco(e.getId());
-        p = admHospital.cadastrarPessoa(p);
-        System.out.println(p);
-        System.out.println(e);
+        endereco = admHospital.retornaIdEndereco(endereco);
+        pessoa.setIdEndereco(endereco.getId());
+        pessoa = admHospital.retornaIdPessoa(pessoa);
+        System.out.println(pessoa);
+        System.out.println(endereco);
         
-        new TelaCadastroMedico(admHospital, p).setVisible(true);
+        new TelaCadastroMedico(admHospital, pessoa, endereco).setVisible(true);
         dispose();
     }//GEN-LAST:event_continuarActionPerformed
 
