@@ -8,6 +8,7 @@ import enums.Estado;
 import enums.Nacionalidade;
 import enums.RacaCorEtnia;
 import enums.Sexo;
+import enums.TipoSanguineo;
 
 /**
  *
@@ -15,32 +16,36 @@ import enums.Sexo;
  */
 public class ProfissionalSaude extends Pessoa{
     
-    private String grupoSanguineo;
+    private TipoSanguineo tipoSanguineo;
     private String dataAdminissao;
+    private String observaoes;
 
-    public ProfissionalSaude(String grupoSanguineo, String dataAdminissao) {
-        this.grupoSanguineo = grupoSanguineo;
+    public ProfissionalSaude(TipoSanguineo tipoSanguineo, String dataAdminissao, String observaoes) {
+        this.tipoSanguineo = tipoSanguineo;
         this.dataAdminissao = dataAdminissao;
+        this.observaoes = observaoes;
     }
 
-    public ProfissionalSaude(String grupoSanguineo, String dataAdminissao, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco) {
-        super(cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco);
-        this.grupoSanguineo = grupoSanguineo;
+    public ProfissionalSaude(TipoSanguineo tipoSanguineo, String dataAdminissao, String observaoes, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
+        super(cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco, idLogin);
+        this.tipoSanguineo = tipoSanguineo;
         this.dataAdminissao = dataAdminissao;
+        this.observaoes = observaoes;
     }
 
-    public ProfissionalSaude(String grupoSanguineo, String dataAdminissao, int id, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco) {
-        super(id, cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco);
-        this.grupoSanguineo = grupoSanguineo;
+    public ProfissionalSaude(TipoSanguineo tipoSanguineo, String dataAdminissao, String observaoes, int id, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
+        super(id, cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco, idLogin);
+        this.tipoSanguineo = tipoSanguineo;
         this.dataAdminissao = dataAdminissao;
+        this.observaoes = observaoes;
     }
 
-    public String getGrupoSanguineo() {
-        return grupoSanguineo;
+    public TipoSanguineo getTipoSanguineo() {
+        return tipoSanguineo;
     }
 
-    public void setGrupoSanguineo(String grupoSanguineo) {
-        this.grupoSanguineo = grupoSanguineo;
+    public void setTipoSanguineo(TipoSanguineo tipoSanguineo) {
+        this.tipoSanguineo = tipoSanguineo;
     }
 
     public String getDataAdminissao() {
@@ -51,11 +56,19 @@ public class ProfissionalSaude extends Pessoa{
         this.dataAdminissao = dataAdminissao;
     }
 
+    public String getObservaoes() {
+        return observaoes;
+    }
+
+    public void setObservaoes(String observaoes) {
+        this.observaoes = observaoes;
+    }
+
     @Override
     public String toString() {
-        return "ProfissionalSaude{" + "grupoSanguineo=" + grupoSanguineo + ", dataAdminissao=" + dataAdminissao + '}';
+        return "ProfissionalSaude{" + "tipoSanguineo=" + tipoSanguineo + ", dataAdminissao=" + dataAdminissao + ", observaoes=" + observaoes + '}';
     }
-    
+
     
     
 }

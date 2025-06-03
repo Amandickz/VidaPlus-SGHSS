@@ -4,6 +4,7 @@
  */
 package interfaces;
 
+import classes.Endereco;
 import classes.Pessoa;
 import enums.Estado;
 import enums.Nacionalidade;
@@ -114,7 +115,7 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         bairro = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        municipio = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         listaEstadoCEP = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
@@ -494,7 +495,7 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(municipio, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
@@ -620,7 +621,7 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(municipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22)
                     .addComponent(listaEstadoCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
@@ -692,39 +693,68 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
 
     private void continuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuarActionPerformed
         // TODO add your handling code here:
-        Pessoa p = new Pessoa();
-        p.setCpf(cpfPessoa.getText());
-        p.setNomeCompleto(nomeCompleto.getText());
+        
+        //Criar Objeto Pessoa
+        Pessoa pessoa = new Pessoa();
+        pessoa.setCpf(cpfPessoa.getText());
+        pessoa.setNomeCompleto(nomeCompleto.getText());
         if(nomeSocialCheck.isSelected()){
-            p.setNomeSocial(nomeSocial.getText());
+            pessoa.setNomeSocial(nomeSocial.getText());
         }
-        p.setDataNascimento(dataNascimento.getText());
+        pessoa.setDataNascimento(dataNascimento.getText());
         for(Sexo s : Sexo.values()){
             if(listaSexo.getSelectedItem().toString().equals(s.getSexo())){
-                p.setSexo(s);
+                pessoa.setSexo(s);
             }
         }
-        p.setNomeMae(nomeMae.getText());
-        p.setNomePai(nomePai.getText());
+        pessoa.setNomeMae(nomeMae.getText());
+        pessoa.setNomePai(nomePai.getText());
+        pessoa.setNaturalidade(naturalidade.getText());
         for(Estado e : Estado.values()){
             if(listaEstados.getSelectedItem().toString().equals(e.getEstado())){
-                p.setUf(e);
+                pessoa.setUf(e);
             }
         }
         for(Nacionalidade n : Nacionalidade.values()){
             if(listaNacionalidade.getSelectedItem().toString().equals(n.getNacionalidades())){
-                p.setNacionalidade(n);
+                pessoa.setNacionalidade(n);
             }
         }
         for(RacaCorEtnia r : RacaCorEtnia.values()){
             if(listaRaca.getSelectedItem().toString().equals(r.getRacaCorEtnia())){
-                p.setRaca(r);
+                pessoa.setRaca(r);
             }
         }
-        p.setTelefone(telefone.getText());
-        p.setEmail(email.getText());
+        pessoa.setTelefone(telefone.getText());
+        pessoa.setEmail(email.getText());
         
-        System.out.println(p);
+        //Cria Objeto Endereço
+        Endereco endereco = new Endereco();
+        endereco.setCep(cep.getText());
+        endereco.setLogradouro(logradouro.getText());
+        if(semNumeroCheck.isSelected()){
+            endereco.setNumero(0);
+        } else {
+            endereco.setNumero(Integer.parseInt(numero.getText()));
+        }
+        endereco.setComplemento(complemento.getText());
+        endereco.setBairro(bairro.getText());
+        endereco.setMunicipio(municipio.getText());
+        for(Estado uf : Estado.values()){
+            if(listaEstadoCEP.getSelectedItem().toString().equals(uf.getEstado())){
+                endereco.setUf(uf);
+            }
+        }
+        
+        //Adiciona ao sistema        
+        endereco = admHospital.retornaIdEndereco(endereco);
+        pessoa.setIdEndereco(endereco.getId());
+        pessoa = admHospital.retornaIdPessoa(pessoa);
+        System.out.println(pessoa);
+        System.out.println(endereco);
+        
+        new TelaCadastroMedico(admHospital, pessoa, endereco).setVisible(true);
+        dispose();
     }//GEN-LAST:event_continuarActionPerformed
 
     private void nomeSocialCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeSocialCheckActionPerformed
@@ -790,7 +820,6 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JMenu leitos;
     private javax.swing.JMenuItem listaEnfermeiros;
     private javax.swing.JComboBox<String> listaEstadoCEP;
@@ -803,6 +832,7 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
     private javax.swing.JMenuItem listaTecnicos;
     private javax.swing.JTextField logradouro;
     private javax.swing.JMenu medicos;
+    private javax.swing.JTextField municipio;
     private javax.swing.JTextField naturalidade;
     private javax.swing.JTextField nomeCompleto;
     private javax.swing.JTextField nomeMae;

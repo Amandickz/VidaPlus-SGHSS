@@ -6,6 +6,8 @@ package gerenciamento;
 
 import classes.Endereco;
 import classes.Leito;
+import classes.Login;
+import classes.Medico;
 import classes.Pessoa;
 import enums.TiposLeitos;
 import java.util.ArrayList;
@@ -19,10 +21,51 @@ public class AdministrarHospital {
     ArrayList<Leito> leitos = new ArrayList<>();
     ArrayList<Pessoa> pessoas = new ArrayList<>();
     ArrayList<Endereco> enderecos = new ArrayList<>();
+    ArrayList<Login> logins = new ArrayList<>();
+    ArrayList<Medico> medicos = new ArrayList<>();
 
     public AdministrarHospital() {
     }
     
+    //Gerenciamento de Pessoas
+    public Pessoa retornaIdPessoa(Pessoa pessoa){
+        pessoa.setId(pessoas.size() + 1);
+        return pessoa;
+    }
+    
+    //Gerenciamento do Profissional de Saúde
+    
+    //Gerenciamento do Profissional de Saúde - Médico
+    public boolean cadastraMedico(Medico medico, Endereco endereco, Login login){
+        Pessoa pessoa = new Pessoa(medico.getId(), medico.getCpf(), medico.getNomeCompleto(), medico.getNomeSocial(),
+                medico.getDataNascimento(), medico.getSexo(), medico.getNomeMae(), medico.getNomePai(), medico.getNaturalidade(),
+                medico.getUf(), medico.getNacionalidade(), medico.getRaca(), medico.getTelefone(), medico.getEmail(),
+                medico.getIdEndereco(), medico.getIdLogin());
+        pessoas.add(pessoa);
+        enderecos.add(endereco);
+        logins.add(login);
+        medicos.add(medico);
+        System.out.println("------Cadastrado Agora------");
+        System.out.println(pessoa);
+        System.out.println(endereco);
+        System.out.println(login);
+        System.out.println(medico);
+        return true;
+    }
+            
+    //Gerenciamento de Login
+    public Login retornaIdLogin(Login login){
+        login.setId(logins.size() + 1);
+        return login;
+    }
+    
+    //Gerenciamento de Endereço
+    public Endereco retornaIdEndereco(Endereco endereco){
+        endereco.setId(enderecos.size() + 1);
+        return endereco;
+    }
+    
+    //Gerenciamento de Leito
     public boolean cadastrarNovoLeito(Leito leito){        
         if(!leitos.isEmpty()){
             for(Leito l : leitos){

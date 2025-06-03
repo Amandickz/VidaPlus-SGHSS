@@ -4,6 +4,8 @@
  */
 package classes;
 
+import enums.Estado;
+
 /**
  *
  * @author Amanda
@@ -17,12 +19,12 @@ public class Endereco {
     private String complemento;
     private String bairro;
     private String municipio;
-    private String uf;
+    private Estado uf;
 
     public Endereco() {
     }
 
-    public Endereco(String cep, String logradouro, int numero, String complemento, String bairro, String municipio, String uf) {
+    public Endereco(String cep, String logradouro, int numero, String complemento, String bairro, String municipio, Estado uf) {
         this.cep = cep;
         this.logradouro = logradouro;
         this.numero = numero;
@@ -32,7 +34,7 @@ public class Endereco {
         this.uf = uf;
     }
 
-    public Endereco(int id, String cep, String logradouro, int numero, String complemento, String bairro, String municipio, String uf) {
+    public Endereco(int id, String cep, String logradouro, int numero, String complemento, String bairro, String municipio, Estado uf) {
         this.id = id;
         this.cep = cep;
         this.logradouro = logradouro;
@@ -41,7 +43,7 @@ public class Endereco {
         this.bairro = bairro;
         this.municipio = municipio;
         this.uf = uf;
-    }
+    }    
 
     public int getId() {
         return id;
@@ -99,11 +101,11 @@ public class Endereco {
         this.municipio = municipio;
     }
 
-    public String getUf() {
+    public Estado getUf() {
         return uf;
     }
 
-    public void setUf(String uf) {
+    public void setUf(Estado uf) {
         this.uf = uf;
     }
 

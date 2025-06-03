@@ -4,6 +4,8 @@
  */
 package classes;
 
+import enums.TipoConta;
+
 /**
  *
  * @author Amanda
@@ -13,18 +15,18 @@ public class Login {
     private int id;
     private String usuario;
     private String senha;
-    private int tipoConta;
+    private TipoConta tipoConta;
 
     public Login() {
     }
 
-    public Login(String usuario, String senha, int tipoConta) {
+    public Login(String usuario, String senha, TipoConta tipoConta) {
         this.usuario = usuario;
         this.senha = senha;
         this.tipoConta = tipoConta;
     }
 
-    public Login(int id, String usuario, String senha, int tipoConta) {
+    public Login(int id, String usuario, String senha, TipoConta tipoConta) {
         this.id = id;
         this.usuario = usuario;
         this.senha = senha;
@@ -55,11 +57,11 @@ public class Login {
         this.senha = senha;
     }
 
-    public int getTipoConta() {
+    public TipoConta getTipoConta() {
         return tipoConta;
     }
 
-    public void setTipoConta(int tipoConta) {
+    public void setTipoConta(TipoConta tipoConta) {
         this.tipoConta = tipoConta;
     }
 
@@ -69,5 +71,5 @@ public class Login {
     }
     
     
-    
+
 }
