@@ -312,7 +312,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel21" min="-2" pref="75" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField1" min="-2" pref="199" max="-2" attributes="0"/>
+                                  <Component id="municipio" min="-2" pref="199" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -465,7 +465,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="municipio" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="listaEstadoCEP" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -712,7 +712,7 @@
         <Property name="text" type="java.lang.String" value="Munic&#xed;pio:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="municipio">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel22">
       <Properties>

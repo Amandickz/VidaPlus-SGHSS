@@ -23,6 +23,25 @@ public class AdministrarHospital {
     public AdministrarHospital() {
     }
     
+    //Gerenciamento de Pessoas
+    public Pessoa cadastrarPessoa(Pessoa pessoa){
+        pessoa.setId(pessoas.size() + 1);
+        pessoas.add(pessoa);
+        return pessoa;
+    }
+    
+    //Gerenciamento do Profissional de Saúde
+    
+    //Gerenciamento do Profissional de Saúde - Médico
+    
+    //Gerenciamento de Endereço
+    public Endereco cadastrarEndereco(Endereco endereco){
+        endereco.setId(enderecos.size() + 1);
+        enderecos.add(endereco);
+        return endereco;
+    }
+    
+    //Gerenciamento de Leito
     public boolean cadastrarNovoLeito(Leito leito){        
         if(!leitos.isEmpty()){
             for(Leito l : leitos){

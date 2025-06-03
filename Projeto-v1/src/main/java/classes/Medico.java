@@ -20,24 +20,24 @@ public class Medico extends ProfissionalSaude{
     private String dataIncricao;
     private int especialidade;
 
-    public Medico(String crm, String ufCRM, String dataIncricao, int especialidade, String grupoSanguineo, String dataAdminissao) {
-        super(grupoSanguineo, dataAdminissao);
+    public Medico(String crm, String ufCRM, String dataIncricao, int especialidade, String grupoSanguineo, String dataAdminissao, String observaoes) {
+        super(grupoSanguineo, dataAdminissao, observaoes);
         this.crm = crm;
         this.ufCRM = ufCRM;
         this.dataIncricao = dataIncricao;
         this.especialidade = especialidade;
     }
 
-    public Medico(String crm, String ufCRM, String dataIncricao, int especialidade, String grupoSanguineo, String dataAdminissao, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco) {
-        super(grupoSanguineo, dataAdminissao, cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco);
+    public Medico(String crm, String ufCRM, String dataIncricao, int especialidade, String grupoSanguineo, String dataAdminissao, String observaoes, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
+        super(grupoSanguineo, dataAdminissao, observaoes, cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco, idLogin);
         this.crm = crm;
         this.ufCRM = ufCRM;
         this.dataIncricao = dataIncricao;
         this.especialidade = especialidade;
     }
 
-    public Medico(String crm, String ufCRM, String dataIncricao, int especialidade, String grupoSanguineo, String dataAdminissao, int id, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco) {
-        super(grupoSanguineo, dataAdminissao, id, cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco);
+    public Medico(String crm, String ufCRM, String dataIncricao, int especialidade, String grupoSanguineo, String dataAdminissao, String observaoes, int id, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
+        super(grupoSanguineo, dataAdminissao, observaoes, id, cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco, idLogin);
         this.crm = crm;
         this.ufCRM = ufCRM;
         this.dataIncricao = dataIncricao;

@@ -4,6 +4,7 @@
  */
 package interfaces;
 
+import classes.Endereco;
 import classes.Pessoa;
 import enums.Estado;
 import enums.Nacionalidade;
@@ -114,7 +115,7 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         bairro = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        municipio = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         listaEstadoCEP = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
@@ -494,7 +495,7 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(municipio, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
@@ -620,7 +621,7 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(municipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22)
                     .addComponent(listaEstadoCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
@@ -692,6 +693,8 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
 
     private void continuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuarActionPerformed
         // TODO add your handling code here:
+        
+        //Criar Objeto Pessoa
         Pessoa p = new Pessoa();
         p.setCpf(cpfPessoa.getText());
         p.setNomeCompleto(nomeCompleto.getText());
@@ -724,7 +727,33 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
         p.setTelefone(telefone.getText());
         p.setEmail(email.getText());
         
+        //Cria Objeto Endereço
+        Endereco e = new Endereco();
+        e.setCep(cep.getText());
+        e.setLogradouro(logradouro.getText());
+        if(semNumeroCheck.isSelected()){
+            e.setNumero(0);
+        } else {
+            e.setNumero(Integer.parseInt(numero.getText()));
+        }
+        e.setComplemento(complemento.getText());
+        e.setBairro(bairro.getText());
+        e.setMunicipio(municipio.getText());
+        for(Estado uf : Estado.values()){
+            if(listaEstadoCEP.getSelectedItem().toString().equals(uf.getEstado())){
+                e.setUf(uf);
+            }
+        }
+        
+        //Adiciona ao sistema        
+        e = admHospital.cadastrarEndereco(e);
+        p.setIdEndereco(e.getId());
+        p = admHospital.cadastrarPessoa(p);
         System.out.println(p);
+        System.out.println(e);
+        
+        new TelaCadastroMedico(admHospital, p).setVisible(true);
+        dispose();
     }//GEN-LAST:event_continuarActionPerformed
 
     private void nomeSocialCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeSocialCheckActionPerformed
@@ -790,7 +819,6 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JMenu leitos;
     private javax.swing.JMenuItem listaEnfermeiros;
     private javax.swing.JComboBox<String> listaEstadoCEP;
@@ -803,6 +831,7 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
     private javax.swing.JMenuItem listaTecnicos;
     private javax.swing.JTextField logradouro;
     private javax.swing.JMenu medicos;
+    private javax.swing.JTextField municipio;
     private javax.swing.JTextField naturalidade;
     private javax.swing.JTextField nomeCompleto;
     private javax.swing.JTextField nomeMae;

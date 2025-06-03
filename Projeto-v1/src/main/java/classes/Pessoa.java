@@ -30,11 +30,12 @@ public class Pessoa {
     private String telefone;
     private String email;
     private int idEndereco;
+    private int idLogin;
 
     public Pessoa() {
     }
 
-    public Pessoa(String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco) {
+    public Pessoa(String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
         this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
         this.nomeSocial = nomeSocial;
@@ -49,9 +50,10 @@ public class Pessoa {
         this.telefone = telefone;
         this.email = email;
         this.idEndereco = idEndereco;
+        this.idLogin = idLogin;
     }
 
-    public Pessoa(int id, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco) {
+    public Pessoa(int id, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
         this.id = id;
         this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
@@ -67,6 +69,7 @@ public class Pessoa {
         this.telefone = telefone;
         this.email = email;
         this.idEndereco = idEndereco;
+        this.idLogin = idLogin;
     }
 
     public int getId() {
@@ -189,9 +192,19 @@ public class Pessoa {
         this.idEndereco = idEndereco;
     }
 
+    public int getIdLogin() {
+        return idLogin;
+    }
+
+    public void setIdLogin(int idLogin) {
+        this.idLogin = idLogin;
+    }
+
     @Override
     public String toString() {
-        return "Pessoa{" + "id=" + id + ", cpf=" + cpf + ", nomeCompleto=" + nomeCompleto + ", nomeSocial=" + nomeSocial + ", dataNascimento=" + dataNascimento + ", sexo=" + sexo + ", nomeMae=" + nomeMae + ", nomePai=" + nomePai + ", naturalidade=" + naturalidade + ", uf=" + uf + ", nacionalidade=" + nacionalidade + ", raca=" + raca + ", telefone=" + telefone + ", email=" + email + ", idEndereco=" + idEndereco + '}';
-    }    
+        return "Pessoa{" + "id=" + id + ", cpf=" + cpf + ", nomeCompleto=" + nomeCompleto + ", nomeSocial=" + nomeSocial + ", dataNascimento=" + dataNascimento + ", sexo=" + sexo + ", nomeMae=" + nomeMae + ", nomePai=" + nomePai + ", naturalidade=" + naturalidade + ", uf=" + uf + ", nacionalidade=" + nacionalidade + ", raca=" + raca + ", telefone=" + telefone + ", email=" + email + ", idEndereco=" + idEndereco + ", idLogin=" + idLogin + '}';
+    }
+    
+    
     
 }
