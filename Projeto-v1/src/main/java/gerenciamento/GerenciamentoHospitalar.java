@@ -6,6 +6,7 @@ package gerenciamento;
 
 import classes.Endereco;
 import classes.Enfermeiro;
+import classes.Farmaceutico;
 import classes.Leito;
 import classes.Login;
 import classes.Medico;
@@ -29,6 +30,7 @@ public class GerenciamentoHospitalar {
     ArrayList<Medico> medicos = new ArrayList<>();
     ArrayList<Enfermeiro> enfermeiros = new ArrayList<>();
     ArrayList<Tecnico> tecnicos = new ArrayList<>();
+    ArrayList<Farmaceutico> farmaceuticos = new ArrayList<>();
 
     public GerenciamentoHospitalar() {
     }
@@ -124,6 +126,32 @@ public class GerenciamentoHospitalar {
         return true;
     }
     
+    //Gerenciamento do Profissional de Saúde - Farmaceutico
+    public ArrayList<Farmaceutico> getFarmaceuticos() {
+        return farmaceuticos;
+    }
+    
+    public boolean cadastraFarmaceutico(Farmaceutico farmaceutico, Endereco endereco, Login login){
+        Pessoa pessoa = new Pessoa(farmaceutico.getId(), farmaceutico.getCpf(), farmaceutico.getNomeCompleto(), farmaceutico.getNomeSocial(),
+                farmaceutico.getDataNascimento(), farmaceutico.getSexo(), farmaceutico.getNomeMae(), farmaceutico.getNomePai(), farmaceutico.getNaturalidade(),
+                farmaceutico.getUf(), farmaceutico.getNacionalidade(), farmaceutico.getRaca(), farmaceutico.getTelefone(), farmaceutico.getEmail(),
+                farmaceutico.getIdEndereco(), farmaceutico.getIdLogin());
+        ProfissionalSaude profissional = new ProfissionalSaude(farmaceutico.getTipoSanguineo(), farmaceutico.getDataAdmissao(), farmaceutico.getObservaoes());
+        pessoas.add(pessoa);
+        enderecos.add(endereco);
+        logins.add(login);
+        profissionais.add(profissional);
+        farmaceuticos.add(farmaceutico);
+        System.out.println();
+        System.out.println("------Cadastrado Agora------");
+        System.out.println(pessoa);
+        System.out.println(endereco);
+        System.out.println(login);
+        System.out.println(profissional);
+        System.out.println(farmaceutico);
+        System.out.println();
+        return true;
+    }    
 
     //Gerenciamento de Login
     public Login retornaIdLogin(Login login){

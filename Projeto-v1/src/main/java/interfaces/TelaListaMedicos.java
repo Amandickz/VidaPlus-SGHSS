@@ -32,7 +32,7 @@ public class TelaListaMedicos extends javax.swing.JFrame {
         
         if(!this.admHospital.getMedicos().isEmpty()){
             for(Medico m : this.admHospital.getMedicos()){
-                todosMedicos.addRow(new Object[]{m.getCrm() + "/" + m.getUf().getEstado(),
+                todosMedicos.addRow(new Object[]{m.getCrm() + "/" + m.getUfCRM().getEstado(),
                     m.getNomeCompleto().toUpperCase(),
                     m.getEspecialidade().getEspecialidade(),
                     m.getDataAdmissao()});

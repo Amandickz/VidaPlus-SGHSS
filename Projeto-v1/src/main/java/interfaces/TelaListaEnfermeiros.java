@@ -31,7 +31,7 @@ public class TelaListaEnfermeiros extends javax.swing.JFrame {
         
         if(!this.admHospital.getEnfermeiros().isEmpty()){
             for(Enfermeiro e : this.admHospital.getEnfermeiros()){
-                todosEnfermeiros.addRow(new Object[]{e.getCoren() + "/" + e.getUf().getEstado(),
+                todosEnfermeiros.addRow(new Object[]{e.getCoren() + "/" + e.getUfCOREN().getEstado(),
                     e.getNomeCompleto().toUpperCase(),
                     e.getDataAdmissao()});
             }

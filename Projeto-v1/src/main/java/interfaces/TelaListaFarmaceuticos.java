@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package interfaces;
-import classes.Tecnico;
+import classes.Farmaceutico;
 import gerenciamento.GerenciamentoHospitalar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -12,32 +12,30 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Amanda
  */
-public class TelaListaTecnico extends javax.swing.JFrame {
+public class TelaListaFarmaceuticos extends javax.swing.JFrame {
 
     GerenciamentoHospitalar admHospital;
     /**
      * Creates new form TelaAdministrador
      */
-    public TelaListaTecnico(GerenciamentoHospitalar admHospital) {
+    public TelaListaFarmaceuticos(GerenciamentoHospitalar admHospital) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.admHospital = admHospital;
         
-        DefaultTableModel todosTecnicos = (DefaultTableModel) tabelaTecnicos.getModel();
-        todosTecnicos.addColumn("COREN/UF");
-        todosTecnicos.addColumn("Nome");
-        todosTecnicos.addColumn("Data de Admissão");
-        todosTecnicos.addColumn("Data de Inscrição");
-        todosTecnicos.addColumn("Data de Validade");
+        DefaultTableModel todosFarmaceuticos = (DefaultTableModel) tabelaTecnicos.getModel();
+        todosFarmaceuticos.addColumn("CRF/UF");
+        todosFarmaceuticos.addColumn("Nome");
+        todosFarmaceuticos.addColumn("Data de Admissão");
+        todosFarmaceuticos.addColumn("Categoria Profissional");
         
         
-        if(!this.admHospital.getTecnicos().isEmpty()){
-            for(Tecnico t : this.admHospital.getTecnicos()){
-                todosTecnicos.addRow(new Object[]{t.getCoren() + "/" + t.getUfCoren().getEstado(),
-                    t.getNomeCompleto().toUpperCase(),
-                    t.getDataAdmissao(),
-                    t.getDataEmissao(),
-                    t.getDataValidade()});
+        if(!this.admHospital.getFarmaceuticos().isEmpty()){
+            for(Farmaceutico f : this.admHospital.getFarmaceuticos()){
+                todosFarmaceuticos.addRow(new Object[]{f.getCrf() + "/" + f.getUfCRF().getEstado(),
+                    f.getNomeCompleto().toUpperCase(),
+                    f.getDataAdmissao(),
+                    f.getCategoriaProfissional().getCategoriaProfissional()});
             }
         }
     }
@@ -99,7 +97,7 @@ public class TelaListaTecnico extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tabelaTecnicos);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Lista de Técnicos em Enfermagem");
+        jLabel1.setText("Lista de Farmacêuticos");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

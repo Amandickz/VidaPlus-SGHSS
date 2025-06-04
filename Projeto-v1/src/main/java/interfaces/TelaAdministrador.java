@@ -245,12 +245,22 @@ public class TelaAdministrador extends javax.swing.JFrame {
         farmaceuticos.setText("Farmacêuticos");
 
         novoFarmaceutico.setText("Novo Farmacêutico");
+        novoFarmaceutico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novoFarmaceuticoActionPerformed(evt);
+            }
+        });
         farmaceuticos.add(novoFarmaceutico);
 
         alterarDadosFarmaceutico.setText("Alterar Dados do Farmacêutico");
         farmaceuticos.add(alterarDadosFarmaceutico);
 
         listaFarmaceuticos.setText("Lista de Farmacêuticos");
+        listaFarmaceuticos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaFarmaceuticosActionPerformed(evt);
+            }
+        });
         farmaceuticos.add(listaFarmaceuticos);
 
         recursosHumanos.add(farmaceuticos);
@@ -361,6 +371,22 @@ public class TelaAdministrador extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_listaTecnicosActionPerformed
+
+    private void novoFarmaceuticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoFarmaceuticoActionPerformed
+        // TODO add your handling code here:
+        new TelaCadastrarPessoa(admHospital, 4).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_novoFarmaceuticoActionPerformed
+
+    private void listaFarmaceuticosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaFarmaceuticosActionPerformed
+        // TODO add your handling code here:
+        if(admHospital.getFarmaceuticos().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nenhum Farmacêutico Cadastrado!");
+        } else {
+            new TelaListaFarmaceuticos(admHospital).setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_listaFarmaceuticosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
