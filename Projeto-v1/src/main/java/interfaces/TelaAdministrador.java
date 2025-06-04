@@ -4,7 +4,7 @@
  */
 package interfaces;
 
-import gerenciamento.AdministrarHospital;
+import gerenciamento.GerenciamentoHospitalar;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,11 +13,11 @@ import javax.swing.JOptionPane;
  */
 public class TelaAdministrador extends javax.swing.JFrame {
 
-    AdministrarHospital admHospital = new AdministrarHospital();
+    GerenciamentoHospitalar admHospital = new GerenciamentoHospitalar();
     /**
      * Creates new form TelaAdministrador
      */
-    public TelaAdministrador(AdministrarHospital admHospital) {
+    public TelaAdministrador(GerenciamentoHospitalar admHospital) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.admHospital = admHospital;
@@ -199,6 +199,11 @@ public class TelaAdministrador extends javax.swing.JFrame {
         enfermeiros.setText("Enfermeiros");
 
         novoEnfermeiro.setText("Novo Enfermeiro");
+        novoEnfermeiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novoEnfermeiroActionPerformed(evt);
+            }
+        });
         enfermeiros.add(novoEnfermeiro);
 
         alterarDadosEnfermeiro.setText("Alterar Dados do Enfermeiro");
@@ -309,6 +314,12 @@ public class TelaAdministrador extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_listaMedicosActionPerformed
+
+    private void novoEnfermeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoEnfermeiroActionPerformed
+        // TODO add your handling code here:
+        new TelaCadastrarPessoa(admHospital, 2).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_novoEnfermeiroActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

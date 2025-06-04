@@ -5,7 +5,7 @@
 package interfaces;
 
 import classes.Leito;
-import gerenciamento.AdministrarHospital;
+import gerenciamento.GerenciamentoHospitalar;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -16,11 +16,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaListaLeitos extends javax.swing.JFrame {
 
-    AdministrarHospital admHospital;
+    GerenciamentoHospitalar admHospital;
     /**
      * Creates new form TelaAdministrador
      */
-    public TelaListaLeitos(AdministrarHospital admHospital) {
+    public TelaListaLeitos(GerenciamentoHospitalar admHospital) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.admHospital = admHospital;

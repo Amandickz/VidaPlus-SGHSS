@@ -17,30 +17,30 @@ import enums.TipoSanguineo;
 public class Enfermeiro extends ProfissionalSaude{
     
     private String coren;
-    private String ufCOREN;
+    private Estado ufCOREN;
     private String dataEmissao;
 
-    public Enfermeiro(String coren, String ufCOREN, String dataEmissao, TipoSanguineo tipoSanguineo, String dataAdminissao, String observaoes) {
-        super(tipoSanguineo, dataAdminissao, observaoes);
+    public Enfermeiro(String coren, Estado ufCOREN, String dataEmissao, TipoSanguineo tipoSanguineo, String dataAdmissao, String observaoes) {
+        super(tipoSanguineo, dataAdmissao, observaoes);
         this.coren = coren;
         this.ufCOREN = ufCOREN;
         this.dataEmissao = dataEmissao;
     }
 
-    public Enfermeiro(String coren, String ufCOREN, String dataEmissao, TipoSanguineo tipoSanguineo, String dataAdminissao, String observaoes, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
-        super(tipoSanguineo, dataAdminissao, observaoes, cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco, idLogin);
+    public Enfermeiro(String coren, Estado ufCOREN, String dataEmissao, TipoSanguineo tipoSanguineo, String dataAdmissao, String observaoes, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
+        super(tipoSanguineo, dataAdmissao, observaoes, cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco, idLogin);
         this.coren = coren;
         this.ufCOREN = ufCOREN;
         this.dataEmissao = dataEmissao;
     }
 
-    public Enfermeiro(String coren, String ufCOREN, String dataEmissao, TipoSanguineo tipoSanguineo, String dataAdminissao, String observaoes, int id, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
-        super(tipoSanguineo, dataAdminissao, observaoes, id, cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco, idLogin);
+    public Enfermeiro(String coren, Estado ufCOREN, String dataEmissao, TipoSanguineo tipoSanguineo, String dataAdmissao, String observaoes, int id, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
+        super(tipoSanguineo, dataAdmissao, observaoes, id, cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco, idLogin);
         this.coren = coren;
         this.ufCOREN = ufCOREN;
         this.dataEmissao = dataEmissao;
     }
-    
+
     public String getCoren() {
         return coren;
     }
@@ -49,11 +49,11 @@ public class Enfermeiro extends ProfissionalSaude{
         this.coren = coren;
     }
 
-    public String getUfCOREN() {
+    public Estado getUfCOREN() {
         return ufCOREN;
     }
 
-    public void setUfCOREN(String ufCOREN) {
+    public void setUfCOREN(Estado ufCOREN) {
         this.ufCOREN = ufCOREN;
     }
 
@@ -69,7 +69,7 @@ public class Enfermeiro extends ProfissionalSaude{
     public String toString() {
         return "Enfermeiro{" + "coren=" + coren + ", ufCOREN=" + ufCOREN + ", dataEmissao=" + dataEmissao + '}';
     }
-    
+
     
     
 }

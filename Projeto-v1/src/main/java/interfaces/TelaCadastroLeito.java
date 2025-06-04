@@ -6,7 +6,7 @@ package interfaces;
 
 import classes.Leito;
 import enums.TiposLeitos;
-import gerenciamento.AdministrarHospital;
+import gerenciamento.GerenciamentoHospitalar;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,11 +15,11 @@ import javax.swing.JOptionPane;
  */
 public class TelaCadastroLeito extends javax.swing.JFrame {
 
-    AdministrarHospital admHospital;
+    GerenciamentoHospitalar admHospital;
     /**
      * Creates new form TelaAdministrador
      */
-    public TelaCadastroLeito(AdministrarHospital admHospital) {
+    public TelaCadastroLeito(GerenciamentoHospitalar admHospital) {
         initComponents();
         tipoLeitos.removeAllItems();
         for (TiposLeitos tipos : TiposLeitos.values()){

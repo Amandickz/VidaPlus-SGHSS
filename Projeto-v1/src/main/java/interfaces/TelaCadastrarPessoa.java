@@ -10,7 +10,7 @@ import enums.Estado;
 import enums.Nacionalidade;
 import enums.RacaCorEtnia;
 import enums.Sexo;
-import gerenciamento.AdministrarHospital;
+import gerenciamento.GerenciamentoHospitalar;
 import javax.swing.JOptionPane;
 /**
  *
@@ -18,12 +18,12 @@ import javax.swing.JOptionPane;
  */
 public class TelaCadastrarPessoa extends javax.swing.JFrame {
 
-    AdministrarHospital admHospital = new AdministrarHospital();
+    GerenciamentoHospitalar admHospital = new GerenciamentoHospitalar();
     int tipoCadastro;
     /**
      * Creates new form TelaAdministrador
      */
-    public TelaCadastrarPessoa(AdministrarHospital admHospital, int tipoCadastro){
+    public TelaCadastrarPessoa(GerenciamentoHospitalar admHospital, int tipoCadastro){
         initComponents();
         this.setLocationRelativeTo(null);
         this.admHospital = admHospital;
@@ -756,8 +756,16 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
         pessoa.setIdEndereco(endereco.getId());
         pessoa = admHospital.retornaIdPessoa(pessoa);
         
-        new TelaCadastroMedico(admHospital, pessoa, endereco).setVisible(true);
-        dispose();
+        switch (tipoCadastro) {
+            case 1:
+                new TelaCadastroMedico(admHospital, pessoa, endereco).setVisible(true);
+                dispose();
+            case 2:
+                new TelaCadastroEnfermeiro(admHospital, pessoa, endereco).setVisible(true);
+                dispose();
+            default:
+                throw new AssertionError();
+        }        
     }//GEN-LAST:event_continuarActionPerformed
 
     private void nomeSocialCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeSocialCheckActionPerformed

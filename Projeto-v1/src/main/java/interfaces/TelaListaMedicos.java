@@ -4,7 +4,7 @@
  */
 package interfaces;
 import classes.Medico;
-import gerenciamento.AdministrarHospital;
+import gerenciamento.GerenciamentoHospitalar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,11 +14,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaListaMedicos extends javax.swing.JFrame {
 
-    AdministrarHospital admHospital;
+    GerenciamentoHospitalar admHospital;
     /**
      * Creates new form TelaAdministrador
      */
-    public TelaListaMedicos(AdministrarHospital admHospital) {
+    public TelaListaMedicos(GerenciamentoHospitalar admHospital) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.admHospital = admHospital;

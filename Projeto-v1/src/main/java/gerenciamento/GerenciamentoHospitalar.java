@@ -5,6 +5,7 @@
 package gerenciamento;
 
 import classes.Endereco;
+import classes.Enfermeiro;
 import classes.Leito;
 import classes.Login;
 import classes.Medico;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
  *
  * @author Amanda
  */
-public class AdministrarHospital {
+public class GerenciamentoHospitalar {
     
     ArrayList<Leito> leitos = new ArrayList<>();
     ArrayList<Pessoa> pessoas = new ArrayList<>();
@@ -25,8 +26,9 @@ public class AdministrarHospital {
     ArrayList<Login> logins = new ArrayList<>();
     ArrayList<ProfissionalSaude> profissionais = new ArrayList<>();
     ArrayList<Medico> medicos = new ArrayList<>();
+    ArrayList<Enfermeiro> enfermeiros = new ArrayList<>();
 
-    public AdministrarHospital() {
+    public GerenciamentoHospitalar() {
     }
     
     //Gerenciamento de Pessoas
@@ -34,8 +36,6 @@ public class AdministrarHospital {
         pessoa.setId(pessoas.size() + 1);
         return pessoa;
     }
-    
-    //Gerenciamento do Profissional de Saúde
     
     //Gerenciamento do Profissional de Saúde - Médico
     public boolean cadastraMedico(Medico medico, Endereco endereco, Login login){
@@ -62,7 +62,12 @@ public class AdministrarHospital {
     
     public ArrayList<Medico> medicosCadastrados(){
         return medicos;
-    }  
+    }
+    
+    //Gerenciamento do Profissional de Saúde - Enfermeiro
+    public boolean cadastraEnfermeiro(Enfermeiro enfermeiro, Endereco endereco, Login login){
+        return true;
+    }
     
     //Gerenciamento de Login
     public Login retornaIdLogin(Login login){
