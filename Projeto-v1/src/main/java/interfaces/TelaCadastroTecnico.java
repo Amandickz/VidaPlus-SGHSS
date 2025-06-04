@@ -5,9 +5,9 @@
 package interfaces;
 
 import classes.Endereco;
-import classes.Enfermeiro;
 import classes.Login;
 import classes.Pessoa;
+import classes.Tecnico;
 import enums.Estado;
 import enums.TipoConta;
 import enums.TipoSanguineo;
@@ -18,25 +18,25 @@ import javax.swing.JOptionPane;
  *
  * @author Amanda
  */
-public class TelaCadastroEnfermeiro extends javax.swing.JFrame {
+public class TelaCadastroTecnico extends javax.swing.JFrame {
 
     GerenciamentoHospitalar admHospital = new GerenciamentoHospitalar();
-    Enfermeiro enfermeiro;
+    Tecnico tecnico;
     Endereco endereco;
     /**
      * Creates new form TelaAdministrador
      */
-    public TelaCadastroEnfermeiro(GerenciamentoHospitalar admHospital, Pessoa pessoa, Endereco endereco) {
+    public TelaCadastroTecnico(GerenciamentoHospitalar admHospital, Pessoa pessoa, Endereco endereco) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.admHospital = admHospital;
         this.endereco = endereco;
-        enfermeiro = new Enfermeiro(null, null, null, null, null, null, pessoa.getId(), pessoa.getCpf(),
+        tecnico = new Tecnico(null, null, null, null, null, null, null, pessoa.getId(), pessoa.getCpf(),
                 pessoa.getNomeCompleto(), pessoa.getNomeSocial(), pessoa.getDataNascimento(), pessoa.getSexo(),
                 pessoa.getNomeMae(), pessoa.getNomePai(), pessoa.getNaturalidade(), pessoa.getUf(), pessoa.getNacionalidade(),
                 pessoa.getRaca(), pessoa.getTelefone(), pessoa.getEmail(), pessoa.getIdEndereco(), 0);
-        nomeEnfermeiro.setText(this.enfermeiro.getNomeCompleto().toUpperCase());
-        login.setText(this.enfermeiro.getCpf());
+        nomeTecnico.setText(this.tecnico.getNomeCompleto().toUpperCase());
+        login.setText(this.tecnico.getCpf());
         preencherListaTipoSanguineo();
         preencherListasEstados();
     }
@@ -67,7 +67,7 @@ public class TelaCadastroEnfermeiro extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jLabel23 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        nomeEnfermeiro = new javax.swing.JLabel();
+        nomeTecnico = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         listaTipoSanguineo = new javax.swing.JComboBox<>();
@@ -93,6 +93,8 @@ public class TelaCadastroEnfermeiro extends javax.swing.JFrame {
         senhaLogin = new javax.swing.JPasswordField();
         cancelar = new javax.swing.JButton();
         cadastrar = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        dataValidade = new javax.swing.JFormattedTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         sair = new javax.swing.JMenuItem();
@@ -134,12 +136,12 @@ public class TelaCadastroEnfermeiro extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel23.setText("Cadastro Profissional de Saúde - Enfermeiro");
+        jLabel23.setText("Cadastro Profissional de Saúde - Técnico em Enfermagem");
 
-        jLabel1.setText("Enfermeiro:");
+        jLabel1.setText("Técnico de Enfermagem:");
 
-        nomeEnfermeiro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        nomeEnfermeiro.setText("Nome do Enfermeiro");
+        nomeTecnico.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        nomeTecnico.setText("Nome do Técnico");
 
         jLabel2.setText("Tipo Sanguíneo:");
 
@@ -185,12 +187,12 @@ public class TelaCadastroEnfermeiro extends javax.swing.JFrame {
         jScrollPane1.setViewportView(observacoes);
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel10.setText("Informações da Carteira de Enfermeiro");
+        jLabel10.setText("Informações da Carteira de Técnico em Enfermagem");
 
         jLabel11.setText("Login:");
 
         login.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        login.setText("CPF DO ENFERMEIRO");
+        login.setText("CPF DO TÉCNICO");
 
         jLabel13.setText("Senha:");
 
@@ -207,6 +209,14 @@ public class TelaCadastroEnfermeiro extends javax.swing.JFrame {
                 cadastrarActionPerformed(evt);
             }
         });
+
+        jLabel8.setText("Data de Validade:");
+
+        try {
+            dataValidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         jMenu1.setText("Geral");
 
@@ -383,10 +393,6 @@ public class TelaCadastroEnfermeiro extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nomeEnfermeiro, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(listaTipoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -396,23 +402,32 @@ public class TelaCadastroEnfermeiro extends javax.swing.JFrame {
                                 .addComponent(dataAdmissao, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(numeroCOREN, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(listaEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(66, 66, 66)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dataEmissao, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(nomeTecnico, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(numeroCOREN, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(listaEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dataEmissao, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dataValidade, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -451,7 +466,7 @@ public class TelaCadastroEnfermeiro extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(nomeEnfermeiro))
+                    .addComponent(nomeTecnico))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -471,7 +486,9 @@ public class TelaCadastroEnfermeiro extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(listaEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(dataEmissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dataEmissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(dataValidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -571,6 +588,7 @@ public class TelaCadastroEnfermeiro extends javax.swing.JFrame {
             }
         }
         String dataCOREN = dataEmissao.getText();
+        String validade = dataValidade.getText();
         
         //Pega informações do Login
         String usuario = login.getText();
@@ -579,22 +597,23 @@ public class TelaCadastroEnfermeiro extends javax.swing.JFrame {
         
         
         //Cria Objeto Login
-        Login login = new Login(usuario, senha2, TipoConta.E);
+        Login login = new Login(usuario, senha2, TipoConta.T);
         login = admHospital.retornaIdLogin(login);
         
         //Insere dados faltantes do Enfermeiro
-        enfermeiro.setCoren(corenEnfermeiro);
-        enfermeiro.setUfCOREN(estado);
-        enfermeiro.setDataEmissao(dataCOREN);
-        enfermeiro.setTipoSanguineo(tipoSangue);
-        enfermeiro.setDataAdmissao(admissao);
-        enfermeiro.setObservaoes(observacao);
-        enfermeiro.setIdLogin(login.getId());
+        tecnico.setCoren(corenEnfermeiro);
+        tecnico.setUfCoren(estado);
+        tecnico.setDataEmissao(dataCOREN);
+        tecnico.setDataValidade(validade);
+        tecnico.setTipoSanguineo(tipoSangue);
+        tecnico.setDataAdmissao(admissao);
+        tecnico.setObservaoes(observacao);
+        tecnico.setIdLogin(login.getId());
         
-        boolean cadastro = admHospital.cadastraEnfermeiro(enfermeiro, endereco, login);
+        boolean cadastro = admHospital.cadastraTecnico(tecnico, endereco, login);
         
         if(cadastro){
-            JOptionPane.showMessageDialog(null, "Cadastro do Enfermeiro Realizado!");
+            JOptionPane.showMessageDialog(null, "Cadastro do Técnico em Enfermagem Realizado!");
         } else {
             JOptionPane.showMessageDialog(null, "Algo deu errado!");
         }
@@ -628,6 +647,7 @@ public class TelaCadastroEnfermeiro extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField dataAdmissao;
     private javax.swing.JMenuItem dataAdmissaoMedico;
     private javax.swing.JFormattedTextField dataEmissao;
+    private javax.swing.JFormattedTextField dataValidade;
     private javax.swing.JMenu enfermeiros;
     private javax.swing.JMenuItem especialidadeMedico;
     private javax.swing.JMenu farmaceuticos;
@@ -644,6 +664,7 @@ public class TelaCadastroEnfermeiro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
@@ -662,7 +683,7 @@ public class TelaCadastroEnfermeiro extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> listaTipoSanguineo;
     private javax.swing.JLabel login;
     private javax.swing.JMenu medicos;
-    private javax.swing.JLabel nomeEnfermeiro;
+    private javax.swing.JLabel nomeTecnico;
     private javax.swing.JMenuItem novoEnfermeiro;
     private javax.swing.JMenuItem novoFarmaceutico;
     private javax.swing.JMenuItem novoMedico;

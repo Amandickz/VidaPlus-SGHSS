@@ -222,12 +222,22 @@ public class TelaAdministrador extends javax.swing.JFrame {
         tecnicos.setText("Técnicos de Enfermagem");
 
         novoTecnico.setText("Novo Técnico");
+        novoTecnico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novoTecnicoActionPerformed(evt);
+            }
+        });
         tecnicos.add(novoTecnico);
 
         alterarDadosTecnico.setText("Alterar Dados do Técnico");
         tecnicos.add(alterarDadosTecnico);
 
         listaTecnicos.setText("Lista de Técnicos");
+        listaTecnicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaTecnicosActionPerformed(evt);
+            }
+        });
         tecnicos.add(listaTecnicos);
 
         recursosHumanos.add(tecnicos);
@@ -335,6 +345,22 @@ public class TelaAdministrador extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_listaEnfermeirosActionPerformed
+
+    private void novoTecnicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoTecnicoActionPerformed
+        // TODO add your handling code here:
+        new TelaCadastrarPessoa(admHospital, 3).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_novoTecnicoActionPerformed
+
+    private void listaTecnicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaTecnicosActionPerformed
+        // TODO add your handling code here:
+        if(admHospital.getTecnicos().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nenhum Enfermeiro Cadastrado!");
+        } else {
+            new TelaListaTecnico(admHospital).setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_listaTecnicosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

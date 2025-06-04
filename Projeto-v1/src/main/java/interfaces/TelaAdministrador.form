@@ -198,6 +198,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Novo T&#xe9;cnico"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="novoTecnicoActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="alterarDadosTecnico">
                   <Properties>
@@ -208,6 +211,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Lista de T&#xe9;cnicos"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listaTecnicosActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>

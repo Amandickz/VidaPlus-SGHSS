@@ -11,6 +11,7 @@ import classes.Login;
 import classes.Medico;
 import classes.Pessoa;
 import classes.ProfissionalSaude;
+import classes.Tecnico;
 import enums.TiposLeitos;
 import java.util.ArrayList;
 
@@ -27,6 +28,7 @@ public class GerenciamentoHospitalar {
     ArrayList<ProfissionalSaude> profissionais = new ArrayList<>();
     ArrayList<Medico> medicos = new ArrayList<>();
     ArrayList<Enfermeiro> enfermeiros = new ArrayList<>();
+    ArrayList<Tecnico> tecnicos = new ArrayList<>();
 
     public GerenciamentoHospitalar() {
     }
@@ -94,6 +96,34 @@ public class GerenciamentoHospitalar {
         System.out.println();
         return true;
     }
+    
+    //Gerenciamento do Profissional de Saúde - Técnico em Enfermagem
+    public ArrayList<Tecnico> getTecnicos() {
+        return tecnicos;
+    }
+    
+    public boolean cadastraTecnico(Tecnico tecnico, Endereco endereco, Login login){
+        Pessoa pessoa = new Pessoa(tecnico.getId(), tecnico.getCpf(), tecnico.getNomeCompleto(), tecnico.getNomeSocial(),
+                tecnico.getDataNascimento(), tecnico.getSexo(), tecnico.getNomeMae(), tecnico.getNomePai(), tecnico.getNaturalidade(),
+                tecnico.getUf(), tecnico.getNacionalidade(), tecnico.getRaca(), tecnico.getTelefone(), tecnico.getEmail(),
+                tecnico.getIdEndereco(), tecnico.getIdLogin());
+        ProfissionalSaude profissional = new ProfissionalSaude(tecnico.getTipoSanguineo(), tecnico.getDataAdmissao(), tecnico.getObservaoes());
+        pessoas.add(pessoa);
+        enderecos.add(endereco);
+        logins.add(login);
+        profissionais.add(profissional);
+        tecnicos.add(tecnico);
+        System.out.println();
+        System.out.println("------Cadastrado Agora------");
+        System.out.println(pessoa);
+        System.out.println(endereco);
+        System.out.println(login);
+        System.out.println(profissional);
+        System.out.println(tecnico);
+        System.out.println();
+        return true;
+    }
+    
 
     //Gerenciamento de Login
     public Login retornaIdLogin(Login login){

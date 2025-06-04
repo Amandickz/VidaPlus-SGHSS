@@ -763,6 +763,9 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
             case 2 -> {
                 new TelaCadastroEnfermeiro(admHospital, pessoa, endereco).setVisible(true);
             }
+            case 3 -> {
+                new TelaCadastroTecnico(admHospital, pessoa, endereco).setVisible(true);
+            }
             default -> throw new AssertionError(new JOptionPane("Erro!"));
         }        
         dispose();

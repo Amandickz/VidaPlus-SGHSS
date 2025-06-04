@@ -4,6 +4,7 @@
  */
 package interfaces;
 import classes.Enfermeiro;
+import classes.Tecnico;
 import gerenciamento.GerenciamentoHospitalar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -12,28 +13,32 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Amanda
  */
-public class TelaListaEnfermeiros extends javax.swing.JFrame {
+public class TelaListaTecnico extends javax.swing.JFrame {
 
     GerenciamentoHospitalar admHospital;
     /**
      * Creates new form TelaAdministrador
      */
-    public TelaListaEnfermeiros(GerenciamentoHospitalar admHospital) {
+    public TelaListaTecnico(GerenciamentoHospitalar admHospital) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.admHospital = admHospital;
         
-        DefaultTableModel todosEnfermeiros = (DefaultTableModel) tabelaEnfermeiros.getModel();
-        todosEnfermeiros.addColumn("COREN/UF");
-        todosEnfermeiros.addColumn("Nome");
-        todosEnfermeiros.addColumn("Data de Admissão");
+        DefaultTableModel todosTecnicos = (DefaultTableModel) tabelaTecnicos.getModel();
+        todosTecnicos.addColumn("COREN/UF");
+        todosTecnicos.addColumn("Nome");
+        todosTecnicos.addColumn("Data de Admissão");
+        todosTecnicos.addColumn("Data de Inscrição");
+        todosTecnicos.addColumn("Data de Validade");
         
         
-        if(!this.admHospital.getEnfermeiros().isEmpty()){
-            for(Enfermeiro e : this.admHospital.getEnfermeiros()){
-                todosEnfermeiros.addRow(new Object[]{e.getCoren() + "/" + e.getUf().getEstado(),
-                    e.getNomeCompleto().toUpperCase(),
-                    e.getDataAdmissao()});
+        if(!this.admHospital.getTecnicos().isEmpty()){
+            for(Tecnico t : this.admHospital.getTecnicos()){
+                todosTecnicos.addRow(new Object[]{t.getCoren() + "/" + t.getUf().getEstado(),
+                    t.getNomeCompleto().toUpperCase(),
+                    t.getDataAdmissao(),
+                    t.getDataEmissao(),
+                    t.getDataValidade()});
             }
         }
     }
@@ -50,7 +55,7 @@ public class TelaListaEnfermeiros extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaEnfermeiros = new javax.swing.JTable();
+        tabelaTecnicos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -92,10 +97,10 @@ public class TelaListaEnfermeiros extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jScrollPane1.setViewportView(tabelaEnfermeiros);
+        jScrollPane1.setViewportView(tabelaTecnicos);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Lista de Enfermeiros");
+        jLabel1.setText("Lista de Técnicos em Enfermagem");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -376,7 +381,7 @@ public class TelaListaEnfermeiros extends javax.swing.JFrame {
     private javax.swing.JMenu recursosHumanos;
     private javax.swing.JMenuItem sair;
     private javax.swing.JMenu suprimentos;
-    private javax.swing.JTable tabelaEnfermeiros;
+    private javax.swing.JTable tabelaTecnicos;
     private javax.swing.JMenu tecnicos;
     private javax.swing.JMenuItem verificarInternacoes;
     private javax.swing.JMenuItem verificarLeitos;
