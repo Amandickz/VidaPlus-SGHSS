@@ -80,7 +80,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         listaTipoSanguineo = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        dataAdmissao = new javax.swing.JFormattedTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -158,12 +158,12 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         jLabel3.setText("Data de Admissão:");
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            dataAdmissao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField1.setActionCommand("<Not Set>");
-        jFormattedTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        dataAdmissao.setActionCommand("<Not Set>");
+        dataAdmissao.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel4.setText("Informações de Login");
@@ -408,7 +408,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
                                 .addGap(86, 86, 86)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(dataAdmissao, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -476,7 +476,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(listaTipoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dataAdmissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -555,7 +555,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         if(admHospital.leitosCadastrados().isEmpty()){
             JOptionPane.showMessageDialog(null, "Nenhum Leito Cadastrado!");
         } else {
-            new TelaVerificarLeitos(admHospital).setVisible(true);
+            new TelaListaLeitos(admHospital).setVisible(true);
             dispose();
         }
     }//GEN-LAST:event_verificarLeitosActionPerformed
@@ -582,7 +582,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
                 tipoSangue = t;
             }
         }
-        String admissao = dataAdmissaoMedico.getText();
+        String admissao = dataAdmissao.getText();
         String observacao = observacoes.getText();
         String crmMedico = numeroCRM.getText();
         Estado estado = null;
@@ -615,11 +615,13 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         medico.setDataIncricao(dataCRM);
         medico.setEspecialidade(especialidade);
         medico.setTipoSanguineo(tipoSangue);
-        medico.setDataAdminissao(admissao);
+        medico.setDataAdmissao(admissao);
         medico.setObservaoes(observacao);
         medico.setIdLogin(login.getId());
         
-        if(admHospital.cadastraMedico(medico, endereco, login)){
+        boolean cadastro = admHospital.cadastraMedico(medico, endereco, login);
+        
+        if(cadastro){
             JOptionPane.showMessageDialog(null, "Cadastro do Médico Realizado!");
         } else {
             JOptionPane.showMessageDialog(null, "Algo deu errado!");
@@ -651,6 +653,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
     private javax.swing.JButton cadastrar;
     private javax.swing.JMenuItem cadastrarLeito;
     private javax.swing.JButton cancelar;
+    private javax.swing.JFormattedTextField dataAdmissao;
     private javax.swing.JMenuItem dataAdmissaoMedico;
     private javax.swing.JFormattedTextField dataInscricao;
     private javax.swing.JMenu enfermeiros;
@@ -658,7 +661,6 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
     private javax.swing.JMenu farmaceuticos;
     private javax.swing.JMenu gerenciar;
     private javax.swing.JMenu internacoes;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

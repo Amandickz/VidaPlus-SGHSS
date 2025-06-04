@@ -437,9 +437,13 @@ public class TelaCadastroLeito extends javax.swing.JFrame {
         boolean cadastro = admHospital.cadastrarNovoLeito(leito);
         System.out.println(cadastro);
 
-        TelaAdministrador telaAdministrador = new TelaAdministrador(admHospital);
-        telaAdministrador.setVisible(true);
-
+        if(cadastro){
+            JOptionPane.showMessageDialog(null, "Cadastro Realizado!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro ao Cadastrar Leito!");
+        }
+        
+        new TelaAdministrador(admHospital).setVisible(true);
         dispose();
     }//GEN-LAST:event_cadastrarActionPerformed
 

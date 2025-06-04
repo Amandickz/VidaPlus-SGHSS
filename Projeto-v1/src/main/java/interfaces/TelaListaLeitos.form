@@ -119,6 +119,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Novo M&#xe9;dico"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="novoMedicoActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="alterarDadosMedico">
                   <Properties>
@@ -129,6 +132,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Lista de M&#xe9;dicos"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listaMedicosActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <Menu class="javax.swing.JMenu" name="buscarMedicos">
                   <Properties>

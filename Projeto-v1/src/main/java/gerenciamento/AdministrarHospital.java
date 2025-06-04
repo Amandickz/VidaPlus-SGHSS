@@ -9,6 +9,7 @@ import classes.Leito;
 import classes.Login;
 import classes.Medico;
 import classes.Pessoa;
+import classes.ProfissionalSaude;
 import enums.TiposLeitos;
 import java.util.ArrayList;
 
@@ -22,6 +23,7 @@ public class AdministrarHospital {
     ArrayList<Pessoa> pessoas = new ArrayList<>();
     ArrayList<Endereco> enderecos = new ArrayList<>();
     ArrayList<Login> logins = new ArrayList<>();
+    ArrayList<ProfissionalSaude> profissionais = new ArrayList<>();
     ArrayList<Medico> medicos = new ArrayList<>();
 
     public AdministrarHospital() {
@@ -41,15 +43,20 @@ public class AdministrarHospital {
                 medico.getDataNascimento(), medico.getSexo(), medico.getNomeMae(), medico.getNomePai(), medico.getNaturalidade(),
                 medico.getUf(), medico.getNacionalidade(), medico.getRaca(), medico.getTelefone(), medico.getEmail(),
                 medico.getIdEndereco(), medico.getIdLogin());
+        ProfissionalSaude profissional = new ProfissionalSaude(medico.getTipoSanguineo(), medico.getDataAdmissao(), medico.getObservaoes());
         pessoas.add(pessoa);
         enderecos.add(endereco);
         logins.add(login);
+        profissionais.add(profissional);
         medicos.add(medico);
+        System.out.println();
         System.out.println("------Cadastrado Agora------");
         System.out.println(pessoa);
         System.out.println(endereco);
         System.out.println(login);
+        System.out.println(profissional);
         System.out.println(medico);
+        System.out.println();
         return true;
     }
     

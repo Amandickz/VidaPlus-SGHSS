@@ -14,13 +14,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Amanda
  */
-public class TelaVerificarLeitos extends javax.swing.JFrame {
+public class TelaListaLeitos extends javax.swing.JFrame {
 
     AdministrarHospital admHospital;
     /**
      * Creates new form TelaAdministrador
      */
-    public TelaVerificarLeitos(AdministrarHospital admHospital) {
+    public TelaListaLeitos(AdministrarHospital admHospital) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.admHospital = admHospital;
@@ -197,12 +197,22 @@ public class TelaVerificarLeitos extends javax.swing.JFrame {
         medicos.setText("Médicos");
 
         novoMedico.setText("Novo Médico");
+        novoMedico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novoMedicoActionPerformed(evt);
+            }
+        });
         medicos.add(novoMedico);
 
         alterarDadosMedico.setText("Alterar Dados do Médico");
         medicos.add(alterarDadosMedico);
 
         listaMedicos.setText("Lista de Médicos");
+        listaMedicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaMedicosActionPerformed(evt);
+            }
+        });
         medicos.add(listaMedicos);
 
         buscarMedicos.setText("Buscar Médicos");
@@ -309,6 +319,22 @@ public class TelaVerificarLeitos extends javax.swing.JFrame {
         new TelaCadastroLeito(admHospital).setVisible(true);
         dispose();
     }//GEN-LAST:event_cadastrarLeitoActionPerformed
+
+    private void novoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoMedicoActionPerformed
+        // TODO add your handling code here:
+        new TelaCadastrarPessoa(admHospital, 1).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_novoMedicoActionPerformed
+
+    private void listaMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaMedicosActionPerformed
+        // TODO add your handling code here:
+        if(admHospital.leitosCadastrados().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nenhum Médico Cadastrado!");
+        } else {
+            new TelaListaMedicos(admHospital).setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_listaMedicosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

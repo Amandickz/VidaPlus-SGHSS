@@ -678,7 +678,7 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
         if(admHospital.leitosCadastrados().isEmpty()){
             JOptionPane.showMessageDialog(null, "Nenhum Leito Cadastrado!");
         } else {
-            new TelaVerificarLeitos(admHospital).setVisible(true);
+            new TelaListaLeitos(admHospital).setVisible(true);
             dispose();
         }
     }//GEN-LAST:event_verificarLeitosActionPerformed
@@ -755,8 +755,6 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
         endereco = admHospital.retornaIdEndereco(endereco);
         pessoa.setIdEndereco(endereco.getId());
         pessoa = admHospital.retornaIdPessoa(pessoa);
-        System.out.println(pessoa);
-        System.out.println(endereco);
         
         new TelaCadastroMedico(admHospital, pessoa, endereco).setVisible(true);
         dispose();
