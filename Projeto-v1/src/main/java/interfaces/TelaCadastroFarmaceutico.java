@@ -5,10 +5,10 @@
 package interfaces;
 
 import classes.Endereco;
+import classes.Farmaceutico;
 import classes.Login;
-import classes.Medico;
 import classes.Pessoa;
-import enums.Especialidades;
+import enums.CategoriaProfissional;
 import enums.Estado;
 import enums.TipoConta;
 import enums.TipoSanguineo;
@@ -19,28 +19,28 @@ import javax.swing.JOptionPane;
  *
  * @author Amanda
  */
-public class TelaCadastroMedico extends javax.swing.JFrame {
+public class TelaCadastroFarmaceutico extends javax.swing.JFrame {
 
     GerenciamentoHospitalar admHospital = new GerenciamentoHospitalar();
-    Medico medico;
+    Farmaceutico farmaceutico;
     Endereco endereco;
     /**
      * Creates new form TelaInicialAdministrador
      */
-    public TelaCadastroMedico(GerenciamentoHospitalar admHospital, Pessoa pessoa, Endereco endereco) {
+    public TelaCadastroFarmaceutico(GerenciamentoHospitalar admHospital, Pessoa pessoa, Endereco endereco) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.admHospital = admHospital;
         this.endereco = endereco;
-        medico = new Medico(null, null, null, null, null, null, null, pessoa.getId(), pessoa.getCpf(),
+        farmaceutico = new Farmaceutico(null, null, null, null, null, null, null, null, pessoa.getId(), pessoa.getCpf(),
                 pessoa.getNomeCompleto(), pessoa.getNomeSocial(), pessoa.getDataNascimento(), pessoa.getSexo(),
                 pessoa.getNomeMae(), pessoa.getNomePai(), pessoa.getNaturalidade(), pessoa.getUf(), pessoa.getNacionalidade(),
                 pessoa.getRaca(), pessoa.getTelefone(), pessoa.getEmail(), pessoa.getIdEndereco(), 0);
-        nomeMedico.setText(this.medico.getNomeCompleto().toUpperCase());
-        login.setText(this.medico.getCpf());
+        nomeFarmaceutico.setText(this.farmaceutico.getNomeCompleto().toUpperCase());
+        login.setText(this.farmaceutico.getCpf());
         preencherListaTipoSanguineo();
         preencherListasEstados();
-        preencherListaEspecialidades();
+        preencherListaCategoria();
     }
     
     private void preencherListaTipoSanguineo(){
@@ -57,10 +57,10 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         }
     }
     
-    private void preencherListaEspecialidades(){
-        listaEspecialidades.removeAllItems();
-        for(Especialidades e : Especialidades.values()){
-            listaEspecialidades.addItem(e.getEspecialidade());
+    private void preencherListaCategoria(){
+        listaCategorias.removeAllItems();
+        for(CategoriaProfissional cp : CategoriaProfissional.values()){
+            listaCategorias.addItem(cp.getCategoriaProfissional());
         }
     }
     /**
@@ -75,7 +75,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jLabel23 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        nomeMedico = new javax.swing.JLabel();
+        nomeFarmaceutico = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         listaTipoSanguineo = new javax.swing.JComboBox<>();
@@ -84,14 +84,13 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        numeroCRM = new javax.swing.JFormattedTextField();
+        numeroCRF = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
         listaEstado = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        dataInscricao = new javax.swing.JFormattedTextField();
-        jSeparator3 = new javax.swing.JSeparator();
+        dataFormacao = new javax.swing.JFormattedTextField();
         jLabel8 = new javax.swing.JLabel();
-        listaEspecialidades = new javax.swing.JComboBox<>();
+        listaCategorias = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         observacoes = new javax.swing.JTextArea();
@@ -103,6 +102,9 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         senhaLogin = new javax.swing.JPasswordField();
         cancelar = new javax.swing.JButton();
         cadastrar = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        dataExpedicao = new javax.swing.JFormattedTextField();
+        jSeparator3 = new javax.swing.JSeparator();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         sair = new javax.swing.JMenuItem();
@@ -144,12 +146,12 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel23.setText("Cadastro Profissional de Saúde - Médico");
+        jLabel23.setText("Cadastro Profissional de Saúde - Farmacêutico");
 
-        jLabel1.setText("Médico:");
+        jLabel1.setText("Farmacêutico:");
 
-        nomeMedico.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        nomeMedico.setText("Nome do Médico");
+        nomeFarmaceutico.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        nomeFarmaceutico.setText("Nome do Farmacêutico");
 
         jLabel2.setText("Tipo Sanguíneo:");
 
@@ -168,29 +170,25 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel4.setText("Informações de Login");
 
-        jLabel5.setText("CRM:");
+        jLabel5.setText("CRF:");
 
-        try {
-            numeroCRM.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########-#")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        numeroCRF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("######"))));
 
-        jLabel6.setText("UF - CRM:");
+        jLabel6.setText("UF - CRF:");
 
         listaEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel7.setText("Data de Inscrição:");
+        jLabel7.setText("Data de Expedição:");
 
         try {
-            dataInscricao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            dataFormacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
-        jLabel8.setText("Especialidade:");
+        jLabel8.setText("Categoria Profissional:");
 
-        listaEspecialidades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        listaCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel9.setText("Observações:");
 
@@ -199,12 +197,12 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         jScrollPane1.setViewportView(observacoes);
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel10.setText("Informações da Cédula de Identidade de Médico");
+        jLabel10.setText("Informações da Cédula de Identidade de Farmacêutico");
 
         jLabel11.setText("Login:");
 
         login.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        login.setText("CPF DO MÉDICO");
+        login.setText("CPF DO FARMACÊUTICO");
 
         jLabel13.setText("Senha:");
 
@@ -221,6 +219,14 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
                 cadastrarActionPerformed(evt);
             }
         });
+
+        jLabel12.setText("Data da Formação:");
+
+        try {
+            dataExpedicao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         jMenu1.setText("Geral");
 
@@ -392,54 +398,6 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nomeMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(listaTipoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(86, 86, 86)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dataAdmissao, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(listaEspecialidades, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(numeroCRM, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(60, 60, 60)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(listaEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(66, 66, 66)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dataInscricao, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(26, 26, 26)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 30, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSeparator1))))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -459,6 +417,60 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nomeFarmaceutico, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(listaTipoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(86, 86, 86)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dataAdmissao, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(26, 26, 26)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 623, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(listaCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(numeroCRF, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(60, 60, 60)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(listaEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(66, 66, 66)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dataFormacao, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dataExpedicao, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 30, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator1))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -468,7 +480,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(nomeMedico))
+                    .addComponent(nomeFarmaceutico))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -484,18 +496,20 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(numeroCRM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numeroCRF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(listaEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(dataInscricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dataExpedicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(listaEspecialidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(listaCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
+                    .addComponent(dataFormacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -509,7 +523,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
                     .addComponent(login)
                     .addComponent(jLabel13)
                     .addComponent(senhaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelar)
                     .addComponent(cadastrar))
@@ -584,45 +598,46 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         }
         String admissao = dataAdmissao.getText();
         String observacao = observacoes.getText();
-        String crmMedico = numeroCRM.getText();
+        String crfFarmaceutico = numeroCRF.getText();
         Estado estado = null;
         for(Estado e : Estado.values()){
             if(listaEstado.getSelectedItem().toString().equals(e.getEstado())){
                 estado = e;
             }
         }
-        String dataCRM = dataInscricao.getText();
-        Especialidades especialidade = null;
-        for(Especialidades ep : Especialidades.values()){
-            if(listaEspecialidades.getSelectedItem().toString().equals(ep.getEspecialidade())){
-                especialidade = ep;
+        String expedicao = dataExpedicao.getText();
+        CategoriaProfissional categoria = null;
+        for(CategoriaProfissional cp : CategoriaProfissional.values()){
+            if(listaCategorias.getSelectedItem().toString().equals(cp.getCategoriaProfissional())){
+                categoria = cp;
             }
         }
+        String formacao = this.dataFormacao.getText();
         
         //Pega informações do Login
         String usuario = login.getText();
         char[] senha = senhaLogin.getPassword();
         String senha2 = new String(senha);
         
-        
         //Cria Objeto Login
-        Login login = new Login(usuario, senha2, TipoConta.M);
+        Login login = new Login(usuario, senha2, TipoConta.F);
         login = admHospital.retornaIdLogin(login);
         
-        //Insere dados faltantes do Médico
-        medico.setCrm(crmMedico);
-        medico.setUfCRM(estado);
-        medico.setDataIncricao(dataCRM);
-        medico.setEspecialidade(especialidade);
-        medico.setTipoSanguineo(tipoSangue);
-        medico.setDataAdmissao(admissao);
-        medico.setObservaoes(observacao);
-        medico.setIdLogin(login.getId());
+        //Insere dados faltantes do Farmaceutico
+        farmaceutico.setCrf(crfFarmaceutico);
+        farmaceutico.setUfCRF(estado);
+        farmaceutico.setDataExpedicao(expedicao);
+        farmaceutico.setCategoriaProfissional(categoria);
+        farmaceutico.setDataFormacao(formacao);
+        farmaceutico.setTipoSanguineo(tipoSangue);
+        farmaceutico.setDataAdmissao(admissao);
+        farmaceutico.setObservaoes(observacao);
+        farmaceutico.setIdLogin(login.getId());
         
-        boolean cadastro = admHospital.cadastraMedico(medico, endereco, login);
+        boolean cadastro = admHospital.cadastraFarmaceutico(farmaceutico, endereco, login);
         
         if(cadastro){
-            JOptionPane.showMessageDialog(null, "Cadastro do Médico Realizado!");
+            JOptionPane.showMessageDialog(null, "Cadastro do Farmacêutico Realizado!");
         } else {
             JOptionPane.showMessageDialog(null, "Algo deu errado!");
         }
@@ -655,7 +670,8 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
     private javax.swing.JButton cancelar;
     private javax.swing.JFormattedTextField dataAdmissao;
     private javax.swing.JMenuItem dataAdmissaoMedico;
-    private javax.swing.JFormattedTextField dataInscricao;
+    private javax.swing.JFormattedTextField dataExpedicao;
+    private javax.swing.JFormattedTextField dataFormacao;
     private javax.swing.JMenu enfermeiros;
     private javax.swing.JMenuItem especialidadeMedico;
     private javax.swing.JMenu farmaceuticos;
@@ -664,6 +680,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel23;
@@ -683,8 +700,8 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JMenu leitos;
+    private javax.swing.JComboBox<String> listaCategorias;
     private javax.swing.JMenuItem listaEnfermeiros;
-    private javax.swing.JComboBox<String> listaEspecialidades;
     private javax.swing.JComboBox<String> listaEstado;
     private javax.swing.JMenuItem listaFarmaceuticos;
     private javax.swing.JMenuItem listaMedicos;
@@ -692,13 +709,13 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> listaTipoSanguineo;
     private javax.swing.JLabel login;
     private javax.swing.JMenu medicos;
-    private javax.swing.JLabel nomeMedico;
+    private javax.swing.JLabel nomeFarmaceutico;
     private javax.swing.JMenuItem novoEnfermeiro;
     private javax.swing.JMenuItem novoFarmaceutico;
     private javax.swing.JMenuItem novoMedico;
     private javax.swing.JMenuItem novoSuprimento;
     private javax.swing.JMenuItem novoTecnico;
-    private javax.swing.JFormattedTextField numeroCRM;
+    private javax.swing.JFormattedTextField numeroCRF;
     private javax.swing.JTextArea observacoes;
     private javax.swing.JMenu recursosHumanos;
     private javax.swing.JMenuItem sair;

@@ -8,7 +8,7 @@ package enums;
  *
  * @author Amanda
  */
-public enum TiposLeitos {
+public enum TipoLeito {
     
     UM("AMBULATÓRIO"),
     DOIS("ENFERMARIA"),
@@ -23,7 +23,7 @@ public enum TiposLeitos {
     
     private String tipoLeito;
 
-    TiposLeitos(String tipoLeito) {
+    TipoLeito(String tipoLeito) {
         this.tipoLeito = tipoLeito;
     }
 

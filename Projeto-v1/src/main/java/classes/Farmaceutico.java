@@ -4,6 +4,7 @@
  */
 package classes;
 
+import enums.CategoriaProfissional;
 import enums.Estado;
 import enums.Nacionalidade;
 import enums.RacaCorEtnia;
@@ -17,39 +18,35 @@ import enums.TipoSanguineo;
 public class Farmaceutico extends ProfissionalSaude{
     
     private String crf;
-    private String ufCRF;
-    private String categoriaProfissional;
-    private String instituicaoDiploma;
-    private String dataConclusao;
+    private Estado ufCRF;
+    private CategoriaProfissional categoriaProfissional;
+    private String dataFormacao;
     private String dataExpedicao;
 
-    public Farmaceutico(String crf, String ufCRF, String categoriaProfissional, String instituicaoDiploma, String dataConclusao, String dataExpedicao, TipoSanguineo tipoSanguineo, String dataAdminissao, String observaoes) {
-        super(tipoSanguineo, dataAdminissao, observaoes);
+    public Farmaceutico(String crf, Estado ufCRF, CategoriaProfissional categoriaProfissional, String dataFormacao, String dataExpedicao, TipoSanguineo tipoSanguineo, String dataAdmissao, String observaoes) {
+        super(tipoSanguineo, dataAdmissao, observaoes);
         this.crf = crf;
         this.ufCRF = ufCRF;
         this.categoriaProfissional = categoriaProfissional;
-        this.instituicaoDiploma = instituicaoDiploma;
-        this.dataConclusao = dataConclusao;
+        this.dataFormacao = dataFormacao;
         this.dataExpedicao = dataExpedicao;
     }
 
-    public Farmaceutico(String crf, String ufCRF, String categoriaProfissional, String instituicaoDiploma, String dataConclusao, String dataExpedicao, TipoSanguineo tipoSanguineo, String dataAdminissao, String observaoes, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
-        super(tipoSanguineo, dataAdminissao, observaoes, cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco, idLogin);
+    public Farmaceutico(String crf, Estado ufCRF, CategoriaProfissional categoriaProfissional, String dataFormacao, String dataExpedicao, TipoSanguineo tipoSanguineo, String dataAdmissao, String observaoes, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
+        super(tipoSanguineo, dataAdmissao, observaoes, cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco, idLogin);
         this.crf = crf;
         this.ufCRF = ufCRF;
         this.categoriaProfissional = categoriaProfissional;
-        this.instituicaoDiploma = instituicaoDiploma;
-        this.dataConclusao = dataConclusao;
+        this.dataFormacao = dataFormacao;
         this.dataExpedicao = dataExpedicao;
     }
 
-    public Farmaceutico(String crf, String ufCRF, String categoriaProfissional, String instituicaoDiploma, String dataConclusao, String dataExpedicao, TipoSanguineo tipoSanguineo, String dataAdminissao, String observaoes, int id, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
-        super(tipoSanguineo, dataAdminissao, observaoes, id, cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco, idLogin);
+    public Farmaceutico(String crf, Estado ufCRF, CategoriaProfissional categoriaProfissional, String dataFormacao, String dataExpedicao, TipoSanguineo tipoSanguineo, String dataAdmissao, String observaoes, int id, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
+        super(tipoSanguineo, dataAdmissao, observaoes, id, cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco, idLogin);
         this.crf = crf;
         this.ufCRF = ufCRF;
         this.categoriaProfissional = categoriaProfissional;
-        this.instituicaoDiploma = instituicaoDiploma;
-        this.dataConclusao = dataConclusao;
+        this.dataFormacao = dataFormacao;
         this.dataExpedicao = dataExpedicao;
     }
 
@@ -61,36 +58,28 @@ public class Farmaceutico extends ProfissionalSaude{
         this.crf = crf;
     }
 
-    public String getUfCRF() {
+    public Estado getUfCRF() {
         return ufCRF;
     }
 
-    public void setUfCRF(String ufCRF) {
+    public void setUfCRF(Estado ufCRF) {
         this.ufCRF = ufCRF;
     }
 
-    public String getCategoriaProfissional() {
+    public CategoriaProfissional getCategoriaProfissional() {
         return categoriaProfissional;
     }
 
-    public void setCategoriaProfissional(String categoriaProfissional) {
+    public void setCategoriaProfissional(CategoriaProfissional categoriaProfissional) {
         this.categoriaProfissional = categoriaProfissional;
     }
 
-    public String getInstituicaoDiploma() {
-        return instituicaoDiploma;
+    public String getDataFormacao() {
+        return dataFormacao;
     }
 
-    public void setInstituicaoDiploma(String instituicaoDiploma) {
-        this.instituicaoDiploma = instituicaoDiploma;
-    }
-
-    public String getDataConclusao() {
-        return dataConclusao;
-    }
-
-    public void setDataConclusao(String dataConclusao) {
-        this.dataConclusao = dataConclusao;
+    public void setDataFormacao(String dataFormacao) {
+        this.dataFormacao = dataFormacao;
     }
 
     public String getDataExpedicao() {
@@ -103,9 +92,8 @@ public class Farmaceutico extends ProfissionalSaude{
 
     @Override
     public String toString() {
-        return "Farmaceutico{" + "crf=" + crf + ", ufCRF=" + ufCRF + ", categoriaProfissional=" + categoriaProfissional + ", instituicaoDiploma=" + instituicaoDiploma + ", dataConclusao=" + dataConclusao + ", dataExpedicao=" + dataExpedicao + '}';
+        return "Farmaceutico{" + "crf=" + crf + ", ufCRF=" + ufCRF + ", categoriaProfissional=" + categoriaProfissional + ", dataFormacao=" + dataFormacao + ", dataExpedicao=" + dataExpedicao + '}';
     }
-    
     
     
 }

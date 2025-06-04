@@ -17,26 +17,26 @@ import enums.TipoSanguineo;
 public class ProfissionalSaude extends Pessoa{
     
     private TipoSanguineo tipoSanguineo;
-    private String dataAdminissao;
+    private String dataAdmissao;
     private String observaoes;
 
-    public ProfissionalSaude(TipoSanguineo tipoSanguineo, String dataAdminissao, String observaoes) {
+    public ProfissionalSaude(TipoSanguineo tipoSanguineo, String dataAdmissao, String observaoes) {
         this.tipoSanguineo = tipoSanguineo;
-        this.dataAdminissao = dataAdminissao;
+        this.dataAdmissao = dataAdmissao;
         this.observaoes = observaoes;
     }
 
-    public ProfissionalSaude(TipoSanguineo tipoSanguineo, String dataAdminissao, String observaoes, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
+    public ProfissionalSaude(TipoSanguineo tipoSanguineo, String dataAdmissao, String observaoes, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
         super(cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco, idLogin);
         this.tipoSanguineo = tipoSanguineo;
-        this.dataAdminissao = dataAdminissao;
+        this.dataAdmissao = dataAdmissao;
         this.observaoes = observaoes;
     }
 
-    public ProfissionalSaude(TipoSanguineo tipoSanguineo, String dataAdminissao, String observaoes, int id, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
+    public ProfissionalSaude(TipoSanguineo tipoSanguineo, String dataAdmissao, String observaoes, int id, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
         super(id, cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco, idLogin);
         this.tipoSanguineo = tipoSanguineo;
-        this.dataAdminissao = dataAdminissao;
+        this.dataAdmissao = dataAdmissao;
         this.observaoes = observaoes;
     }
 
@@ -48,12 +48,12 @@ public class ProfissionalSaude extends Pessoa{
         this.tipoSanguineo = tipoSanguineo;
     }
 
-    public String getDataAdminissao() {
-        return dataAdminissao;
+    public String getDataAdmissao() {
+        return dataAdmissao;
     }
 
-    public void setDataAdminissao(String dataAdminissao) {
-        this.dataAdminissao = dataAdminissao;
+    public void setDataAdmissao(String dataAdmissao) {
+        this.dataAdmissao = dataAdmissao;
     }
 
     public String getObservaoes() {
@@ -66,7 +66,7 @@ public class ProfissionalSaude extends Pessoa{
 
     @Override
     public String toString() {
-        return "ProfissionalSaude{" + "tipoSanguineo=" + tipoSanguineo + ", dataAdminissao=" + dataAdminissao + ", observaoes=" + observaoes + '}';
+        return "ProfissionalSaude{" + "tipoSanguineo=" + tipoSanguineo + ", dataAdminissao=" + dataAdmissao + ", observaoes=" + observaoes + '}';
     }
 
     

@@ -4,9 +4,9 @@
 
 package com.mycompany.projeto.v1;
 
-import enums.TiposLeitos;
-import gerenciamento.AdministrarHospital;
-import interfaces.TelaAdministrador;
+import enums.TipoLeito;
+import gerenciamento.GerenciamentoHospitalar;
+import interfaces.TelaInicialAdministrador;
 import interfaces.TelaCadastroLeito;
 import interfaces.TelaInicial;
 import java.util.ArrayList;
@@ -28,11 +28,11 @@ public class Main {
         telaLeito.setVisible(true);*/
         
         
-        AdministrarHospital admHospital = new AdministrarHospital();
-        TelaAdministrador telaAdministrador = new TelaAdministrador(admHospital);
+        GerenciamentoHospitalar admHospital = new GerenciamentoHospitalar();
+        TelaInicialAdministrador telaAdministrador = new TelaInicialAdministrador(admHospital);
         telaAdministrador.setVisible(true);
         
-        /*for(TiposLeitos tl : TiposLeitos.values()){
+        /*for(TipoLeito tl : TipoLeito.values()){
             System.out.println(tl.getTipoLeito());
         }*/
         

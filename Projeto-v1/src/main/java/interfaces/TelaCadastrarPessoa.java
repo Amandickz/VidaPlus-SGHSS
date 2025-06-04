@@ -10,7 +10,7 @@ import enums.Estado;
 import enums.Nacionalidade;
 import enums.RacaCorEtnia;
 import enums.Sexo;
-import gerenciamento.AdministrarHospital;
+import gerenciamento.GerenciamentoHospitalar;
 import javax.swing.JOptionPane;
 /**
  *
@@ -18,12 +18,12 @@ import javax.swing.JOptionPane;
  */
 public class TelaCadastrarPessoa extends javax.swing.JFrame {
 
-    AdministrarHospital admHospital = new AdministrarHospital();
+    GerenciamentoHospitalar admHospital = new GerenciamentoHospitalar();
     int tipoCadastro;
     /**
-     * Creates new form TelaAdministrador
+     * Creates new form TelaInicialAdministrador
      */
-    public TelaCadastrarPessoa(AdministrarHospital admHospital, int tipoCadastro){
+    public TelaCadastrarPessoa(GerenciamentoHospitalar admHospital, int tipoCadastro){
         initComponents();
         this.setLocationRelativeTo(null);
         this.admHospital = admHospital;
@@ -376,6 +376,11 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
         medicos.add(alterarDadosMedico);
 
         listaMedicos.setText("Lista de Médicos");
+        listaMedicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaMedicosActionPerformed(evt);
+            }
+        });
         medicos.add(listaMedicos);
 
         buscarMedicos.setText("Buscar Médicos");
@@ -670,10 +675,10 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
 
     private void verificarLeitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verificarLeitosActionPerformed
         // TODO add your handling code here:
-        if(admHospital.leitosCadastrados().isEmpty()){
+        if(admHospital.getLeitos().isEmpty()){
             JOptionPane.showMessageDialog(null, "Nenhum Leito Cadastrado!");
         } else {
-            new TelaVerificarLeitos(admHospital).setVisible(true);
+            new TelaListaLeitos(admHospital).setVisible(true);
             dispose();
         }
     }//GEN-LAST:event_verificarLeitosActionPerformed
@@ -750,10 +755,22 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
         endereco = admHospital.retornaIdEndereco(endereco);
         pessoa.setIdEndereco(endereco.getId());
         pessoa = admHospital.retornaIdPessoa(pessoa);
-        System.out.println(pessoa);
-        System.out.println(endereco);
         
-        new TelaCadastroMedico(admHospital, pessoa, endereco).setVisible(true);
+        switch (tipoCadastro) {
+            case 1 -> {
+                new TelaCadastroMedico(admHospital, pessoa, endereco).setVisible(true);
+            }
+            case 2 -> {
+                new TelaCadastroEnfermeiro(admHospital, pessoa, endereco).setVisible(true);
+            }
+            case 3 -> {
+                new TelaCadastroTecnico(admHospital, pessoa, endereco).setVisible(true);
+            }
+            case 4 -> {
+                new TelaCadastroFarmaceutico(admHospital, pessoa, endereco).setVisible(true);
+            }
+            default -> throw new AssertionError(new JOptionPane("Erro!"));
+        }        
         dispose();
     }//GEN-LAST:event_continuarActionPerformed
 
@@ -764,9 +781,19 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         // TODO add your handling code here:
-        new TelaAdministrador(admHospital).setVisible(true);
+        new TelaInicialAdministrador(admHospital).setVisible(true);
         dispose();
     }//GEN-LAST:event_cancelarActionPerformed
+
+    private void listaMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaMedicosActionPerformed
+        // TODO add your handling code here:
+        if(admHospital.getLeitos().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nenhum Médico Cadastrado!");
+        } else {
+            new TelaListaMedicos(admHospital).setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_listaMedicosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

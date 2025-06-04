@@ -4,43 +4,24 @@
  */
 package interfaces;
 
-import classes.Leito;
-import gerenciamento.AdministrarHospital;
-import java.util.ArrayList;
+import gerenciamento.GerenciamentoHospitalar;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Amanda
  */
-public class TelaVerificarLeitos extends javax.swing.JFrame {
+public class TelaInicialAdministrador extends javax.swing.JFrame {
 
-    AdministrarHospital admHospital;
+    GerenciamentoHospitalar admHospital = new GerenciamentoHospitalar();
     /**
      * Creates new form TelaAdministrador
      */
-    public TelaVerificarLeitos(AdministrarHospital admHospital) {
+    public TelaInicialAdministrador(GerenciamentoHospitalar admHospital) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.admHospital = admHospital;
-        ArrayList<Leito> listaLeitos;
-        listaLeitos = this.admHospital.leitosCadastrados();
-        
-        DefaultTableModel todosLeitos = (DefaultTableModel) tabelaLeitos.getModel();
-        todosLeitos.addColumn("Quarto");
-        todosLeitos.addColumn("Tipo");
-        todosLeitos.addColumn("Valor");
-        todosLeitos.addColumn("Status");
-        
-        if(!listaLeitos.isEmpty()){
-            for(Leito l : listaLeitos){
-                todosLeitos.addRow(new Object[]{l.getNumero(),
-                    this.admHospital.tipoLeito(l.getTipo()),
-                    l.getValor(),
-                    this.admHospital.disponibilidade(l.isStatus())});
-            }
-        }
+        admHospital.getLeitos();
     }
 
     /**
@@ -53,9 +34,6 @@ public class TelaVerificarLeitos extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaLeitos = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         sair = new javax.swing.JMenuItem();
@@ -95,25 +73,6 @@ public class TelaVerificarLeitos extends javax.swing.JFrame {
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jScrollPane1.setViewportView(tabelaLeitos);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(101, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71))
-        );
 
         jMenu1.setText("Geral");
 
@@ -156,13 +115,18 @@ public class TelaVerificarLeitos extends javax.swing.JFrame {
         leitos.add(alterarStatus);
 
         verificarLeitos.setText("Verificar Leitos");
+        verificarLeitos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verificarLeitosActionPerformed(evt);
+            }
+        });
         leitos.add(verificarLeitos);
 
         gerenciar.add(leitos);
 
         suprimentos.setText("Suprimentos");
 
-        novoSuprimento.setText("Cadastrar Novo Suprimento");
+        novoSuprimento.setText("Novo Suprimento");
         novoSuprimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 novoSuprimentoActionPerformed(evt);
@@ -197,12 +161,22 @@ public class TelaVerificarLeitos extends javax.swing.JFrame {
         medicos.setText("Médicos");
 
         novoMedico.setText("Novo Médico");
+        novoMedico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novoMedicoActionPerformed(evt);
+            }
+        });
         medicos.add(novoMedico);
 
         alterarDadosMedico.setText("Alterar Dados do Médico");
         medicos.add(alterarDadosMedico);
 
         listaMedicos.setText("Lista de Médicos");
+        listaMedicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaMedicosActionPerformed(evt);
+            }
+        });
         medicos.add(listaMedicos);
 
         buscarMedicos.setText("Buscar Médicos");
@@ -225,12 +199,22 @@ public class TelaVerificarLeitos extends javax.swing.JFrame {
         enfermeiros.setText("Enfermeiros");
 
         novoEnfermeiro.setText("Novo Enfermeiro");
+        novoEnfermeiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novoEnfermeiroActionPerformed(evt);
+            }
+        });
         enfermeiros.add(novoEnfermeiro);
 
         alterarDadosEnfermeiro.setText("Alterar Dados do Enfermeiro");
         enfermeiros.add(alterarDadosEnfermeiro);
 
         listaEnfermeiros.setText("Lista de Enfermeiros");
+        listaEnfermeiros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaEnfermeirosActionPerformed(evt);
+            }
+        });
         enfermeiros.add(listaEnfermeiros);
 
         recursosHumanos.add(enfermeiros);
@@ -238,12 +222,22 @@ public class TelaVerificarLeitos extends javax.swing.JFrame {
         tecnicos.setText("Técnicos de Enfermagem");
 
         novoTecnico.setText("Novo Técnico");
+        novoTecnico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novoTecnicoActionPerformed(evt);
+            }
+        });
         tecnicos.add(novoTecnico);
 
         alterarDadosTecnico.setText("Alterar Dados do Técnico");
         tecnicos.add(alterarDadosTecnico);
 
         listaTecnicos.setText("Lista de Técnicos");
+        listaTecnicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaTecnicosActionPerformed(evt);
+            }
+        });
         tecnicos.add(listaTecnicos);
 
         recursosHumanos.add(tecnicos);
@@ -251,12 +245,22 @@ public class TelaVerificarLeitos extends javax.swing.JFrame {
         farmaceuticos.setText("Farmacêuticos");
 
         novoFarmaceutico.setText("Novo Farmacêutico");
+        novoFarmaceutico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novoFarmaceuticoActionPerformed(evt);
+            }
+        });
         farmaceuticos.add(novoFarmaceutico);
 
         alterarDadosFarmaceutico.setText("Alterar Dados do Farmacêutico");
         farmaceuticos.add(alterarDadosFarmaceutico);
 
         listaFarmaceuticos.setText("Lista de Farmacêuticos");
+        listaFarmaceuticos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaFarmaceuticosActionPerformed(evt);
+            }
+        });
         farmaceuticos.add(listaFarmaceuticos);
 
         recursosHumanos.add(farmaceuticos);
@@ -269,11 +273,11 @@ public class TelaVerificarLeitos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 834, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 616, Short.MAX_VALUE)
         );
 
         pack();
@@ -294,6 +298,8 @@ public class TelaVerificarLeitos extends javax.swing.JFrame {
 
     private void novoSuprimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoSuprimentoActionPerformed
         // TODO add your handling code here:
+        new TelaCadastroSuprimento(admHospital).setVisible(true);
+        dispose();
     }//GEN-LAST:event_novoSuprimentoActionPerformed
 
     private void alterarEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarEstoqueActionPerformed
@@ -309,6 +315,80 @@ public class TelaVerificarLeitos extends javax.swing.JFrame {
         new TelaCadastroLeito(admHospital).setVisible(true);
         dispose();
     }//GEN-LAST:event_cadastrarLeitoActionPerformed
+
+    private void verificarLeitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verificarLeitosActionPerformed
+        // TODO add your handling code here:
+        if(admHospital.getLeitos().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nenhum Leito Cadastrado!");
+        } else {
+            new TelaListaLeitos(admHospital).setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_verificarLeitosActionPerformed
+
+    private void novoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoMedicoActionPerformed
+        // TODO add your handling code here:
+        new TelaCadastrarPessoa(admHospital, 1).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_novoMedicoActionPerformed
+
+    private void listaMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaMedicosActionPerformed
+        // TODO add your handling code here:
+        if(admHospital.getMedicos().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nenhum Médico Cadastrado!");
+        } else {
+            new TelaListaMedicos(admHospital).setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_listaMedicosActionPerformed
+
+    private void novoEnfermeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoEnfermeiroActionPerformed
+        // TODO add your handling code here:
+        new TelaCadastrarPessoa(admHospital, 2).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_novoEnfermeiroActionPerformed
+
+    private void listaEnfermeirosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaEnfermeirosActionPerformed
+        // TODO add your handling code here:
+        if(admHospital.getEnfermeiros().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nenhum Enfermeiro Cadastrado!");
+        } else {
+            new TelaListaEnfermeiros(admHospital).setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_listaEnfermeirosActionPerformed
+
+    private void novoTecnicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoTecnicoActionPerformed
+        // TODO add your handling code here:
+        new TelaCadastrarPessoa(admHospital, 3).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_novoTecnicoActionPerformed
+
+    private void listaTecnicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaTecnicosActionPerformed
+        // TODO add your handling code here:
+        if(admHospital.getTecnicos().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nenhum Enfermeiro Cadastrado!");
+        } else {
+            new TelaListaTecnico(admHospital).setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_listaTecnicosActionPerformed
+
+    private void novoFarmaceuticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoFarmaceuticoActionPerformed
+        // TODO add your handling code here:
+        new TelaCadastrarPessoa(admHospital, 4).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_novoFarmaceuticoActionPerformed
+
+    private void listaFarmaceuticosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaFarmaceuticosActionPerformed
+        // TODO add your handling code here:
+        if(admHospital.getFarmaceuticos().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nenhum Farmacêutico Cadastrado!");
+        } else {
+            new TelaListaFarmaceuticos(admHospital).setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_listaFarmaceuticosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -330,8 +410,6 @@ public class TelaVerificarLeitos extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenu leitos;
     private javax.swing.JMenuItem listaEnfermeiros;
     private javax.swing.JMenuItem listaFarmaceuticos;
@@ -346,7 +424,6 @@ public class TelaVerificarLeitos extends javax.swing.JFrame {
     private javax.swing.JMenu recursosHumanos;
     private javax.swing.JMenuItem sair;
     private javax.swing.JMenu suprimentos;
-    private javax.swing.JTable tabelaLeitos;
     private javax.swing.JMenu tecnicos;
     private javax.swing.JMenuItem verificarInternacoes;
     private javax.swing.JMenuItem verificarLeitos;
