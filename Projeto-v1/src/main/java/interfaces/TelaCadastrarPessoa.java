@@ -21,7 +21,7 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
     GerenciamentoHospitalar admHospital = new GerenciamentoHospitalar();
     int tipoCadastro;
     /**
-     * Creates new form TelaAdministrador
+     * Creates new form TelaInicialAdministrador
      */
     public TelaCadastrarPessoa(GerenciamentoHospitalar admHospital, int tipoCadastro){
         initComponents();
@@ -781,7 +781,7 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         // TODO add your handling code here:
-        new TelaAdministrador(admHospital).setVisible(true);
+        new TelaInicialAdministrador(admHospital).setVisible(true);
         dispose();
     }//GEN-LAST:event_cancelarActionPerformed
 

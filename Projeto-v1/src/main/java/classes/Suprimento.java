@@ -4,6 +4,8 @@
  */
 package classes;
 
+import enums.TipoSuprimento;
+
 /**
  *
  * @author Amanda
@@ -11,7 +13,7 @@ package classes;
 public class Suprimento {
     
     private int id;
-    private int tipo;
+    private TipoSuprimento tipo;
     private String nome;
     private int quantidadeEstoque;
     private int valorUnitario;
@@ -19,14 +21,14 @@ public class Suprimento {
     public Suprimento() {
     }
 
-    public Suprimento(int tipo, String nome, int quantidadeEstoque, int valorUnitario) {
+    public Suprimento(TipoSuprimento tipo, String nome, int quantidadeEstoque, int valorUnitario) {
         this.tipo = tipo;
         this.nome = nome;
         this.quantidadeEstoque = quantidadeEstoque;
         this.valorUnitario = valorUnitario;
     }
 
-    public Suprimento(int id, int tipo, String nome, int quantidadeEstoque, int valorUnitario) {
+    public Suprimento(int id, TipoSuprimento tipo, String nome, int quantidadeEstoque, int valorUnitario) {
         this.id = id;
         this.tipo = tipo;
         this.nome = nome;
@@ -42,11 +44,11 @@ public class Suprimento {
         this.id = id;
     }
 
-    public int getTipo() {
+    public TipoSuprimento getTipo() {
         return tipo;
     }
 
-    public void setTipo(int tipo) {
+    public void setTipo(TipoSuprimento tipo) {
         this.tipo = tipo;
     }
 
@@ -72,6 +74,11 @@ public class Suprimento {
 
     public void setValorUnitario(int valorUnitario) {
         this.valorUnitario = valorUnitario;
+    }
+
+    @Override
+    public String toString() {
+        return "Suprimento{" + "id=" + id + ", tipo=" + tipo + ", nome=" + nome + ", quantidadeEstoque=" + quantidadeEstoque + ", valorUnitario=" + valorUnitario + '}';
     }
     
     

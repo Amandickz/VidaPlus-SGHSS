@@ -24,7 +24,7 @@ public class TelaCadastroTecnico extends javax.swing.JFrame {
     Tecnico tecnico;
     Endereco endereco;
     /**
-     * Creates new form TelaAdministrador
+     * Creates new form TelaInicialAdministrador
      */
     public TelaCadastroTecnico(GerenciamentoHospitalar admHospital, Pessoa pessoa, Endereco endereco) {
         initComponents();
@@ -564,7 +564,7 @@ public class TelaCadastroTecnico extends javax.swing.JFrame {
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         // TODO add your handling code here:
-        new TelaAdministrador(admHospital).setVisible(true);
+        new TelaInicialAdministrador(admHospital).setVisible(true);
         dispose();
     }//GEN-LAST:event_cancelarActionPerformed
 
@@ -618,7 +618,7 @@ public class TelaCadastroTecnico extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Algo deu errado!");
         }
         
-        new TelaAdministrador(admHospital).setVisible(true);
+        new TelaInicialAdministrador(admHospital).setVisible(true);
         dispose();        
     }//GEN-LAST:event_cadastrarActionPerformed
 

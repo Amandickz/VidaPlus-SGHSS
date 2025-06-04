@@ -13,7 +13,7 @@ import classes.Medico;
 import classes.Pessoa;
 import classes.ProfissionalSaude;
 import classes.Tecnico;
-import enums.TiposLeitos;
+import enums.TipoLeito;
 import java.util.ArrayList;
 
 /**
@@ -194,31 +194,31 @@ public class GerenciamentoHospitalar {
     public String tipoLeito(int tipo){
         switch (tipo) {
             case 1 -> {
-                return TiposLeitos.UM.getTipoLeito();
+                return TipoLeito.UM.getTipoLeito();
             }
             case 2 -> {
-                return TiposLeitos.DOIS.getTipoLeito();
+                return TipoLeito.DOIS.getTipoLeito();
             }
             case 3 -> {
-                return TiposLeitos.TRES.getTipoLeito();
+                return TipoLeito.TRES.getTipoLeito();
             }
             case 4 -> {
-                return TiposLeitos.QUATRO.getTipoLeito();
+                return TipoLeito.QUATRO.getTipoLeito();
             }
             case 5 -> {
-                return TiposLeitos.CINCO.getTipoLeito();
+                return TipoLeito.CINCO.getTipoLeito();
             }
             case 6 -> {
-                return TiposLeitos.SEIS.getTipoLeito();
+                return TipoLeito.SEIS.getTipoLeito();
             }
             case 7 -> {
-                return TiposLeitos.SETE.getTipoLeito();
+                return TipoLeito.SETE.getTipoLeito();
             }
             case 8 -> {
-                return TiposLeitos.OITO.getTipoLeito();
+                return TipoLeito.OITO.getTipoLeito();
             }
             case 9 -> {
-                return TiposLeitos.NOVE.getTipoLeito();
+                return TipoLeito.NOVE.getTipoLeito();
             }
             default -> throw new AssertionError();
         }

@@ -5,7 +5,7 @@
 package interfaces;
 
 import classes.Leito;
-import enums.TiposLeitos;
+import enums.TipoLeito;
 import gerenciamento.GerenciamentoHospitalar;
 import javax.swing.JOptionPane;
 
@@ -17,12 +17,12 @@ public class TelaCadastroLeito extends javax.swing.JFrame {
 
     GerenciamentoHospitalar admHospital;
     /**
-     * Creates new form TelaAdministrador
+     * Creates new form TelaInicialAdministrador
      */
     public TelaCadastroLeito(GerenciamentoHospitalar admHospital) {
         initComponents();
         tipoLeitos.removeAllItems();
-        for (TiposLeitos tipos : TiposLeitos.values()){
+        for (TipoLeito tipos : TipoLeito.values()){
             tipoLeitos.addItem(tipos.getTipoLeito());
         }
         this.admHospital = admHospital;
@@ -414,7 +414,7 @@ public class TelaCadastroLeito extends javax.swing.JFrame {
         int numLeito = Integer.parseInt(numeroLeito.getText());
 
         int tipo = 0;
-        for (TiposLeitos tl : TiposLeitos.values()){
+        for (TipoLeito tl : TipoLeito.values()){
             tipo++;
             if(tipoLeitos.getSelectedItem().toString().equals(tl.getTipoLeito())){
                 System.out.println(tipo + " - " + tl.getTipoLeito());
@@ -443,7 +443,7 @@ public class TelaCadastroLeito extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro ao Cadastrar Leito!");
         }
         
-        new TelaAdministrador(admHospital).setVisible(true);
+        new TelaInicialAdministrador(admHospital).setVisible(true);
         dispose();
     }//GEN-LAST:event_cadastrarActionPerformed
 
