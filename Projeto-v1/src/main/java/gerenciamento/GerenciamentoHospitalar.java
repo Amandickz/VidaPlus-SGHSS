@@ -32,12 +32,20 @@ public class GerenciamentoHospitalar {
     }
     
     //Gerenciamento de Pessoas
-    public Pessoa retornaIdPessoa(Pessoa pessoa){
+    public ArrayList<Pessoa> getPessoas(){
+        return pessoas;
+    }
+
+    public Pessoa retornaIdPessoa(Pessoa pessoa) {
         pessoa.setId(pessoas.size() + 1);
         return pessoa;
     }
     
     //Gerenciamento do Profissional de Saúde - Médico
+    public ArrayList<Medico> getMedicos(){
+        return medicos;
+    }
+    
     public boolean cadastraMedico(Medico medico, Endereco endereco, Login login){
         Pessoa pessoa = new Pessoa(medico.getId(), medico.getCpf(), medico.getNomeCompleto(), medico.getNomeSocial(),
                 medico.getDataNascimento(), medico.getSexo(), medico.getNomeMae(), medico.getNomePai(), medico.getNaturalidade(),
@@ -60,15 +68,33 @@ public class GerenciamentoHospitalar {
         return true;
     }
     
-    public ArrayList<Medico> medicosCadastrados(){
-        return medicos;
+    //Gerenciamento do Profissional de Saúde - Enfermeiro
+    public ArrayList<Enfermeiro> getEnfermeiros() {
+        return enfermeiros;
     }
     
-    //Gerenciamento do Profissional de Saúde - Enfermeiro
     public boolean cadastraEnfermeiro(Enfermeiro enfermeiro, Endereco endereco, Login login){
+        Pessoa pessoa = new Pessoa(enfermeiro.getId(), enfermeiro.getCpf(), enfermeiro.getNomeCompleto(), enfermeiro.getNomeSocial(),
+                enfermeiro.getDataNascimento(), enfermeiro.getSexo(), enfermeiro.getNomeMae(), enfermeiro.getNomePai(), enfermeiro.getNaturalidade(),
+                enfermeiro.getUf(), enfermeiro.getNacionalidade(), enfermeiro.getRaca(), enfermeiro.getTelefone(), enfermeiro.getEmail(),
+                enfermeiro.getIdEndereco(), enfermeiro.getIdLogin());
+        ProfissionalSaude profissional = new ProfissionalSaude(enfermeiro.getTipoSanguineo(), enfermeiro.getDataAdmissao(), enfermeiro.getObservaoes());
+        pessoas.add(pessoa);
+        enderecos.add(endereco);
+        logins.add(login);
+        profissionais.add(profissional);
+        enfermeiros.add(enfermeiro);
+        System.out.println();
+        System.out.println("------Cadastrado Agora------");
+        System.out.println(pessoa);
+        System.out.println(endereco);
+        System.out.println(login);
+        System.out.println(profissional);
+        System.out.println(enfermeiro);
+        System.out.println();
         return true;
     }
-    
+
     //Gerenciamento de Login
     public Login retornaIdLogin(Login login){
         login.setId(logins.size() + 1);
@@ -82,6 +108,10 @@ public class GerenciamentoHospitalar {
     }
     
     //Gerenciamento de Leito
+    public ArrayList<Leito> getLeitos(){
+        return leitos;
+    }
+    
     public boolean cadastrarNovoLeito(Leito leito){        
         if(!leitos.isEmpty()){
             for(Leito l : leitos){
@@ -94,10 +124,6 @@ public class GerenciamentoHospitalar {
         leito.setId(leitos.size() + 1);
         leitos.add(leito);
         return true;
-    }
-    
-    public ArrayList<Leito> leitosCadastrados(){
-        return leitos;
     }
     
     public String disponibilidade(boolean status){

@@ -675,7 +675,7 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
 
     private void verificarLeitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verificarLeitosActionPerformed
         // TODO add your handling code here:
-        if(admHospital.leitosCadastrados().isEmpty()){
+        if(admHospital.getLeitos().isEmpty()){
             JOptionPane.showMessageDialog(null, "Nenhum Leito Cadastrado!");
         } else {
             new TelaListaLeitos(admHospital).setVisible(true);
@@ -757,15 +757,15 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
         pessoa = admHospital.retornaIdPessoa(pessoa);
         
         switch (tipoCadastro) {
-            case 1:
+            case 1 -> {
                 new TelaCadastroMedico(admHospital, pessoa, endereco).setVisible(true);
-                dispose();
-            case 2:
+            }
+            case 2 -> {
                 new TelaCadastroEnfermeiro(admHospital, pessoa, endereco).setVisible(true);
-                dispose();
-            default:
-                throw new AssertionError();
+            }
+            default -> throw new AssertionError(new JOptionPane("Erro!"));
         }        
+        dispose();
     }//GEN-LAST:event_continuarActionPerformed
 
     private void nomeSocialCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeSocialCheckActionPerformed
@@ -781,7 +781,7 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
 
     private void listaMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaMedicosActionPerformed
         // TODO add your handling code here:
-        if(admHospital.leitosCadastrados().isEmpty()){
+        if(admHospital.getLeitos().isEmpty()){
             JOptionPane.showMessageDialog(null, "Nenhum Médico Cadastrado!");
         } else {
             new TelaListaMedicos(admHospital).setVisible(true);

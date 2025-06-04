@@ -30,8 +30,8 @@ public class TelaListaMedicos extends javax.swing.JFrame {
         todosMedicos.addColumn("Data de Admissão");
         
         
-        if(!this.admHospital.medicosCadastrados().isEmpty()){
-            for(Medico m : this.admHospital.medicosCadastrados()){
+        if(!this.admHospital.getMedicos().isEmpty()){
+            for(Medico m : this.admHospital.getMedicos()){
                 todosMedicos.addRow(new Object[]{m.getCrm() + "/" + m.getUf().getEstado(),
                     m.getNomeCompleto().toUpperCase(),
                     m.getEspecialidade().getEspecialidade(),
@@ -53,6 +53,7 @@ public class TelaListaMedicos extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaMedicos = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         sair = new javax.swing.JMenuItem();
@@ -95,19 +96,26 @@ public class TelaListaMedicos extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(tabelaMedicos);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("Lista de Médicos");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 753, Short.MAX_VALUE))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(101, Short.MAX_VALUE)
+                .addContainerGap(51, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71))
         );
@@ -319,7 +327,7 @@ public class TelaListaMedicos extends javax.swing.JFrame {
 
     private void verificarLeitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verificarLeitosActionPerformed
         // TODO add your handling code here:
-        if(admHospital.leitosCadastrados().isEmpty()){
+        if(admHospital.getLeitos().isEmpty()){
             JOptionPane.showMessageDialog(null, "Nenhum Leito Cadastrado!");
         } else {
             new TelaListaLeitos(admHospital).setVisible(true);
@@ -350,6 +358,7 @@ public class TelaListaMedicos extends javax.swing.JFrame {
     private javax.swing.JMenu farmaceuticos;
     private javax.swing.JMenu gerenciar;
     private javax.swing.JMenu internacoes;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;

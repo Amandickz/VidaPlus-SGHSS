@@ -460,7 +460,7 @@ public class TelaCadastroLeito extends javax.swing.JFrame {
 
     private void listaMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaMedicosActionPerformed
         // TODO add your handling code here:
-        if(admHospital.leitosCadastrados().isEmpty()){
+        if(admHospital.getLeitos().isEmpty()){
             JOptionPane.showMessageDialog(null, "Nenhum Médico Cadastrado!");
         } else {
             new TelaListaMedicos(admHospital).setVisible(true);

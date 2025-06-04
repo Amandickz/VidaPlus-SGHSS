@@ -552,7 +552,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
 
     private void verificarLeitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verificarLeitosActionPerformed
         // TODO add your handling code here:
-        if(admHospital.leitosCadastrados().isEmpty()){
+        if(admHospital.getLeitos().isEmpty()){
             JOptionPane.showMessageDialog(null, "Nenhum Leito Cadastrado!");
         } else {
             new TelaListaLeitos(admHospital).setVisible(true);
@@ -633,7 +633,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
 
     private void listaMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaMedicosActionPerformed
         // TODO add your handling code here:
-        if(admHospital.leitosCadastrados().isEmpty()){
+        if(admHospital.getLeitos().isEmpty()){
             JOptionPane.showMessageDialog(null, "Nenhum Médico Cadastrado!");
         } else {
             new TelaListaMedicos(admHospital).setVisible(true);
