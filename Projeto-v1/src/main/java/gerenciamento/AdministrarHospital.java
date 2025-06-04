@@ -52,7 +52,11 @@ public class AdministrarHospital {
         System.out.println(medico);
         return true;
     }
-            
+    
+    public ArrayList<Medico> medicosCadastrados(){
+        return medicos;
+    }  
+    
     //Gerenciamento de Login
     public Login retornaIdLogin(Login login){
         login.setId(logins.size() + 1);
@@ -81,13 +85,7 @@ public class AdministrarHospital {
     }
     
     public ArrayList<Leito> leitosCadastrados(){
-        ArrayList<Leito> listaLeitos = new ArrayList<>();
-        for(Leito l : leitos){
-            System.out.println(l.toString());
-            listaLeitos.add(l);
-        }
-        
-        return listaLeitos;
+        return leitos;
     }
     
     public String disponibilidade(boolean status){

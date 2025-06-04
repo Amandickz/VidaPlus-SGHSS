@@ -7,6 +7,7 @@ package interfaces;
 import classes.Leito;
 import enums.TiposLeitos;
 import gerenciamento.AdministrarHospital;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -284,12 +285,22 @@ public class TelaCadastroLeito extends javax.swing.JFrame {
         medicos.setText("Médicos");
 
         novoMedico.setText("Novo Médico");
+        novoMedico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novoMedicoActionPerformed(evt);
+            }
+        });
         medicos.add(novoMedico);
 
         alterarDadosMedico.setText("Alterar Dados do Médico");
         medicos.add(alterarDadosMedico);
 
         listaMedicos.setText("Lista de Médicos");
+        listaMedicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaMedicosActionPerformed(evt);
+            }
+        });
         medicos.add(listaMedicos);
 
         buscarMedicos.setText("Buscar Médicos");
@@ -436,6 +447,22 @@ public class TelaCadastroLeito extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_cancelarActionPerformed
+
+    private void novoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoMedicoActionPerformed
+        // TODO add your handling code here:
+        new TelaCadastrarPessoa(admHospital, 1).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_novoMedicoActionPerformed
+
+    private void listaMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaMedicosActionPerformed
+        // TODO add your handling code here:
+        if(admHospital.leitosCadastrados().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nenhum Médico Cadastrado!");
+        } else {
+            new TelaListaMedicos(admHospital).setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_listaMedicosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

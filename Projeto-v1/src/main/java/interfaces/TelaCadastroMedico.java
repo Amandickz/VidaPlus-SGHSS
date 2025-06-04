@@ -320,6 +320,11 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         medicos.add(alterarDadosMedico);
 
         listaMedicos.setText("Lista de Médicos");
+        listaMedicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaMedicosActionPerformed(evt);
+            }
+        });
         medicos.add(listaMedicos);
 
         buscarMedicos.setText("Buscar Médicos");
@@ -623,6 +628,16 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         new TelaAdministrador(admHospital).setVisible(true);
         dispose();        
     }//GEN-LAST:event_cadastrarActionPerformed
+
+    private void listaMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaMedicosActionPerformed
+        // TODO add your handling code here:
+        if(admHospital.leitosCadastrados().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nenhum Médico Cadastrado!");
+        } else {
+            new TelaListaMedicos(admHospital).setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_listaMedicosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem alterarDadosEnfermeiro;
