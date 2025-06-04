@@ -12,6 +12,7 @@ import classes.Login;
 import classes.Medico;
 import classes.Pessoa;
 import classes.ProfissionalSaude;
+import classes.Suprimento;
 import classes.Tecnico;
 import enums.TipoLeito;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class GerenciamentoHospitalar {
     ArrayList<Enfermeiro> enfermeiros = new ArrayList<>();
     ArrayList<Tecnico> tecnicos = new ArrayList<>();
     ArrayList<Farmaceutico> farmaceuticos = new ArrayList<>();
+    ArrayList<Suprimento> suprimentos = new ArrayList<>();
 
     public GerenciamentoHospitalar() {
     }
@@ -222,6 +224,40 @@ public class GerenciamentoHospitalar {
             }
             default -> throw new AssertionError();
         }
+    }
+    
+    //Gerenciamento de Suprimentos por Parte do Administrador
+    public ArrayList<Suprimento> getSuprimentos() {
+        return suprimentos;
+    }
+    
+    public Suprimento retornarIdSuprimento(Suprimento suprimento){
+        suprimento.setId(suprimentos.size() + 1);
+        return suprimento;
+    }
+    
+    public boolean cadastrarSuprimento(Suprimento suprimento){
+        suprimentos.add(suprimento);
+        System.out.println();
+        System.out.println("------Suprimento Cadastrado Agora------");
+        System.out.println(suprimento);
+        System.out.println();
+        return true;
+    }
+    
+    public Suprimento buscaSuprimento(String nome){
+        Suprimento suprimento = new Suprimento();
+        for(Suprimento s : suprimentos){
+            if(s.getNome().equals(nome)){
+                suprimento.setId(s.getId());
+                suprimento.setNome(s.getNome());
+                suprimento.setTipo(s.getTipo());
+                suprimento.setQuantidadeEstoque(s.getQuantidadeEstoque());
+                suprimento.setValorUnitario(s.getValorUnitario());
+                suprimento.setObservacoes(s.getObservacoes());
+            }
+        }
+        return suprimento;
     }
     
 }

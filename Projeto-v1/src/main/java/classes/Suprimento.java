@@ -16,24 +16,27 @@ public class Suprimento {
     private TipoSuprimento tipo;
     private String nome;
     private int quantidadeEstoque;
-    private int valorUnitario;
+    private double valorUnitario;
+    private String observacoes;
 
     public Suprimento() {
     }
 
-    public Suprimento(TipoSuprimento tipo, String nome, int quantidadeEstoque, int valorUnitario) {
+    public Suprimento(TipoSuprimento tipo, String nome, int quantidadeEstoque, double valorUnitario, String observacoes) {
         this.tipo = tipo;
         this.nome = nome;
         this.quantidadeEstoque = quantidadeEstoque;
         this.valorUnitario = valorUnitario;
+        this.observacoes = observacoes;
     }
 
-    public Suprimento(int id, TipoSuprimento tipo, String nome, int quantidadeEstoque, int valorUnitario) {
+    public Suprimento(int id, TipoSuprimento tipo, String nome, int quantidadeEstoque, double valorUnitario, String observacoes) {
         this.id = id;
         this.tipo = tipo;
         this.nome = nome;
         this.quantidadeEstoque = quantidadeEstoque;
         this.valorUnitario = valorUnitario;
+        this.observacoes = observacoes;
     }
 
     public int getId() {
@@ -68,17 +71,25 @@ public class Suprimento {
         this.quantidadeEstoque = quantidadeEstoque;
     }
 
-    public int getValorUnitario() {
+    public double getValorUnitario() {
         return valorUnitario;
     }
 
-    public void setValorUnitario(int valorUnitario) {
+    public void setValorUnitario(double valorUnitario) {
         this.valorUnitario = valorUnitario;
+    }
+
+    public String getObservacoes() {
+        return observacoes;
+    }
+
+    public void setObservacoes(String observacoes) {
+        this.observacoes = observacoes;
     }
 
     @Override
     public String toString() {
-        return "Suprimento{" + "id=" + id + ", tipo=" + tipo + ", nome=" + nome + ", quantidadeEstoque=" + quantidadeEstoque + ", valorUnitario=" + valorUnitario + '}';
+        return "Suprimento{" + "id=" + id + ", tipo=" + tipo + ", nome=" + nome + ", quantidadeEstoque=" + quantidadeEstoque + ", valorUnitario=" + valorUnitario + ", observacoes=" + observacoes + '}';
     }
     
     

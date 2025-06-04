@@ -126,7 +126,7 @@ public class TelaInicialAdministrador extends javax.swing.JFrame {
 
         suprimentos.setText("Suprimentos");
 
-        novoSuprimento.setText("Cadastrar Novo Suprimento");
+        novoSuprimento.setText("Novo Suprimento");
         novoSuprimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 novoSuprimentoActionPerformed(evt);
@@ -298,6 +298,8 @@ public class TelaInicialAdministrador extends javax.swing.JFrame {
 
     private void novoSuprimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoSuprimentoActionPerformed
         // TODO add your handling code here:
+        new TelaCadastroSuprimento(admHospital).setVisible(true);
+        dispose();
     }//GEN-LAST:event_novoSuprimentoActionPerformed
 
     private void alterarEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarEstoqueActionPerformed
