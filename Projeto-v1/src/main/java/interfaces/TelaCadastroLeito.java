@@ -167,6 +167,7 @@ public class TelaCadastroLeito extends javax.swing.JFrame {
         capacidadeQuarto = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
         sair = new javax.swing.JMenuItem();
         gerenciar = new javax.swing.JMenu();
         leitos = new javax.swing.JMenu();
@@ -262,6 +263,9 @@ public class TelaCadastroLeito extends javax.swing.JFrame {
 
         jMenu1.setText("Geral");
 
+        jMenuItem3.setText("Informações Administrativas");
+        jMenu1.add(jMenuItem3);
+
         sair.setText("Sair");
         sair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -301,13 +305,18 @@ public class TelaCadastroLeito extends javax.swing.JFrame {
         leitos.add(alterarStatus);
 
         verificarLeitos.setText("Verificar Leitos");
+        verificarLeitos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verificarLeitosActionPerformed(evt);
+            }
+        });
         leitos.add(verificarLeitos);
 
         gerenciar.add(leitos);
 
         suprimentos.setText("Suprimentos");
 
-        novoSuprimento.setText("Cadastrar Novo Suprimento");
+        novoSuprimento.setText("Novo Suprimento");
         novoSuprimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 novoSuprimentoActionPerformed(evt);
@@ -380,12 +389,22 @@ public class TelaCadastroLeito extends javax.swing.JFrame {
         enfermeiros.setText("Enfermeiros");
 
         novoEnfermeiro.setText("Novo Enfermeiro");
+        novoEnfermeiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novoEnfermeiroActionPerformed(evt);
+            }
+        });
         enfermeiros.add(novoEnfermeiro);
 
         alterarDadosEnfermeiro.setText("Alterar Dados do Enfermeiro");
         enfermeiros.add(alterarDadosEnfermeiro);
 
         listaEnfermeiros.setText("Lista de Enfermeiros");
+        listaEnfermeiros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaEnfermeirosActionPerformed(evt);
+            }
+        });
         enfermeiros.add(listaEnfermeiros);
 
         recursosHumanos.add(enfermeiros);
@@ -393,12 +412,22 @@ public class TelaCadastroLeito extends javax.swing.JFrame {
         tecnicos.setText("Técnicos de Enfermagem");
 
         novoTecnico.setText("Novo Técnico");
+        novoTecnico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novoTecnicoActionPerformed(evt);
+            }
+        });
         tecnicos.add(novoTecnico);
 
         alterarDadosTecnico.setText("Alterar Dados do Técnico");
         tecnicos.add(alterarDadosTecnico);
 
         listaTecnicos.setText("Lista de Técnicos");
+        listaTecnicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaTecnicosActionPerformed(evt);
+            }
+        });
         tecnicos.add(listaTecnicos);
 
         recursosHumanos.add(tecnicos);
@@ -406,12 +435,22 @@ public class TelaCadastroLeito extends javax.swing.JFrame {
         farmaceuticos.setText("Farmacêuticos");
 
         novoFarmaceutico.setText("Novo Farmacêutico");
+        novoFarmaceutico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novoFarmaceuticoActionPerformed(evt);
+            }
+        });
         farmaceuticos.add(novoFarmaceutico);
 
         alterarDadosFarmaceutico.setText("Alterar Dados do Farmacêutico");
         farmaceuticos.add(alterarDadosFarmaceutico);
 
         listaFarmaceuticos.setText("Lista de Farmacêuticos");
+        listaFarmaceuticos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaFarmaceuticosActionPerformed(evt);
+            }
+        });
         farmaceuticos.add(listaFarmaceuticos);
 
         recursosHumanos.add(farmaceuticos);
@@ -513,53 +552,6 @@ public class TelaCadastroLeito extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sairMouseClicked
-
-    private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_sairActionPerformed
-
-    private void alterarStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarStatusActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_alterarStatusActionPerformed
-
-    private void novoSuprimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoSuprimentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_novoSuprimentoActionPerformed
-
-    private void alterarEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarEstoqueActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_alterarEstoqueActionPerformed
-
-    private void dataAdmissaoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataAdmissaoMedicoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dataAdmissaoMedicoActionPerformed
-
-    private void cadastrarLeitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarLeitoActionPerformed
-        // TODO add your handling code here:
-        new TelaCadastroLeito(admHospital).setVisible(true);
-        dispose();
-    }//GEN-LAST:event_cadastrarLeitoActionPerformed
-
-    private void novoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoMedicoActionPerformed
-        // TODO add your handling code here:
-        new TelaCadastrarPessoa(admHospital, 1).setVisible(true);
-        dispose();
-    }//GEN-LAST:event_novoMedicoActionPerformed
-
-    private void listaMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaMedicosActionPerformed
-        // TODO add your handling code here:
-        if(admHospital.getLeitos().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Nenhum Médico Cadastrado!");
-        } else {
-            new TelaListaMedicos(admHospital).setVisible(true);
-            dispose();
-        }
-    }//GEN-LAST:event_listaMedicosActionPerformed
-
     private void voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarActionPerformed
         // TODO add your handling code here:
         new TelaInicialAdministrador(admHospital).setVisible(true);
@@ -631,6 +623,113 @@ public class TelaCadastroLeito extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buscarActionPerformed
 
+    private void sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sairMouseClicked
+
+    private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_sairActionPerformed
+
+    private void cadastrarLeitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarLeitoActionPerformed
+        // TODO add your handling code here:
+        new TelaCadastroLeito(admHospital).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_cadastrarLeitoActionPerformed
+
+    private void alterarStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarStatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_alterarStatusActionPerformed
+
+    private void verificarLeitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verificarLeitosActionPerformed
+        // TODO add your handling code here:
+        if(admHospital.getLeitos().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nenhum Leito Cadastrado!");
+        } else {
+            new TelaListaLeitos(admHospital).setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_verificarLeitosActionPerformed
+
+    private void novoSuprimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoSuprimentoActionPerformed
+        // TODO add your handling code here:
+        new TelaCadastroSuprimento(admHospital).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_novoSuprimentoActionPerformed
+
+    private void alterarEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarEstoqueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_alterarEstoqueActionPerformed
+
+    private void novoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoMedicoActionPerformed
+        // TODO add your handling code here:
+        new TelaCadastrarPessoa(admHospital, 1).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_novoMedicoActionPerformed
+
+    private void listaMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaMedicosActionPerformed
+        // TODO add your handling code here:
+        if(admHospital.getMedicos().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nenhum Médico Cadastrado!");
+        } else {
+            new TelaListaMedicos(admHospital).setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_listaMedicosActionPerformed
+
+    private void dataAdmissaoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataAdmissaoMedicoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dataAdmissaoMedicoActionPerformed
+
+    private void novoEnfermeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoEnfermeiroActionPerformed
+        // TODO add your handling code here:
+        new TelaCadastrarPessoa(admHospital, 2).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_novoEnfermeiroActionPerformed
+
+    private void listaEnfermeirosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaEnfermeirosActionPerformed
+        // TODO add your handling code here:
+        if(admHospital.getEnfermeiros().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nenhum Enfermeiro Cadastrado!");
+        } else {
+            new TelaListaEnfermeiros(admHospital).setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_listaEnfermeirosActionPerformed
+
+    private void novoTecnicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoTecnicoActionPerformed
+        // TODO add your handling code here:
+        new TelaCadastrarPessoa(admHospital, 3).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_novoTecnicoActionPerformed
+
+    private void listaTecnicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaTecnicosActionPerformed
+        // TODO add your handling code here:
+        if(admHospital.getTecnicos().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nenhum Enfermeiro Cadastrado!");
+        } else {
+            new TelaListaTecnico(admHospital).setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_listaTecnicosActionPerformed
+
+    private void novoFarmaceuticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoFarmaceuticoActionPerformed
+        // TODO add your handling code here:
+        new TelaCadastrarPessoa(admHospital, 4).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_novoFarmaceuticoActionPerformed
+
+    private void listaFarmaceuticosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaFarmaceuticosActionPerformed
+        // TODO add your handling code here:
+        if(admHospital.getFarmaceuticos().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nenhum Farmacêutico Cadastrado!");
+        } else {
+            new TelaListaFarmaceuticos(admHospital).setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_listaFarmaceuticosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem alterarDadosEnfermeiro;
@@ -661,6 +760,7 @@ public class TelaCadastroLeito extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
