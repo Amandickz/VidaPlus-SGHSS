@@ -17,6 +17,8 @@ import javax.swing.table.DefaultTableModel;
 public class TelaListaLeitos extends javax.swing.JFrame {
 
     GerenciamentoHospitalar admHospital;
+    ArrayList<Leito> listaLeitos;
+    DefaultTableModel todosLeitos;
     /**
      * Creates new form TelaAdministrador
      */
@@ -24,10 +26,28 @@ public class TelaListaLeitos extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.admHospital = admHospital;
-        ArrayList<Leito> listaLeitos;
-        listaLeitos = this.admHospital.getLeitos();
+        this.listaLeitos = this.admHospital.getLeitos();
+        todosLeitos = (DefaultTableModel) tabelaLeitos.getModel();
+        todosLeitos.addColumn("Número do Leito");
+        todosLeitos.addColumn("Tipo");
+        todosLeitos.addColumn("Capacidade");
+        todosLeitos.addColumn("Valor");
+        todosLeitos.addColumn("Status");
+        todosLeitos.addColumn("Observações");
         
-        
+        if(this.listaLeitos.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nenhum Leito Cadastrado");
+        } else {
+            preencheTabelaLeitos();
+        }
+    }
+    
+    private void preencheTabelaLeitos(){
+        for(Leito l : listaLeitos){
+            todosLeitos.addRow(new Object[]{l.getNumero(), l.getTipo().getTipoLeito(),
+                l.getCapacidade() + " paciente(s)", "R$ " + l.getValor(),
+                l.getDisponibilidade().getDisponibilidadeLeito(), l.getObservacoes()});
+        }
     }
 
     /**
