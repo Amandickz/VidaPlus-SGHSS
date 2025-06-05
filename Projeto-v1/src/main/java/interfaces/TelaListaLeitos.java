@@ -27,20 +27,7 @@ public class TelaListaLeitos extends javax.swing.JFrame {
         ArrayList<Leito> listaLeitos;
         listaLeitos = this.admHospital.getLeitos();
         
-        DefaultTableModel todosLeitos = (DefaultTableModel) tabelaLeitos.getModel();
-        todosLeitos.addColumn("Quarto");
-        todosLeitos.addColumn("Tipo");
-        todosLeitos.addColumn("Valor");
-        todosLeitos.addColumn("Status");
         
-        if(!listaLeitos.isEmpty()){
-            for(Leito l : listaLeitos){
-                todosLeitos.addRow(new Object[]{l.getNumero(),
-                    this.admHospital.tipoLeito(l.getTipo()),
-                    l.getValor(),
-                    this.admHospital.disponibilidade(l.isStatus())});
-            }
-        }
     }
 
     /**

@@ -14,7 +14,6 @@ import classes.Pessoa;
 import classes.ProfissionalSaude;
 import classes.Suprimento;
 import classes.Tecnico;
-import enums.TipoLeito;
 import java.util.ArrayList;
 
 /**
@@ -177,11 +176,29 @@ public class GerenciamentoHospitalar {
         return leito;
     }
     
-    public String disponibilidadeLeito(boolean status){
-        if(status == true){
-           return "DISPONÍVEL";
+    public boolean cadastrarLeito(Leito leito){
+        leitos.add(leito);
+        System.out.println();
+        System.out.println("------Leito Cadastrado Agora------");
+        System.out.println(leito);
+        System.out.println();
+        return true;
+    }
+    
+    public Leito buscarLeitoPorNumero(int numero){
+        Leito leito = new Leito();
+        for(Leito l : leitos){
+            if(l.getNumero() == numero){
+                leito.setId(l.getId());
+                leito.setNumero(l.getNumero());
+                leito.setTipo(l.getTipo());
+                leito.setCapacidade(l.getCapacidade());
+                leito.setValor(l.getValor());
+                leito.setDisponibilidade(l.getDisponibilidade());
+                leito.setObservacoes(l.getObservacoes());
+            }
         }
-        return "NÃO DISPONÍVEL";
+        return leito;
     }
     
     //Gerenciamento de Suprimentos por Parte do Administrador
@@ -205,7 +222,6 @@ public class GerenciamentoHospitalar {
     
     public Suprimento buscaSuprimentoPorNome(String nome){
         Suprimento suprimento = new Suprimento();
-        System.out.println(suprimento);
         for(Suprimento s : suprimentos){
             if(s.getNome().equals(nome)){
                 suprimento.setId(s.getId());
