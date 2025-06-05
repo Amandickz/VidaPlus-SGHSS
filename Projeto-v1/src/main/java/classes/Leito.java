@@ -15,7 +15,7 @@ public class Leito {
     private int tipo;
     private double valor;
     private boolean status;
-    private String anotacoes;
+    private String observacoes;
 
     public Leito() {
     }
@@ -25,16 +25,16 @@ public class Leito {
         this.tipo = tipo;
         this.valor = valor;
         this.status = status;
-        this.anotacoes = anotacoes;
+        this.observacoes = anotacoes;
     }
 
-    public Leito(int id, int numero, int tipo, double valor, boolean status, String anotacoes) {
+    public Leito(int id, int numero, int tipo, double valor, boolean status, String observacoes) {
         this.id = id;
         this.numero = numero;
         this.tipo = tipo;
         this.valor = valor;
         this.status = status;
-        this.anotacoes = anotacoes;
+        this.observacoes = observacoes;
     }
 
     public int getId() {
@@ -77,17 +77,17 @@ public class Leito {
         this.status = status;
     }
 
-    public String getAnotacoes() {
-        return anotacoes;
+    public String getObservacoes() {
+        return observacoes;
     }
 
-    public void setAnotacoes(String anotacoes) {
-        this.anotacoes = anotacoes;
+    public void setObservacoes(String observacoes) {
+        this.observacoes = observacoes;
     }
 
     @Override
     public String toString() {
-        return "Leito{" + "id=" + id + ", numero=" + numero + ", tipo=" + tipo + ", valor=" + valor + ", status=" + status + ", anotacoes=" + anotacoes + '}';
+        return "Leito{" + "id=" + id + ", numero=" + numero + ", tipo=" + tipo + ", valor=" + valor + ", status=" + status + ", anotacoes=" + observacoes + '}';
     }
     
     
