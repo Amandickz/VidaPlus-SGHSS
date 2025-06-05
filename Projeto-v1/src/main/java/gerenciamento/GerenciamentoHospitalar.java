@@ -42,7 +42,7 @@ public class GerenciamentoHospitalar {
         return pessoas;
     }
 
-    public Pessoa retornaIdPessoa(Pessoa pessoa) {
+    public Pessoa retornaPessoaComID(Pessoa pessoa) {
         pessoa.setId(pessoas.size() + 1);
         return pessoa;
     }
@@ -156,13 +156,13 @@ public class GerenciamentoHospitalar {
     }    
 
     //Gerenciamento de Login
-    public Login retornaIdLogin(Login login){
+    public Login retornaLoginComID(Login login){
         login.setId(logins.size() + 1);
         return login;
     }
     
     //Gerenciamento de Endereço
-    public Endereco retornaIdEndereco(Endereco endereco){
+    public Endereco retornaEnderecoComID(Endereco endereco){
         endereco.setId(enderecos.size() + 1);
         return endereco;
     }
@@ -231,7 +231,7 @@ public class GerenciamentoHospitalar {
         return suprimentos;
     }
     
-    public Suprimento retornarIdSuprimento(Suprimento suprimento){
+    public Suprimento retornaSuprimentoComID(Suprimento suprimento){
         suprimento.setId(suprimentos.size() + 1);
         return suprimento;
     }
@@ -245,8 +245,9 @@ public class GerenciamentoHospitalar {
         return true;
     }
     
-    public Suprimento buscaSuprimento(String nome){
+    public Suprimento buscaSuprimentoPorNome(String nome){
         Suprimento suprimento = new Suprimento();
+        System.out.println(suprimento);
         for(Suprimento s : suprimentos){
             if(s.getNome().equals(nome)){
                 suprimento.setId(s.getId());

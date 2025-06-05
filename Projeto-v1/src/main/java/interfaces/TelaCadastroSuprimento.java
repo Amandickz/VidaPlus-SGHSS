@@ -7,6 +7,7 @@ package interfaces;
 import classes.Suprimento;
 import enums.TipoSuprimento;
 import gerenciamento.GerenciamentoHospitalar;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -27,53 +28,23 @@ public class TelaCadastroSuprimento extends javax.swing.JFrame {
         initComponents();
         this.admHospital = admHospital;
         this.setLocationRelativeTo(null);
+        this.estoque.setEnabled(false);
         this.listaSuprimentos = this.admHospital.getSuprimentos();
-        preencheTipoSuprimento();
-        criarTabela();        
+        todosSuprimentos = (DefaultTableModel) tabelaSuprimentos.getModel();
+        todosSuprimentos.addColumn("Tipo de Suprimento");
+        todosSuprimentos.addColumn("Nome");
+        todosSuprimentos.addColumn("Estoque");
+        todosSuprimentos.addColumn("Valor Unitário");
+        todosSuprimentos.addColumn("Observações");
         
         if(!this.listaSuprimentos.isEmpty()){
             preencheTabelaSuprimento();
-            alteraAtivacaoCampo();
+            desativarLimparCampos();
         } else {
-            alteraAtivacaoCampoSemCadastro();
+            buscar.setEnabled(false);
         }
-    }
-    
-    private void alteraAtivacaoCampo(){
-        listaTipoSuprimento.setEditable(false);
-        listaTipoSuprimento.setEnabled(false);
-        valorUnitario.setEditable(false);
-        valorUnitario.setEnabled(false);
-        estoque.setEditable(false);
-        estoque.setEnabled(false);
-        observacoes.setEditable(false);
-        observacoes.setEnabled(false);
-        cadastrar.setEnabled(false);
-    }
-    
-    private void alteraAtivacaoCampoSemCadastro(){
-        buscar.setEnabled(false);
-        estoque.setEditable(false);
-        estoque.setEnabled(false);
-    }
-    
-    private void alterarCamposAposPrimeiroCadastro(){
-        preencheTabelaSuprimento();
-        nomeSuprimento.setText("");
-        buscar.setEnabled(true);
+        
         preencheTipoSuprimento();
-        valorUnitario.setText("");
-        estoque.setText("0");
-        observacoes.setText("");
-        alteraAtivacaoCampo();
-    }
-    
-    private void removerEdicaoDeCampos(){
-        listaTipoSuprimento.setEditable(false);
-        valorUnitario.setEditable(false);
-        estoque.setEditable(false);
-        observacoes.setEditable(false);
-        cadastrar.setEnabled(false);
     }
     
     private void preencheTipoSuprimento(){
@@ -81,15 +52,6 @@ public class TelaCadastroSuprimento extends javax.swing.JFrame {
         for(TipoSuprimento ts : TipoSuprimento.values()){
             listaTipoSuprimento.addItem(ts.getTipoSuprimento());
         }
-    }
-    
-    private void criarTabela(){
-        todosSuprimentos = (DefaultTableModel) tabelaSuprimentos.getModel();
-        todosSuprimentos.addColumn("Tipo de Suprimento");
-        todosSuprimentos.addColumn("Nome");
-        todosSuprimentos.addColumn("Estoque");
-        todosSuprimentos.addColumn("Valor Unitário");
-        todosSuprimentos.addColumn("Observações");
     }
     
     private void preencheTabelaSuprimento(){
@@ -100,19 +62,51 @@ public class TelaCadastroSuprimento extends javax.swing.JFrame {
         }
     }
     
-    private void suprimentoNaoLocalizado(){
+    private void atualizaTabela(){
+        todosSuprimentos.setRowCount(0);
+        preencheTabelaSuprimento();
+    }
+    
+    private void desativarLimparCampos(){
+        nomeSuprimento.setText("");
+        preencheTipoSuprimento();
+        listaTipoSuprimento.setEnabled(false);
         valorUnitario.setText("");
-        estoque.setText("0");
-        estoque.setEnabled(false);
-        estoque.setEditable(false);
-        buscar.setEnabled(false);
+        valorUnitario.setEnabled(false);
+        observacoes.setText("");
+        observacoes.setEnabled(false);
+        cadastrar.setEnabled(false);
+        buscar.setEnabled(true);
+    }
+    
+    private void ativaCamposCadastro(){
         listaTipoSuprimento.setEnabled(true);
+        valorUnitario.setText("");
         valorUnitario.setEnabled(true);
-        valorUnitario.setEditable(true);
         observacoes.setText("");
         observacoes.setEnabled(true);
-        observacoes.setEditable(true);
         cadastrar.setEnabled(true);
+    }
+    
+    private void mostrarInformacoes(Suprimento suprimento){
+        listaTipoSuprimento.setEnabled(true);
+        int cont = 0;
+        for(TipoSuprimento ts : TipoSuprimento.values()){
+            if(suprimento.getTipo().equals(ts)){
+                listaTipoSuprimento.setSelectedIndex(cont);
+            }
+            cont++;
+        }
+        listaTipoSuprimento.setEditable(false);
+        valorUnitario.setEnabled(true);
+        valorUnitario.setEditable(false);
+        valorUnitario.setText("" + suprimento.getValorUnitario());
+        estoque.setEnabled(true);
+        estoque.setEditable(false);
+        estoque.setText("" + suprimento.getQuantidadeEstoque());
+        observacoes.setEnabled(true);
+        observacoes.setEditable(false);
+        observacoes.setText(suprimento.getObservacoes());
     }
 
     /**
@@ -531,50 +525,56 @@ public class TelaCadastroSuprimento extends javax.swing.JFrame {
     private void cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarActionPerformed
         // TODO add your handling code here:
         
-        //Pega os dados digitados
-        String nome = nomeSuprimento.getText();
+        //Pega todas as informações do Suprimento - exceto estoque;
         TipoSuprimento tipo = null;
         for(TipoSuprimento ts : TipoSuprimento.values()){
             if(listaTipoSuprimento.getSelectedItem().toString().equals(ts.getTipoSuprimento())){
                 tipo = ts;
             }
         }
-        double valor = Double.parseDouble(valorUnitario.getText());
+        String nome = nomeSuprimento.getText();
+        Double valor = Double.valueOf(valorUnitario.getText());
         String observacao = observacoes.getText();
         
-        //Cria objeto Suprimento
-        Suprimento suprimento = new Suprimento(tipo, nome, 0, valor, observacao);
-        suprimento = admHospital.retornarIdSuprimento(suprimento);
+        //Cria o Objeto Suprimento
+        Suprimento suprimento = new Suprimento();
+        suprimento.setTipo(tipo);
+        suprimento.setNome(nome);
+        suprimento.setValorUnitario(valor);
+        suprimento.setObservacoes(observacao);
+        suprimento.setQuantidadeEstoque(0);
         
-        //Cadastra Suprimento
+        //Retorna Objeto Suprimento com ID
+        suprimento = admHospital.retornaSuprimentoComID(suprimento);
+        
+        //Cadastra Suprimento no Sistema
         boolean cadastro = admHospital.cadastrarSuprimento(suprimento);
-        if(listaSuprimentos.isEmpty() && cadastro){
-            alterarCamposAposPrimeiroCadastro();
+        if(cadastro){
+            //Atualiza Tabela de Suprimento
+            atualizaTabela();
+            desativarLimparCampos();
+            JOptionPane.showMessageDialog(null, "Suprimento Cadastrado!");
         } else {
-            criarTabela();
+            JOptionPane.showMessageDialog(null, "Algo deu Errado!");
         }
-        
     }//GEN-LAST:event_cadastrarActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
         
+        //Pegar o nome do suprimento para busca
         String nome = nomeSuprimento.getText();
         
-        Suprimento suprimento = admHospital.buscaSuprimento(nome);
+        //Busca Suprimento
+        Suprimento suprimento = admHospital.buscaSuprimentoPorNome(nome);
         
-        if(suprimento.getNome() != null){
-            listaTipoSuprimento.removeAllItems();
-            listaTipoSuprimento.addItem(suprimento.getTipo().getTipoSuprimento());
-            valorUnitario.setText("" + suprimento.getValorUnitario());
-            estoque.setText("" + suprimento.getQuantidadeEstoque());
-            observacoes.setText(suprimento.getObservacoes());
-            removerEdicaoDeCampos();
-            JOptionPane.showMessageDialog(null, "Suprimento já cadastrado no sistema!");
+        //Verifica se o Suprimento existe ou não
+        if(suprimento.getNome() == null){
+            JOptionPane.showMessageDialog(null, "Suprimento não encontrado. Sistema liberado pra cadastro.");
+            ativaCamposCadastro();
         } else {
-            preencheTipoSuprimento();
-            suprimentoNaoLocalizado();
-            JOptionPane.showMessageDialog(null, "Suprimento não cadastrado!");
+            JOptionPane.showMessageDialog(null, "Suprimento localizado.");
+            mostrarInformacoes(suprimento);
         }
     }//GEN-LAST:event_buscarActionPerformed
 

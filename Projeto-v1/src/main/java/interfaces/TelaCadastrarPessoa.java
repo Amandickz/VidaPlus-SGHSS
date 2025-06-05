@@ -752,9 +752,9 @@ public class TelaCadastrarPessoa extends javax.swing.JFrame {
         }
         
         //Adiciona ao sistema        
-        endereco = admHospital.retornaIdEndereco(endereco);
+        endereco = admHospital.retornaEnderecoComID(endereco);
         pessoa.setIdEndereco(endereco.getId());
-        pessoa = admHospital.retornaIdPessoa(pessoa);
+        pessoa = admHospital.retornaPessoaComID(pessoa);
         
         switch (tipoCadastro) {
             case 1 -> {

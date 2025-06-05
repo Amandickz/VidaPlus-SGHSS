@@ -621,7 +621,7 @@ public class TelaCadastroFarmaceutico extends javax.swing.JFrame {
         
         //Cria Objeto Login
         Login login = new Login(usuario, senha2, TipoConta.F);
-        login = admHospital.retornaIdLogin(login);
+        login = admHospital.retornaLoginComID(login);
         
         //Insere dados faltantes do Farmaceutico
         farmaceutico.setCrf(crfFarmaceutico);
