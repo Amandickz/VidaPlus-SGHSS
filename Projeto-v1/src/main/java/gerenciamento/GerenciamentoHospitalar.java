@@ -14,7 +14,6 @@ import classes.Pessoa;
 import classes.ProfissionalSaude;
 import classes.Suprimento;
 import classes.Tecnico;
-import enums.TipoLeito;
 import java.util.ArrayList;
 
 /**
@@ -42,7 +41,7 @@ public class GerenciamentoHospitalar {
         return pessoas;
     }
 
-    public Pessoa retornaIdPessoa(Pessoa pessoa) {
+    public Pessoa retornaPessoaComID(Pessoa pessoa) {
         pessoa.setId(pessoas.size() + 1);
         return pessoa;
     }
@@ -156,13 +155,13 @@ public class GerenciamentoHospitalar {
     }    
 
     //Gerenciamento de Login
-    public Login retornaIdLogin(Login login){
+    public Login retornaLoginComID(Login login){
         login.setId(logins.size() + 1);
         return login;
     }
     
     //Gerenciamento de Endereço
-    public Endereco retornaIdEndereco(Endereco endereco){
+    public Endereco retornaEnderecoComID(Endereco endereco){
         endereco.setId(enderecos.size() + 1);
         return endereco;
     }
@@ -172,58 +171,34 @@ public class GerenciamentoHospitalar {
         return leitos;
     }
     
-    public boolean cadastrarNovoLeito(Leito leito){        
-        if(!leitos.isEmpty()){
-            for(Leito l : leitos){
-                if(l.getNumero() == leito.getNumero()){
-                    return false;
-                }
-            }
-        }
-        
+    public Leito retornaLeitoComID(Leito leito){        
         leito.setId(leitos.size() + 1);
+        return leito;
+    }
+    
+    public boolean cadastrarLeito(Leito leito){
         leitos.add(leito);
+        System.out.println();
+        System.out.println("------Leito Cadastrado Agora------");
+        System.out.println(leito);
+        System.out.println();
         return true;
     }
     
-    public String disponibilidade(boolean status){
-        if(status == true){
-           return "DISPONÍVEL";
+    public Leito buscarLeitoPorNumero(int numero){
+        Leito leito = new Leito();
+        for(Leito l : leitos){
+            if(l.getNumero() == numero){
+                leito.setId(l.getId());
+                leito.setNumero(l.getNumero());
+                leito.setTipo(l.getTipo());
+                leito.setCapacidade(l.getCapacidade());
+                leito.setValor(l.getValor());
+                leito.setDisponibilidade(l.getDisponibilidade());
+                leito.setObservacoes(l.getObservacoes());
+            }
         }
-        return "NÃO DISPONÍVEL";
-    }
-    
-    public String tipoLeito(int tipo){
-        switch (tipo) {
-            case 1 -> {
-                return TipoLeito.UM.getTipoLeito();
-            }
-            case 2 -> {
-                return TipoLeito.DOIS.getTipoLeito();
-            }
-            case 3 -> {
-                return TipoLeito.TRES.getTipoLeito();
-            }
-            case 4 -> {
-                return TipoLeito.QUATRO.getTipoLeito();
-            }
-            case 5 -> {
-                return TipoLeito.CINCO.getTipoLeito();
-            }
-            case 6 -> {
-                return TipoLeito.SEIS.getTipoLeito();
-            }
-            case 7 -> {
-                return TipoLeito.SETE.getTipoLeito();
-            }
-            case 8 -> {
-                return TipoLeito.OITO.getTipoLeito();
-            }
-            case 9 -> {
-                return TipoLeito.NOVE.getTipoLeito();
-            }
-            default -> throw new AssertionError();
-        }
+        return leito;
     }
     
     //Gerenciamento de Suprimentos por Parte do Administrador
@@ -231,7 +206,7 @@ public class GerenciamentoHospitalar {
         return suprimentos;
     }
     
-    public Suprimento retornarIdSuprimento(Suprimento suprimento){
+    public Suprimento retornaSuprimentoComID(Suprimento suprimento){
         suprimento.setId(suprimentos.size() + 1);
         return suprimento;
     }
@@ -245,7 +220,7 @@ public class GerenciamentoHospitalar {
         return true;
     }
     
-    public Suprimento buscaSuprimento(String nome){
+    public Suprimento buscaSuprimentoPorNome(String nome){
         Suprimento suprimento = new Suprimento();
         for(Suprimento s : suprimentos){
             if(s.getNome().equals(nome)){

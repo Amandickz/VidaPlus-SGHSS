@@ -607,7 +607,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         
         //Cria Objeto Login
         Login login = new Login(usuario, senha2, TipoConta.M);
-        login = admHospital.retornaIdLogin(login);
+        login = admHospital.retornaLoginComID(login);
         
         //Insere dados faltantes do Médico
         medico.setCrm(crmMedico);
