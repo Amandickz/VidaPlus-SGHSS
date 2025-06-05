@@ -4,6 +4,9 @@
  */
 package classes;
 
+import enums.DisponibilidadeLeito;
+import enums.TipoLeito;
+
 /**
  *
  * @author Amanda
@@ -12,28 +15,31 @@ public class Leito {
     
     private int id;
     private int numero;
-    private int tipo;
+    private TipoLeito tipo;
+    private int capacidade;
     private double valor;
-    private boolean status;
+    private DisponibilidadeLeito disponibilidade;
     private String observacoes;
 
     public Leito() {
     }
 
-    public Leito(int numero, int tipo, double valor, boolean status, String anotacoes) {
+    public Leito(int numero, TipoLeito tipo, int capacidade, double valor, DisponibilidadeLeito disponibilidade, String observacoes) {
         this.numero = numero;
         this.tipo = tipo;
+        this.capacidade = capacidade;
         this.valor = valor;
-        this.status = status;
-        this.observacoes = anotacoes;
+        this.disponibilidade = disponibilidade;
+        this.observacoes = observacoes;
     }
 
-    public Leito(int id, int numero, int tipo, double valor, boolean status, String observacoes) {
+    public Leito(int id, int numero, TipoLeito tipo, int capacidade, double valor, DisponibilidadeLeito disponibilidade, String observacoes) {
         this.id = id;
         this.numero = numero;
         this.tipo = tipo;
+        this.capacidade = capacidade;
         this.valor = valor;
-        this.status = status;
+        this.disponibilidade = disponibilidade;
         this.observacoes = observacoes;
     }
 
@@ -53,12 +59,20 @@ public class Leito {
         this.numero = numero;
     }
 
-    public int getTipo() {
+    public TipoLeito getTipo() {
         return tipo;
     }
 
-    public void setTipo(int tipo) {
+    public void setTipo(TipoLeito tipo) {
         this.tipo = tipo;
+    }
+
+    public int getCapacidade() {
+        return capacidade;
+    }
+
+    public void setCapacidade(int capacidade) {
+        this.capacidade = capacidade;
     }
 
     public double getValor() {
@@ -69,12 +83,12 @@ public class Leito {
         this.valor = valor;
     }
 
-    public boolean isStatus() {
-        return status;
+    public DisponibilidadeLeito getDisponibilidade() {
+        return disponibilidade;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setDisponibilidade(DisponibilidadeLeito disponibilidade) {
+        this.disponibilidade = disponibilidade;
     }
 
     public String getObservacoes() {
@@ -87,8 +101,9 @@ public class Leito {
 
     @Override
     public String toString() {
-        return "Leito{" + "id=" + id + ", numero=" + numero + ", tipo=" + tipo + ", valor=" + valor + ", status=" + status + ", anotacoes=" + observacoes + '}';
+        return "Leito{" + "id=" + id + ", numero=" + numero + ", tipo=" + tipo + ", capacidade=" + capacidade + ", valor=" + valor + ", disponibilidade=" + disponibilidade + ", observacoes=" + observacoes + '}';
     }
+    
     
     
 }

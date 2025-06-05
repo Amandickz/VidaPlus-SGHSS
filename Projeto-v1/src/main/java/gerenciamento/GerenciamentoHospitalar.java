@@ -172,58 +172,16 @@ public class GerenciamentoHospitalar {
         return leitos;
     }
     
-    public boolean cadastrarNovoLeito(Leito leito){        
-        if(!leitos.isEmpty()){
-            for(Leito l : leitos){
-                if(l.getNumero() == leito.getNumero()){
-                    return false;
-                }
-            }
-        }
-        
+    public Leito retornaLeitoComID(Leito leito){        
         leito.setId(leitos.size() + 1);
-        leitos.add(leito);
-        return true;
+        return leito;
     }
     
-    public String disponibilidade(boolean status){
+    public String disponibilidadeLeito(boolean status){
         if(status == true){
            return "DISPONÍVEL";
         }
         return "NÃO DISPONÍVEL";
-    }
-    
-    public String tipoLeito(int tipo){
-        switch (tipo) {
-            case 1 -> {
-                return TipoLeito.UM.getTipoLeito();
-            }
-            case 2 -> {
-                return TipoLeito.DOIS.getTipoLeito();
-            }
-            case 3 -> {
-                return TipoLeito.TRES.getTipoLeito();
-            }
-            case 4 -> {
-                return TipoLeito.QUATRO.getTipoLeito();
-            }
-            case 5 -> {
-                return TipoLeito.CINCO.getTipoLeito();
-            }
-            case 6 -> {
-                return TipoLeito.SEIS.getTipoLeito();
-            }
-            case 7 -> {
-                return TipoLeito.SETE.getTipoLeito();
-            }
-            case 8 -> {
-                return TipoLeito.OITO.getTipoLeito();
-            }
-            case 9 -> {
-                return TipoLeito.NOVE.getTipoLeito();
-            }
-            default -> throw new AssertionError();
-        }
     }
     
     //Gerenciamento de Suprimentos por Parte do Administrador
