@@ -4,7 +4,9 @@
  */
 package interfaces;
 
+import gerenciamento.GerenciamentoHospitalar;
 import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -12,11 +14,38 @@ import javax.swing.JOptionPane;
  */
 public class TelaInicial extends javax.swing.JFrame {
 
+    GerenciamentoHospitalar admHospital;
     /**
      * Creates new form TelaInicial
      */
-    public TelaInicial() {
+    public TelaInicial(GerenciamentoHospitalar admHospital) {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.admHospital = admHospital;
+    }
+    
+    private void usuarioParaCNPJ(){
+        try{
+            
+            MaskFormatter mascaraCNPJ = new MaskFormatter("##.###.###/####-##");
+            mascaraCNPJ.setValueContainsLiteralCharacters(false);
+            usuario.setText(mascaraCNPJ.valueToString(usuario.getText()));
+            
+        }catch(Exception e){
+            System.out.println("Erro ao converter CNPJ");
+        }
+    }
+    
+    private void usuarioParaCPF(){
+        try{
+            
+            MaskFormatter mascaraCNPJ = new MaskFormatter("###.###.###-##");
+            mascaraCNPJ.setValueContainsLiteralCharacters(false);
+            usuario.setText(mascaraCNPJ.valueToString(usuario.getText()));
+            
+        }catch(Exception e){
+            System.out.println("Erro ao converter CNPJ");
+        }
     }
 
     /**
@@ -28,32 +57,36 @@ public class TelaInicial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        entrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        usuarioField = new javax.swing.JTextField();
-        senhaField = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        usuario = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        senha = new javax.swing.JPasswordField();
         jMenuBar1 = new javax.swing.JMenuBar();
         sair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("Usuário:");
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Senha:");
-
-        usuarioField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        senhaField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        jButton1.setText("Entrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        entrar.setText("Entrar");
+        entrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                entrarActionPerformed(evt);
             }
         });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Vida Plus - SGHSS");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Bem-vindo! Realize o Login para continuar.");
+
+        jLabel3.setText("Usuário:");
+
+        jLabel4.setText("Senha:");
 
         sair.setText("Sair");
         sair.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -74,38 +107,47 @@ public class TelaInicial extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 95, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(95, 95, 95))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(senhaField))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(usuarioField, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(122, 122, 122)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(225, 225, 225)
-                        .addComponent(jButton1)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(usuario)
+                            .addComponent(senha, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(212, 212, 212)
+                        .addComponent(entrar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(usuarioField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                    .addComponent(jLabel3)
+                    .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(senhaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addComponent(jButton1)
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addComponent(jLabel4)
+                    .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(entrar)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -115,27 +157,28 @@ public class TelaInicial extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_sairActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarActionPerformed
         // TODO add your handling code here:
-        
-        System.out.println(usuarioField.getText());
-        System.out.println(senhaField.getText());
-        
-        String usuario = usuarioField.getText();
-        String senha = senhaField.getText();
-        
-        if(!usuario.equals("Amanda")){
-            JOptionPane.showMessageDialog(null, "Usuário Incorreto");
-        } else if (usuario.equals("Amanda") && !senha.equals("1234")){
-            JOptionPane.showMessageDialog(null, "Senha Incorreta");
+        char[] senhaConvertida = senha.getPassword();
+        String senhaDigitada = new String(senhaConvertida);
+        if(usuario.getText().length() == 14){
+            usuarioParaCNPJ();
+            System.out.println("Digitado: " + usuario.getText() + " / " + senhaDigitada);
+            if(admHospital.verificaAcessoAdministracao(usuario.getText(), senhaDigitada)){
+                new TelaInicialAdministrador(admHospital).setVisible(true);
+                dispose();
+            } else {
+               JOptionPane.showMessageDialog(null, "Usuário/Senha incorretos. Por favor, tente novamente");
+            }
+        } else if(usuario.getText().length() == 11){
+            usuarioParaCPF();
         } else {
-            JOptionPane.showMessageDialog(null, "Tudo certo! Seja bem-vindo!");
-            dispose();
-            /*TelaAdministrador telaAdm = new TelaAdministrador();
-            telaAdm.setVisible(true);
-            telaAdm.setLocationRelativeTo(null);*/
+            JOptionPane.showMessageDialog(null, "Quantidade de caracteres no usuário inesperado. Por favor,"
+                    + "verifique e tente novamente.");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+        
+    }//GEN-LAST:event_entrarActionPerformed
 
     private void sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseClicked
         // TODO add your handling code here:
@@ -172,18 +215,19 @@ public class TelaInicial extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaInicial().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton entrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu sair;
-    private javax.swing.JTextField senhaField;
-    private javax.swing.JTextField usuarioField;
+    private javax.swing.JPasswordField senha;
+    private javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables
 }

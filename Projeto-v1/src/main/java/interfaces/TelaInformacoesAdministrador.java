@@ -4,6 +4,8 @@
  */
 package interfaces;
 
+import classes.Administracao;
+import classes.Endereco;
 import gerenciamento.GerenciamentoHospitalar;
 import javax.swing.JOptionPane;
 
@@ -22,6 +24,51 @@ public class TelaInformacoesAdministrador extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.admHospital = admHospital;
         admHospital.getLeitos();
+        preencheInformacoes();
+        desabilitaEdicao();
+    }
+    
+    private void preencheInformacoes(){
+        Administracao administracao = admHospital.getAdministracao();
+        cnpj.setText(administracao.getCnpj());
+        dataAbertura.setText(administracao.getDataDeAbertura());
+        razaoSocial.setText(administracao.getRazaoSocial());
+        nomeFantasia.setText(administracao.getNomeFantasia());
+        porte.setText(administracao.getPorte().getPorte());
+        email.setText(administracao.getEmail());
+        telefone.setText(administracao.getTelefone());
+        situacaoCadastral.setText(administracao.getSituacaoCadastral().getSituacaoCadastral());
+        dataSituacao.setText(administracao.getDataDaSituacao());
+        indicadorMatriz.setText(administracao.getIndicadorMatriz().getMatriz());
+        
+        Endereco endereco = admHospital.buscaEnderecoPorID(administracao.getIdEndereco());
+        cep.setText(endereco.getCep());
+        logradouro.setText(endereco.getLogradouro());
+        numero.setText("" + endereco.getNumero());
+        complemento.setText(endereco.getComplemento());
+        bairro.setText(endereco.getBairro());
+        municipio.setText(endereco.getMunicipio());
+        estado.setText(endereco.getUf().getEstado());
+    }
+    
+    private void desabilitaEdicao(){
+        cnpj.setEditable(false);
+        dataAbertura.setEditable(false);
+        razaoSocial.setEditable(false);
+        nomeFantasia.setEditable(false);
+        porte.setEditable(false);
+        email.setEditable(false);
+        telefone.setEditable(false);
+        situacaoCadastral.setEditable(false);
+        dataSituacao.setEditable(false);
+        indicadorMatriz.setEditable(false);
+        cep.setEditable(false);
+        logradouro.setEditable(false);
+        numero.setEditable(false);
+        complemento.setEditable(false);
+        bairro.setEditable(false);
+        municipio.setEditable(false);
+        estado.setEditable(false);
     }
 
     /**
@@ -188,6 +235,11 @@ public class TelaInformacoesAdministrador extends javax.swing.JFrame {
         jLabel19.setText("Estado:");
 
         voltar.setText("Voltar");
+        voltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltarActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Geral");
 
@@ -652,6 +704,12 @@ public class TelaInformacoesAdministrador extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_listaFarmaceuticosActionPerformed
+
+    private void voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarActionPerformed
+        // TODO add your handling code here:
+        new TelaInicialAdministrador(admHospital).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_voltarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

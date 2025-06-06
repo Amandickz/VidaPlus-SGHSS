@@ -4,6 +4,7 @@
  */
 package interfaces;
 
+import classes.Administracao;
 import gerenciamento.GerenciamentoHospitalar;
 import javax.swing.JOptionPane;
 
@@ -37,7 +38,7 @@ public class TelaInicialAdministrador extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        infoAdm = new javax.swing.JMenuItem();
         sair = new javax.swing.JMenuItem();
         gerenciar = new javax.swing.JMenu();
         leitos = new javax.swing.JMenu();
@@ -80,8 +81,13 @@ public class TelaInicialAdministrador extends javax.swing.JFrame {
 
         jMenu1.setText("Geral");
 
-        jMenuItem3.setText("Informações Administrativas");
-        jMenu1.add(jMenuItem3);
+        infoAdm.setText("Informações Administrativas");
+        infoAdm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                infoAdmActionPerformed(evt);
+            }
+        });
+        jMenu1.add(infoAdm);
 
         sair.setText("Sair");
         sair.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -397,6 +403,12 @@ public class TelaInicialAdministrador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_listaFarmaceuticosActionPerformed
 
+    private void infoAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoAdmActionPerformed
+        // TODO add your handling code here:
+        new TelaInformacoesAdministrador(admHospital).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_infoAdmActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem alterarDadosEnfermeiro;
@@ -413,12 +425,12 @@ public class TelaInicialAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenuItem especialidadeMedico;
     private javax.swing.JMenu farmaceuticos;
     private javax.swing.JMenu gerenciar;
+    private javax.swing.JMenuItem infoAdm;
     private javax.swing.JMenu internacoes;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenu leitos;
     private javax.swing.JMenuItem listaEnfermeiros;
     private javax.swing.JMenuItem listaFarmaceuticos;
