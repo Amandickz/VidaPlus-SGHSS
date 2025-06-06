@@ -4,6 +4,7 @@
  */
 package gerenciamento;
 
+import classes.Administracao;
 import classes.Endereco;
 import classes.Enfermeiro;
 import classes.Farmaceutico;
@@ -21,7 +22,8 @@ import java.util.ArrayList;
  * @author Amanda
  */
 public class GerenciamentoHospitalar {
-    
+
+    Administracao administracao = new Administracao();
     ArrayList<Leito> leitos = new ArrayList<>();
     ArrayList<Pessoa> pessoas = new ArrayList<>();
     ArrayList<Endereco> enderecos = new ArrayList<>();
@@ -34,6 +36,37 @@ public class GerenciamentoHospitalar {
     ArrayList<Suprimento> suprimentos = new ArrayList<>();
 
     public GerenciamentoHospitalar() {
+    }
+
+    public Administracao getAdministracao() {
+        return administracao;
+    }
+
+    public void setAdministracao(Administracao administracao) {
+        this.administracao = administracao;
+    }
+    
+    public boolean verificaAcessoAdministracao(String usuario, String senha){
+        Login login = new Login();
+        for(Login l : logins){
+            if(l.getUsuario().equals(administracao.getCnpj())){
+                login = l;
+            }
+        }
+        
+        System.out.println(login);
+        
+        if(login.getUsuario() == null){
+            return false;
+        } else if(login.getUsuario().equals(usuario)){
+            if(login.getSenha().equals(senha)){
+                return true;
+            }
+        } else {
+            return false;
+        }
+        
+        return false;
     }
     
     //Gerenciamento de Pessoas
@@ -160,9 +193,36 @@ public class GerenciamentoHospitalar {
         return login;
     }
     
+    public boolean cadastraLogin(Login login){
+        logins.add(login);
+        return true;
+    }
+    
     //Gerenciamento de Endereço
     public Endereco retornaEnderecoComID(Endereco endereco){
         endereco.setId(enderecos.size() + 1);
+        return endereco;
+    }
+    
+    public boolean cadastraEndereco(Endereco endereco){
+        enderecos.add(endereco);
+        return true;
+    }
+    
+    public Endereco buscaEnderecoPorID(int id){
+        Endereco endereco = new Endereco();
+        for(Endereco e : enderecos){
+            if(e.getId() == id){
+                endereco.setId(e.getId());
+                endereco.setCep(e.getCep());
+                endereco.setLogradouro(e.getLogradouro());
+                endereco.setNumero(e.getNumero());
+                endereco.setComplemento(e.getComplemento());
+                endereco.setBairro(e.getBairro());
+                endereco.setMunicipio(e.getMunicipio());
+                endereco.setUf(e.getUf());
+            }
+        }
         return endereco;
     }
     

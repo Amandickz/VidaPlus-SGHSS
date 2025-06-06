@@ -4,6 +4,10 @@
  */
 package classes;
 
+import enums.Matriz;
+import enums.Porte;
+import enums.SituacaoCadastral;
+
 /**
  *
  * @author Amanda
@@ -15,17 +19,19 @@ public class Administracao {
     private String dataDeAbertura;
     private String razaoSocial;
     private String nomeFantasia;
-    private int porte;
+    private Porte porte;
     private String email;
     private String telefone;
-    private int situacaoCadastral;
+    private SituacaoCadastral situacaoCadastral;
     private String dataDaSituacao;
-    private int indicadorMatriz;
+    private Matriz indicadorMatriz;
+    private int idEndereco;
+    private int idLogin;
 
     public Administracao() {
     }
 
-    public Administracao(String cnpj, String dataDeAbertura, String razaoSocial, String nomeFantasia, int porte, String email, String telefone, int situacaoCadastral, String dataDaSituacao, int indicadorMatriz) {
+    public Administracao(String cnpj, String dataDeAbertura, String razaoSocial, String nomeFantasia, Porte porte, String email, String telefone, SituacaoCadastral situacaoCadastral, String dataDaSituacao, Matriz indicadorMatriz, int idEndereco, int idLogin) {
         this.cnpj = cnpj;
         this.dataDeAbertura = dataDeAbertura;
         this.razaoSocial = razaoSocial;
@@ -36,9 +42,11 @@ public class Administracao {
         this.situacaoCadastral = situacaoCadastral;
         this.dataDaSituacao = dataDaSituacao;
         this.indicadorMatriz = indicadorMatriz;
+        this.idEndereco = idEndereco;
+        this.idLogin = idLogin;
     }
 
-    public Administracao(int id, String cnpj, String dataDeAbertura, String razaoSocial, String nomeFantasia, int porte, String email, String telefone, int situacaoCadastral, String dataDaSituacao, int indicadorMatriz) {
+    public Administracao(int id, String cnpj, String dataDeAbertura, String razaoSocial, String nomeFantasia, Porte porte, String email, String telefone, SituacaoCadastral situacaoCadastral, String dataDaSituacao, Matriz indicadorMatriz, int idEndereco, int idLogin) {
         this.id = id;
         this.cnpj = cnpj;
         this.dataDeAbertura = dataDeAbertura;
@@ -50,7 +58,9 @@ public class Administracao {
         this.situacaoCadastral = situacaoCadastral;
         this.dataDaSituacao = dataDaSituacao;
         this.indicadorMatriz = indicadorMatriz;
-    }    
+        this.idEndereco = idEndereco;
+        this.idLogin = idLogin;
+    }
 
     public int getId() {
         return id;
@@ -92,11 +102,11 @@ public class Administracao {
         this.nomeFantasia = nomeFantasia;
     }
 
-    public int getPorte() {
+    public Porte getPorte() {
         return porte;
     }
 
-    public void setPorte(int porte) {
+    public void setPorte(Porte porte) {
         this.porte = porte;
     }
 
@@ -116,11 +126,11 @@ public class Administracao {
         this.telefone = telefone;
     }
 
-    public int getSituacaoCadastral() {
+    public SituacaoCadastral getSituacaoCadastral() {
         return situacaoCadastral;
     }
 
-    public void setSituacaoCadastral(int situacaoCadastral) {
+    public void setSituacaoCadastral(SituacaoCadastral situacaoCadastral) {
         this.situacaoCadastral = situacaoCadastral;
     }
 
@@ -132,17 +142,33 @@ public class Administracao {
         this.dataDaSituacao = dataDaSituacao;
     }
 
-    public int getIndicadorMatriz() {
+    public Matriz getIndicadorMatriz() {
         return indicadorMatriz;
     }
 
-    public void setIndicadorMatriz(int indicadorMatriz) {
+    public void setIndicadorMatriz(Matriz indicadorMatriz) {
         this.indicadorMatriz = indicadorMatriz;
+    }
+
+    public int getIdEndereco() {
+        return idEndereco;
+    }
+
+    public void setIdEndereco(int idEndereco) {
+        this.idEndereco = idEndereco;
+    }
+
+    public int getIdLogin() {
+        return idLogin;
+    }
+
+    public void setIdLogin(int idLogin) {
+        this.idLogin = idLogin;
     }
 
     @Override
     public String toString() {
-        return "Administracao{" + "id=" + id + ", cnpj=" + cnpj + ", dataDeAbertura=" + dataDeAbertura + ", razaoSocial=" + razaoSocial + ", nomeFantasia=" + nomeFantasia + ", porte=" + porte + ", email=" + email + ", telefone=" + telefone + ", situacaoCadastral=" + situacaoCadastral + ", dataDaSituacao=" + dataDaSituacao + ", indicadorMatriz=" + indicadorMatriz + '}';
-    }
+        return "Administracao{" + "id=" + id + ", cnpj=" + cnpj + ", dataDeAbertura=" + dataDeAbertura + ", razaoSocial=" + razaoSocial + ", nomeFantasia=" + nomeFantasia + ", porte=" + porte + ", email=" + email + ", telefone=" + telefone + ", situacaoCadastral=" + situacaoCadastral + ", dataDaSituacao=" + dataDaSituacao + ", indicadorMatriz=" + indicadorMatriz + ", idEndereco=" + idEndereco + ", idLogin=" + idLogin + '}';
+    }    
     
 }
