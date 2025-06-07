@@ -11,6 +11,7 @@ import classes.Farmaceutico;
 import classes.Leito;
 import classes.Login;
 import classes.Medico;
+import classes.Paciente;
 import classes.Pessoa;
 import classes.ProfissionalSaude;
 import classes.Suprimento;
@@ -28,6 +29,7 @@ public class GerenciamentoHospitalar {
     ArrayList<Pessoa> pessoas = new ArrayList<>();
     ArrayList<Endereco> enderecos = new ArrayList<>();
     ArrayList<Login> logins = new ArrayList<>();
+    ArrayList<Paciente> pacientes = new ArrayList<>();
     ArrayList<ProfissionalSaude> profissionais = new ArrayList<>();
     ArrayList<Medico> medicos = new ArrayList<>();
     ArrayList<Enfermeiro> enfermeiros = new ArrayList<>();
@@ -78,6 +80,12 @@ public class GerenciamentoHospitalar {
         pessoa.setId(pessoas.size() + 1);
         return pessoa;
     }
+    
+    //Gerenciamento de Paciente
+    public ArrayList<Paciente> getPacientes() {
+        return pacientes;
+    }
+    
     
     //Gerenciamento do Profissional de Saúde - Médico
     public ArrayList<Medico> getMedicos(){
