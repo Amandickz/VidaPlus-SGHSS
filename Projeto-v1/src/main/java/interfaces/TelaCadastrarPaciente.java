@@ -16,6 +16,8 @@ import enums.Sexo;
 import enums.TipoConta;
 import gerenciamento.GerenciamentoHospitalar;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 /**
  *
  * @author Amanda
@@ -35,6 +37,23 @@ public class TelaCadastrarPaciente extends javax.swing.JFrame {
         preencherListaSexo();
         preencherListasEstados();
         nomeSocial.setEditable(nomeSocialCheck.isSelected());
+        
+        cpfPessoa.getDocument().addDocumentListener(new DocumentListener(){
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                verificaCPF();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                verificaCPF();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                verificaCPF();
+            }
+        });
     }
     
     private void preencheListaRaca(){
@@ -65,6 +84,12 @@ public class TelaCadastrarPaciente extends javax.swing.JFrame {
             listaEstados.addItem(e.getEstado());
             listaEstadoCEP.addItem(e.getEstado());
         }
+    }
+    
+    private void verificaCPF(){
+        String campoCPF = cpfPessoa.getText();
+        login.setText(campoCPF);
+        login.setEditable(false);
     }
 
     /**
@@ -150,6 +175,11 @@ public class TelaCadastrarPaciente extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        cpfPessoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cpfPessoaActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Nome Completo:");
 
@@ -378,7 +408,8 @@ public class TelaCadastrarPaciente extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(continuar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(continuar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(1, 1, 1))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -436,7 +467,7 @@ public class TelaCadastrarPaciente extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel23)
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -524,14 +555,11 @@ public class TelaCadastrarPaciente extends javax.swing.JFrame {
                     .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel27)
                     .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(cancelar)
-                        .addGap(28, 28, 28))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(continuar)
-                        .addGap(20, 20, 20))))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelar)
+                    .addComponent(continuar))
+                .addGap(15, 15, 15))
         );
 
         pack();
@@ -666,6 +694,11 @@ public class TelaCadastrarPaciente extends javax.swing.JFrame {
         // TODO add your handling code here:
         cartaoSus.setEnabled(!susCheck.isEnabled());
     }//GEN-LAST:event_susCheckActionPerformed
+
+    private void cpfPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfPessoaActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cpfPessoaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

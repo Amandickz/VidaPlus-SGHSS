@@ -11,13 +11,13 @@ import javax.swing.JOptionPane;
  *
  * @author Amanda
  */
-public class TelaInicialAdministrador extends javax.swing.JFrame {
+public class TelaAprovacaoPaciente extends javax.swing.JFrame {
 
     GerenciamentoHospitalar admHospital = new GerenciamentoHospitalar();
     /**
      * Creates new form TelaAdministrador
      */
-    public TelaInicialAdministrador(GerenciamentoHospitalar admHospital) {
+    public TelaAprovacaoPaciente(GerenciamentoHospitalar admHospital) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.admHospital = admHospital;
