@@ -86,6 +86,25 @@ public class GerenciamentoHospitalar {
         return pacientes;
     }
     
+    public boolean cadastraPaciente(Paciente paciente, Endereco endereco, Login login){
+        Pessoa pessoa = new Pessoa(paciente.getId(), paciente.getCpf(), paciente.getNomeCompleto(), paciente.getNomeSocial(),
+                paciente.getDataNascimento(), paciente.getSexo(), paciente.getNomeMae(), paciente.getNomePai(), paciente.getNaturalidade(),
+                paciente.getUf(), paciente.getNacionalidade(), paciente.getRaca(), paciente.getTelefone(), paciente.getEmail(),
+                paciente.getIdEndereco(), paciente.getIdLogin());
+        pessoas.add(pessoa);
+        enderecos.add(endereco);
+        logins.add(login);
+        pacientes.add(paciente);
+        System.out.println();
+        System.out.println("------Cadastrado Agora------");
+        System.out.println(pessoa);
+        System.out.println(endereco);
+        System.out.println(login);
+        System.out.println(paciente);
+        System.out.println();
+        return true;
+    }
+    
     
     //Gerenciamento do Profissional de Saúde - Médico
     public ArrayList<Medico> getMedicos(){

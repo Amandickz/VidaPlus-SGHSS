@@ -9,225 +9,14 @@
     </Component>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="sair">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Geral"/>
+            <Property name="text" type="java.lang.String" value="Sair"/>
           </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="sair">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Sair"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sairMouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sairActionPerformed"/>
-              </Events>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="gerenciar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Gerenciamento Hospitalar"/>
-          </Properties>
-          <SubComponents>
-            <Menu class="javax.swing.JMenu" name="leitos">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Leitos"/>
-              </Properties>
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="cadastrarLeito">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Cadastrar"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cadastrarLeitoActionPerformed"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="alterarLeito">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Alterar"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="alterarStatus">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Alterar Status"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="alterarStatusActionPerformed"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="verificarLeitos">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Verificar Leitos"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="verificarLeitosActionPerformed"/>
-                  </Events>
-                </MenuItem>
-              </SubComponents>
-            </Menu>
-            <Menu class="javax.swing.JMenu" name="suprimentos">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Suprimentos"/>
-              </Properties>
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="novoSuprimento">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Cadastrar Novo Suprimento"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="novoSuprimentoActionPerformed"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="alterarEstoque">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Alterar Estoque"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="alterarEstoqueActionPerformed"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="verificarSuprimentos">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Verificar Suprimentos"/>
-                  </Properties>
-                </MenuItem>
-              </SubComponents>
-            </Menu>
-            <Menu class="javax.swing.JMenu" name="internacoes">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Interna&#xe7;&#xf5;es"/>
-              </Properties>
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="verificarInternacoes">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Verificar Interna&#xe7;&#xf5;es"/>
-                  </Properties>
-                </MenuItem>
-              </SubComponents>
-            </Menu>
-          </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="recursosHumanos">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Recursos Humanos"/>
-          </Properties>
-          <SubComponents>
-            <Menu class="javax.swing.JMenu" name="medicos">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="M&#xe9;dicos"/>
-              </Properties>
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="novoMedico">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Novo M&#xe9;dico"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="novoMedicoActionPerformed"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="alterarDadosMedico">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Alterar Dados do M&#xe9;dico"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="listaMedicos">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Lista de M&#xe9;dicos"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listaMedicosActionPerformed"/>
-                  </Events>
-                </MenuItem>
-                <Menu class="javax.swing.JMenu" name="buscarMedicos">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Buscar M&#xe9;dicos"/>
-                  </Properties>
-                  <SubComponents>
-                    <MenuItem class="javax.swing.JMenuItem" name="especialidadeMedico">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Por Especialidade"/>
-                      </Properties>
-                    </MenuItem>
-                    <MenuItem class="javax.swing.JMenuItem" name="dataAdmissaoMedico">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Por Data de Admisss&#xe3;o"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dataAdmissaoMedicoActionPerformed"/>
-                      </Events>
-                    </MenuItem>
-                  </SubComponents>
-                </Menu>
-              </SubComponents>
-            </Menu>
-            <Menu class="javax.swing.JMenu" name="enfermeiros">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Enfermeiros"/>
-              </Properties>
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="novoEnfermeiro">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Novo Enfermeiro"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="alterarDadosEnfermeiro">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Alterar Dados do Enfermeiro"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="listaEnfermeiros">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Lista de Enfermeiros"/>
-                  </Properties>
-                </MenuItem>
-              </SubComponents>
-            </Menu>
-            <Menu class="javax.swing.JMenu" name="tecnicos">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="T&#xe9;cnicos de Enfermagem"/>
-              </Properties>
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="novoTecnico">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Novo T&#xe9;cnico"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="alterarDadosTecnico">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Alterar Dados do T&#xe9;cnico"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="listaTecnicos">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Lista de T&#xe9;cnicos"/>
-                  </Properties>
-                </MenuItem>
-              </SubComponents>
-            </Menu>
-            <Menu class="javax.swing.JMenu" name="farmaceuticos">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Farmac&#xea;uticos"/>
-              </Properties>
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="novoFarmaceutico">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Novo Farmac&#xea;utico"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="alterarDadosFarmaceutico">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Alterar Dados do Farmac&#xea;utico"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="listaFarmaceuticos">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Lista de Farmac&#xea;uticos"/>
-                  </Properties>
-                </MenuItem>
-              </SubComponents>
-            </Menu>
-          </SubComponents>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sairMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sairActionPerformed"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>
@@ -347,10 +136,10 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="cancelar" min="-2" pref="95" max="-2" attributes="0"/>
-                                  <EmptySpace pref="573" max="32767" attributes="0"/>
-                                  <Component id="continuar" min="-2" pref="95" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="continuar" min="-2" pref="110" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -428,7 +217,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="nomeCompleto" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -527,7 +316,7 @@
                   <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="senha" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="30" max="32767" attributes="0"/>
+              <EmptySpace pref="15" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="cancelar" min="-2" max="-2" attributes="0"/>
@@ -804,7 +593,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="continuar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Continuar"/>
+        <Property name="text" type="java.lang.String" value="Cadastrar-se"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="continuarActionPerformed"/>
@@ -842,6 +631,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="N&#xe3;o sei o n&#xfa;mero do meu Cart&#xe3;o Sus"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="susCheckActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel25">
       <Properties>

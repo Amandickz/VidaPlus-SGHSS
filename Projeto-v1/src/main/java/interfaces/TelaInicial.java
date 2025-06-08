@@ -142,7 +142,7 @@ public class TelaInicial extends javax.swing.JFrame {
                                     .addComponent(usuario)
                                     .addComponent(senha, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(novoPaciente)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -208,7 +208,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void novoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoPacienteActionPerformed
         // TODO add your handling code here:
-        new TelaCadastrarPessoa(admHospital, 5).setVisible(true);
+        new TelaCadastrarPaciente(admHospital).setVisible(true);
         dispose();
     }//GEN-LAST:event_novoPacienteActionPerformed
 

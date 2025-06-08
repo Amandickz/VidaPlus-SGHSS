@@ -14,7 +14,6 @@ import enums.SituacaoCadastral;
 import enums.TipoConta;
 import gerenciamento.GerenciamentoHospitalar;
 import interfaces.TelaInicial;
-import interfaces.TelaInicialAdministrador;
 
 /**
  *
