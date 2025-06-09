@@ -172,6 +172,11 @@ public class TelaInicialAdministrador extends javax.swing.JFrame {
         pacientes.setText("Pacientes");
 
         solicitacoesCadastro.setText("Solicitações de Cadastro");
+        solicitacoesCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solicitacoesCadastroActionPerformed(evt);
+            }
+        });
         pacientes.add(solicitacoesCadastro);
 
         verificarPacientes.setText("Verificar Pacientes");
@@ -420,6 +425,12 @@ public class TelaInicialAdministrador extends javax.swing.JFrame {
         new TelaInformacoesAdministrador(admHospital).setVisible(true);
         dispose();
     }//GEN-LAST:event_infoAdmActionPerformed
+
+    private void solicitacoesCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solicitacoesCadastroActionPerformed
+        // TODO add your handling code here:
+        new TelaAprovacaoPaciente(admHospital).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_solicitacoesCadastroActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

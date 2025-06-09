@@ -4,8 +4,12 @@
  */
 package interfaces;
 
+import classes.Paciente;
+import enums.CadastroPaciente;
 import gerenciamento.GerenciamentoHospitalar;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,16 +17,78 @@ import javax.swing.JOptionPane;
  */
 public class TelaAprovacaoPaciente extends javax.swing.JFrame {
 
-    GerenciamentoHospitalar admHospital = new GerenciamentoHospitalar();
+    GerenciamentoHospitalar admHospital;
+    ArrayList<Paciente> listaPacientes;
+    DefaultTableModel todosPacientes;
     /**
-     * Creates new form TelaAdministrador
+     * Creates new form TelaInicialAdministrador
      */
     public TelaAprovacaoPaciente(GerenciamentoHospitalar admHospital) {
         initComponents();
-        this.setLocationRelativeTo(null);
         this.admHospital = admHospital;
-        admHospital.getLeitos();
+        this.setLocationRelativeTo(null);
+        this.listaPacientes = this.admHospital.getPacientes();
+        todosPacientes = (DefaultTableModel) tabelaPacientes.getModel();
+        todosPacientes.addColumn("CPF");
+        todosPacientes.addColumn("Nome Completo");
+        todosPacientes.addColumn("Status");
+        
+        if(!this.listaPacientes.isEmpty()){
+            preencheTabela();
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhum Paciente aguardando aprovação.");
+            new TelaInicialAdministrador(admHospital).setVisible(true);
+            dispose();
+        }
+        preencheCadastro();
+        alterarEdicaoCampos();
     }
+    
+    private void preencheTabela(){
+        for(Paciente p : listaPacientes){
+            todosPacientes.addRow(new Object[]{p.getCpf(), p.getNomeCompleto(),
+            p.getCadastro().getCadastroPaciente()});
+        }
+    }
+    
+    private void preencheCadastro(){
+        statusCadastro.removeAllItems();
+        for(CadastroPaciente cp : CadastroPaciente.values()){
+            statusCadastro.addItem(cp.getCadastroPaciente());
+        }
+    }
+    
+    private void alterarEdicaoCampos(){
+        nomeCompleto.setText("");
+        nomeCompleto.setEditable(false);
+        cpfCliente.setText("");
+        cpfCliente.setEditable(false);
+        emailPaciente.setText("");
+        emailPaciente.setEditable(false);
+        telefonePaciente.setText("");
+        telefonePaciente.setEditable(false);
+        cartaoSusPaciente.setText("");
+        cartaoSusPaciente.setEditable(false);
+        statusCadastro.setEditable(false);
+    }
+    
+    private void exibeDados(String cpf){
+        Paciente p = admHospital.buscaPacientePorCPF(cpf);
+        nomeCompleto.setText(p.getNomeCompleto());
+        cpfCliente.setText(p.getCpf());
+        emailPaciente.setText(p.getEmail());
+        telefonePaciente.setText(p.getTelefone());
+        cartaoSusPaciente.setText(p.getCartaoSus());
+        int cont = 0;
+        for(CadastroPaciente cp : CadastroPaciente.values()){
+            if(p.getCadastro().equals(cp)){
+                statusCadastro.setSelectedIndex(cont);
+            }
+            cont++;
+        }
+        statusCadastro.setEnabled(true);
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,10 +100,27 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaPacientes = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        nomeCompleto = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        voltar = new javax.swing.JButton();
+        alterarStatusCadastro = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        cpfCliente = new javax.swing.JFormattedTextField();
+        jLabel4 = new javax.swing.JLabel();
+        emailPaciente = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        telefonePaciente = new javax.swing.JFormattedTextField();
+        jLabel6 = new javax.swing.JLabel();
+        cartaoSusPaciente = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        statusCadastro = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        infoAdm = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         sair = new javax.swing.JMenuItem();
         gerenciar = new javax.swing.JMenu();
         leitos = new javax.swing.JMenu();
@@ -51,9 +134,6 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
         verificarSuprimentos = new javax.swing.JMenuItem();
         internacoes = new javax.swing.JMenu();
         verificarInternacoes = new javax.swing.JMenuItem();
-        pacientes = new javax.swing.JMenu();
-        solicitacoesCadastro = new javax.swing.JMenuItem();
-        verificarPacientes = new javax.swing.JMenuItem();
         recursosHumanos = new javax.swing.JMenu();
         medicos = new javax.swing.JMenu();
         novoMedico = new javax.swing.JMenuItem();
@@ -77,19 +157,72 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
 
         jMenuItem1.setText("jMenuItem1");
 
-        jMenuItem2.setText("jMenuItem2");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastrar Leito");
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("Pacientes aguardando aprovação de Cadastro");
+
+        tabelaPacientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tabelaPacientes.getTableHeader().setReorderingAllowed(false);
+        tabelaPacientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaPacientesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabelaPacientes);
+
+        jLabel2.setText("Nome Completo:");
+
+        voltar.setText("Voltar");
+        voltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltarActionPerformed(evt);
+            }
+        });
+
+        alterarStatusCadastro.setText("Alterar Status do Cadastro");
+        alterarStatusCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alterarStatusCadastroActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("CPF:");
+
+        try {
+            cpfCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jLabel4.setText("E-mail:");
+
+        jLabel5.setText("Telefone:");
+
+        try {
+            telefonePaciente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jLabel6.setText("Cartão SUS:");
+
+        jLabel7.setText("Cadastro:");
+
+        statusCadastro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jMenu1.setText("Geral");
 
-        infoAdm.setText("Informações Administrativas");
-        infoAdm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                infoAdmActionPerformed(evt);
-            }
-        });
-        jMenu1.add(infoAdm);
+        jMenuItem3.setText("Informações Administrativas");
+        jMenu1.add(jMenuItem3);
 
         sair.setText("Sair");
         sair.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -168,16 +301,6 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
         internacoes.add(verificarInternacoes);
 
         gerenciar.add(internacoes);
-
-        pacientes.setText("Pacientes");
-
-        solicitacoesCadastro.setText("Solicitações de Cadastro");
-        pacientes.add(solicitacoesCadastro);
-
-        verificarPacientes.setText("Verificar Pacientes");
-        pacientes.add(verificarPacientes);
-
-        gerenciar.add(pacientes);
 
         jMenuBar1.add(gerenciar);
 
@@ -298,15 +421,94 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 834, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nomeCompleto))
+                    .addComponent(jSeparator1)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cartaoSusPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(statusCadastro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(emailPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(telefonePaciente)))
+                .addGap(30, 30, 30))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(383, 383, 383)
+                .addComponent(voltar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(334, Short.MAX_VALUE)
+                .addComponent(alterarStatusCadastro)
+                .addGap(331, 331, 331))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 616, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(nomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(cpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(emailPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(telefonePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(cartaoSusPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(statusCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(alterarStatusCadastro)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(voltar)
+                .addGap(30, 30, 30))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarActionPerformed
+        // TODO add your handling code here:
+        new TelaInicialAdministrador(admHospital).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_voltarActionPerformed
+
+    private void alterarStatusCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarStatusCadastroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_alterarStatusCadastroActionPerformed
 
     private void sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseClicked
         // TODO add your handling code here:
@@ -317,29 +519,15 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_sairActionPerformed
 
+    private void cadastrarLeitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarLeitoActionPerformed
+        // TODO add your handling code here:
+        new TelaAprovacaoPaciente(admHospital).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_cadastrarLeitoActionPerformed
+
     private void alterarStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarStatusActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_alterarStatusActionPerformed
-
-    private void novoSuprimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoSuprimentoActionPerformed
-        // TODO add your handling code here:
-        new TelaCadastroSuprimento(admHospital).setVisible(true);
-        dispose();
-    }//GEN-LAST:event_novoSuprimentoActionPerformed
-
-    private void alterarEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarEstoqueActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_alterarEstoqueActionPerformed
-
-    private void dataAdmissaoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataAdmissaoMedicoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dataAdmissaoMedicoActionPerformed
-
-    private void cadastrarLeitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarLeitoActionPerformed
-        // TODO add your handling code here:
-        new TelaCadastroLeito(admHospital).setVisible(true);
-        dispose();
-    }//GEN-LAST:event_cadastrarLeitoActionPerformed
 
     private void verificarLeitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verificarLeitosActionPerformed
         // TODO add your handling code here:
@@ -350,6 +538,16 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_verificarLeitosActionPerformed
+
+    private void novoSuprimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoSuprimentoActionPerformed
+        // TODO add your handling code here:
+        new TelaCadastroSuprimento(admHospital).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_novoSuprimentoActionPerformed
+
+    private void alterarEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarEstoqueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_alterarEstoqueActionPerformed
 
     private void novoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoMedicoActionPerformed
         // TODO add your handling code here:
@@ -366,6 +564,10 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_listaMedicosActionPerformed
+
+    private void dataAdmissaoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataAdmissaoMedicoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dataAdmissaoMedicoActionPerformed
 
     private void novoEnfermeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoEnfermeiroActionPerformed
         // TODO add your handling code here:
@@ -415,11 +617,14 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_listaFarmaceuticosActionPerformed
 
-    private void infoAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoAdmActionPerformed
+    private void tabelaPacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaPacientesMouseClicked
         // TODO add your handling code here:
-        new TelaInformacoesAdministrador(admHospital).setVisible(true);
-        dispose();
-    }//GEN-LAST:event_infoAdmActionPerformed
+        if(evt.getClickCount() == 2){
+            int linhaClicada = tabelaPacientes.getSelectedRow();
+            String cpfLinha = (String) tabelaPacientes.getValueAt(linhaClicada, 0);
+            exibeDados(cpfLinha);
+        }
+    }//GEN-LAST:event_tabelaPacientesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -430,39 +635,53 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
     private javax.swing.JMenuItem alterarEstoque;
     private javax.swing.JMenuItem alterarLeito;
     private javax.swing.JMenuItem alterarStatus;
+    private javax.swing.JButton alterarStatusCadastro;
     private javax.swing.JMenu buscarMedicos;
     private javax.swing.JMenuItem cadastrarLeito;
+    private javax.swing.JTextField cartaoSusPaciente;
+    private javax.swing.JFormattedTextField cpfCliente;
     private javax.swing.JMenuItem dataAdmissaoMedico;
+    private javax.swing.JTextField emailPaciente;
     private javax.swing.JMenu enfermeiros;
     private javax.swing.JMenuItem especialidadeMedico;
     private javax.swing.JMenu farmaceuticos;
     private javax.swing.JMenu gerenciar;
-    private javax.swing.JMenuItem infoAdm;
     private javax.swing.JMenu internacoes;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JMenu leitos;
     private javax.swing.JMenuItem listaEnfermeiros;
     private javax.swing.JMenuItem listaFarmaceuticos;
     private javax.swing.JMenuItem listaMedicos;
     private javax.swing.JMenuItem listaTecnicos;
     private javax.swing.JMenu medicos;
+    private javax.swing.JTextField nomeCompleto;
     private javax.swing.JMenuItem novoEnfermeiro;
     private javax.swing.JMenuItem novoFarmaceutico;
     private javax.swing.JMenuItem novoMedico;
     private javax.swing.JMenuItem novoSuprimento;
     private javax.swing.JMenuItem novoTecnico;
-    private javax.swing.JMenu pacientes;
     private javax.swing.JMenu recursosHumanos;
     private javax.swing.JMenuItem sair;
-    private javax.swing.JMenuItem solicitacoesCadastro;
+    private javax.swing.JComboBox<String> statusCadastro;
     private javax.swing.JMenu suprimentos;
+    private javax.swing.JTable tabelaPacientes;
     private javax.swing.JMenu tecnicos;
+    private javax.swing.JFormattedTextField telefonePaciente;
     private javax.swing.JMenuItem verificarInternacoes;
     private javax.swing.JMenuItem verificarLeitos;
-    private javax.swing.JMenuItem verificarPacientes;
     private javax.swing.JMenuItem verificarSuprimentos;
+    private javax.swing.JButton voltar;
     // End of variables declaration//GEN-END:variables
 }

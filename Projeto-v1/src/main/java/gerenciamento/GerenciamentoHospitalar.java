@@ -105,6 +105,16 @@ public class GerenciamentoHospitalar {
         return true;
     }
     
+    public Paciente buscaPacientePorCPF(String cpf){
+        Paciente paciente = null;
+        for(Paciente p : pacientes){
+            if(p.getCpf().equals(cpf)){
+                paciente = p;
+            }
+        }
+        return paciente;
+    }
+    
     
     //Gerenciamento do Profissional de Saúde - Médico
     public ArrayList<Medico> getMedicos(){
