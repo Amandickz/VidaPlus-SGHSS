@@ -11,6 +11,7 @@ import classes.Farmaceutico;
 import classes.Leito;
 import classes.Login;
 import classes.Medico;
+import classes.Paciente;
 import classes.Pessoa;
 import classes.ProfissionalSaude;
 import classes.Suprimento;
@@ -28,6 +29,7 @@ public class GerenciamentoHospitalar {
     ArrayList<Pessoa> pessoas = new ArrayList<>();
     ArrayList<Endereco> enderecos = new ArrayList<>();
     ArrayList<Login> logins = new ArrayList<>();
+    ArrayList<Paciente> pacientes = new ArrayList<>();
     ArrayList<ProfissionalSaude> profissionais = new ArrayList<>();
     ArrayList<Medico> medicos = new ArrayList<>();
     ArrayList<Enfermeiro> enfermeiros = new ArrayList<>();
@@ -78,6 +80,41 @@ public class GerenciamentoHospitalar {
         pessoa.setId(pessoas.size() + 1);
         return pessoa;
     }
+    
+    //Gerenciamento de Paciente
+    public ArrayList<Paciente> getPacientes() {
+        return pacientes;
+    }
+    
+    public boolean cadastraPaciente(Paciente paciente, Endereco endereco, Login login){
+        Pessoa pessoa = new Pessoa(paciente.getId(), paciente.getCpf(), paciente.getNomeCompleto(), paciente.getNomeSocial(),
+                paciente.getDataNascimento(), paciente.getSexo(), paciente.getNomeMae(), paciente.getNomePai(), paciente.getNaturalidade(),
+                paciente.getUf(), paciente.getNacionalidade(), paciente.getRaca(), paciente.getTelefone(), paciente.getEmail(),
+                paciente.getIdEndereco(), paciente.getIdLogin());
+        pessoas.add(pessoa);
+        enderecos.add(endereco);
+        logins.add(login);
+        pacientes.add(paciente);
+        System.out.println();
+        System.out.println("------Cadastrado Agora------");
+        System.out.println(pessoa);
+        System.out.println(endereco);
+        System.out.println(login);
+        System.out.println(paciente);
+        System.out.println();
+        return true;
+    }
+    
+    public Paciente buscaPacientePorCPF(String cpf){
+        Paciente paciente = null;
+        for(Paciente p : pacientes){
+            if(p.getCpf().equals(cpf)){
+                paciente = p;
+            }
+        }
+        return paciente;
+    }
+    
     
     //Gerenciamento do Profissional de Saúde - Médico
     public ArrayList<Medico> getMedicos(){
