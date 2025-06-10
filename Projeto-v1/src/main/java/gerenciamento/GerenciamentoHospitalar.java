@@ -16,6 +16,7 @@ import classes.Pessoa;
 import classes.ProfissionalSaude;
 import classes.Suprimento;
 import classes.Tecnico;
+import enums.CadastroPaciente;
 import java.util.ArrayList;
 
 /**
@@ -113,6 +114,24 @@ public class GerenciamentoHospitalar {
             }
         }
         return paciente;
+    }
+    
+    public boolean ativarPaciente(Paciente paciente){
+        int i = 0;
+        for(Paciente p : pacientes){
+            if(p.getCpf().equals(paciente.getCpf())){
+                pacientes.get(i);
+                p.setCadastro(CadastroPaciente.UM);
+                pacientes.set(i, p);
+            }
+            i++;
+        }
+        
+        for(Paciente p : pacientes){
+            System.out.println(p);
+        }
+        
+        return true;
     }
     
     

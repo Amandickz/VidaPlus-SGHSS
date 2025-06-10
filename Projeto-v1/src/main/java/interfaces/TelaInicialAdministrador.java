@@ -21,7 +21,6 @@ public class TelaInicialAdministrador extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.admHospital = admHospital;
-        admHospital.getLeitos();
     }
 
     /**

@@ -20,6 +20,7 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
     GerenciamentoHospitalar admHospital;
     ArrayList<Paciente> listaPacientes;
     DefaultTableModel todosPacientes;
+    Paciente p;
     /**
      * Creates new form TelaInicialAdministrador
      */
@@ -45,9 +46,12 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
     }
     
     private void preencheTabela(){
+        todosPacientes.setRowCount(0);
         for(Paciente p : listaPacientes){
-            todosPacientes.addRow(new Object[]{p.getCpf(), p.getNomeCompleto(),
-            p.getCadastro().getCadastroPaciente()});
+            if(p.getCadastro().equals(CadastroPaciente.DOIS)){
+                todosPacientes.addRow(new Object[]{p.getCpf(), p.getNomeCompleto(),
+                p.getCadastro().getCadastroPaciente()});
+            }
         }
     }
     
@@ -73,7 +77,7 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
     }
     
     private void exibeDados(String cpf){
-        Paciente p = admHospital.buscaPacientePorCPF(cpf);
+        p = admHospital.buscaPacientePorCPF(cpf);
         nomeCompleto.setText(p.getNomeCompleto());
         cpfCliente.setText(p.getCpf());
         emailPaciente.setText(p.getEmail());
@@ -508,6 +512,16 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
 
     private void alterarStatusCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarStatusCadastroActionPerformed
         // TODO add your handling code here:
+        for(CadastroPaciente cp : CadastroPaciente.values()){
+            if(statusCadastro.getSelectedItem().toString().equals(cp.getCadastroPaciente())){
+                p.setCadastro(cp);
+            }
+        }
+        if(admHospital.ativarPaciente(p)){
+            JOptionPane.showMessageDialog(null, "Paciente Liberado para Acesso!");
+            preencheTabela();
+            alterarEdicaoCampos();
+        }
     }//GEN-LAST:event_alterarStatusCadastroActionPerformed
 
     private void sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseClicked
@@ -619,7 +633,7 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
 
     private void tabelaPacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaPacientesMouseClicked
         // TODO add your handling code here:
-        if(evt.getClickCount() == 2){
+        if(evt.getClickCount() == 1){
             int linhaClicada = tabelaPacientes.getSelectedRow();
             String cpfLinha = (String) tabelaPacientes.getValueAt(linhaClicada, 0);
             exibeDados(cpfLinha);
