@@ -7,7 +7,6 @@ package interfaces;
 import classes.Paciente;
 import gerenciamento.GerenciamentoHospitalar;
 import gerenciamento.GerenciamentoPaciente;
-import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
@@ -201,7 +200,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 System.out.println("Digitaldo: " + usuario.getText() + " / " + senhaDigitada);
                 if(admHospital.verificaAcessoPaciente(usuario.getText(), senhaDigitada)){
                     Paciente paciente = admHospital.retornaPaciente(usuario.getText());
-                    new TelaInicialPaciente(new GerenciamentoPaciente(paciente)).setVisible(true);
+                    new TelaInicialPaciente(new GerenciamentoPaciente(paciente, admHospital)).setVisible(true);
                     dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "Usuário/Senha incorretos. Por favor, tente novamente");

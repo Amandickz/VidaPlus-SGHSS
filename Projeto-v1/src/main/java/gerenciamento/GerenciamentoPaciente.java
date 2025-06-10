@@ -4,6 +4,8 @@
  */
 package gerenciamento;
 
+import classes.Anamnese;
+import classes.AnamneseFeminina;
 import classes.Paciente;
 import enums.Sexo;
 
@@ -14,12 +16,16 @@ import enums.Sexo;
 public class GerenciamentoPaciente {
     
     Paciente paciente;
+    GerenciamentoHospitalar admHospitalar;
+    Anamnese anamnese;
+    AnamneseFeminina anamneseFeminina;
 
-    public GerenciamentoPaciente(Paciente paciente) {
+    public GerenciamentoPaciente(Paciente paciente, GerenciamentoHospitalar admHospitalar) {
         this.paciente = paciente;
+        this.admHospitalar = admHospitalar;
     }
     
-    public boolean novaAnamnese(){
+    public boolean novaAnamnese(Anamnese anamnese, AnamneseFeminina anamneseFeminina){
         
         return true;
     }

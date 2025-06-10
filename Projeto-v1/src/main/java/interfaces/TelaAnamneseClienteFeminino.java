@@ -4,10 +4,13 @@
  */
 package interfaces;
 
+import classes.Anamnese;
+import classes.AnamneseFeminina;
 import enums.CicloMenstrual;
 import enums.Sexo;
 import enums.TipoAnticoncepcional;
 import gerenciamento.GerenciamentoPaciente;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -109,8 +112,8 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
         usoAnticoncepcional = new javax.swing.JCheckBox();
         jLabel14 = new javax.swing.JLabel();
         listaAnticoncepcional = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        salvar = new javax.swing.JButton();
+        voltar = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         sair = new javax.swing.JMenu();
         consultas = new javax.swing.JMenu();
@@ -240,11 +243,26 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
 
         listaAnticoncepcional.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton1.setText("Finalizar");
+        salvar.setText("Salvar");
+        salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salvarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Voltar");
+        voltar.setText("Voltar");
+        voltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltarActionPerformed(evt);
+            }
+        });
 
         sair.setText("Sair");
+        sair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sairMouseClicked(evt);
+            }
+        });
         sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sairActionPerformed(evt);
@@ -370,9 +388,9 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(anotacoesAlimentos))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(30, 30, 30))))
         );
         layout.setVerticalGroup(
@@ -456,8 +474,8 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
                     .addComponent(listaAnticoncepcional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(salvar)
+                    .addComponent(voltar))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
@@ -522,6 +540,89 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
         listaAnticoncepcional.setEnabled(usoAnticoncepcional.isSelected());
     }//GEN-LAST:event_usoAnticoncepcionalActionPerformed
 
+    private void sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_sairMouseClicked
+
+    private void voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarActionPerformed
+        // TODO add your handling code here:
+        new TelaInicialPaciente(gerenciamentoPaciente).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_voltarActionPerformed
+
+    private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
+        // TODO add your handling code here:
+        Anamnese anamnese = new Anamnese();
+        anamnese.setDiabetes(diabetes.isSelected());
+        anamnese.setHipertensao(hipertensao.isSelected());
+        anamnese.setHipotensao(hipotensao.isSelected());
+        anamnese.setTabagismo(tabagismo.isSelected());
+        anamnese.setEpilepsia(epilepsia.isSelected());
+        anamnese.setProteseDentaria(proteseDentaria.isSelected());
+        anamnese.setProblemasRespiratorios(problemasRespiratorios.isSelected());
+        if(problemasRespiratorios.isSelected()){
+            anamnese.setAnotacoesProblemasRespiratorios(anotacoesRespiratorios.getText());
+        }
+        anamnese.setCirurgias(cirurgias.isSelected());
+        if(cirurgias.isSelected()){
+            anamnese.setAnotacoesCirurgias(anotacoesCirurgias.getText());
+        }
+        anamnese.setExerciciosFisicos(exerciciosFisicos.isSelected());
+        if(exerciciosFisicos.isSelected()){
+            anamnese.setFrequenciaExercicios(Integer.parseInt(exerciciosDias.getText()));
+        } else {
+            anamnese.setFrequenciaExercicios(-1);
+        }
+        anamnese.setAlcool(alcool.isSelected());
+        if(alcool.isSelected()){
+            anamnese.setFrequenciaAlcool(Integer.parseInt(bebidaDias.getText()));
+        } else {
+            anamnese.setFrequenciaAlcool(-1);
+        }
+        anamnese.setAlergiaMedicacao(alergiaMedicamento.isSelected());
+        if(alergiaMedicamento.isSelected()){
+            anamnese.setAnotacoesAlergiaMedicacao(anotacoesAlergias.getText());
+        }
+        anamnese.setAlergiaAlimento(alergiaAlimentos.isSelected());
+        if(alergiaAlimentos.isSelected()){
+            anamnese.setAnotacoesAlergiaAlimento(anotacoesAlergias.getText());
+        }
+        anamnese.setTratamentoMedicoAtual(tratamentoAtual.isSelected());
+        if(tratamentoAtual.isSelected()){
+            anamnese.setAnotacoesTratamento(descricaoTratamentoAtual.getText());
+        }
+        anamnese.setMarcaPasso(marcaPasso.isSelected());
+        anamnese.setMedicamentoContinuo(medicacaoContinuo.isSelected());
+        if(medicacaoContinuo.isSelected()){
+            anamnese.setAnotacoesMedicamentoContinuo(descricaoMedicacoes.getText());
+        }
+        
+        AnamneseFeminina anamneseFeminina = null;
+        if(gerenciamentoPaciente.retornaSexo().equals(Sexo.F)){
+            anamneseFeminina.setAnticoncepcional(usoAnticoncepcional.isSelected());
+            if(usoAnticoncepcional.isSelected()){
+                for(TipoAnticoncepcional ta : TipoAnticoncepcional.values()){
+                    if(listaAnticoncepcional.getSelectedItem().toString().equals(ta.getTipoAnticoncepcional())){
+                        anamneseFeminina.setTipoAnticoncepcional(ta);
+                    }
+                }
+            }
+            for(CicloMenstrual cm : CicloMenstrual.values()){
+                if(listaCiclo.getSelectedItem().toString().equals(cm.getCicloMenstrual())){
+                    anamneseFeminina.setCicloMenstrual(cm);
+                }
+            }
+        }
+        
+        if(gerenciamentoPaciente.novaAnamnese(anamnese, anamneseFeminina)){
+            JOptionPane.showMessageDialog(null, "Anamnese Realizada!");
+        }
+        
+        new TelaInicialPaciente(gerenciamentoPaciente).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_salvarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox alcool;
@@ -543,8 +644,6 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
     private javax.swing.JCheckBox exerciciosFisicos;
     private javax.swing.JCheckBox hipertensao;
     private javax.swing.JCheckBox hipotensao;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -573,8 +672,10 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
     private javax.swing.JCheckBox problemasRespiratorios;
     private javax.swing.JCheckBox proteseDentaria;
     private javax.swing.JMenu sair;
+    private javax.swing.JButton salvar;
     private javax.swing.JCheckBox tabagismo;
     private javax.swing.JCheckBox tratamentoAtual;
     private javax.swing.JCheckBox usoAnticoncepcional;
+    private javax.swing.JButton voltar;
     // End of variables declaration//GEN-END:variables
 }

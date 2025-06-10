@@ -24,7 +24,7 @@ public class Anamnese {
     private boolean exerciciosFisicos;
     private int frequenciaExercicios;
     private boolean alcool;
-    private String frequenciaAlcool;
+    private int frequenciaAlcool;
     private boolean alergiaMedicacao;
     private String anotacoesAlergiaMedicacao;
     private boolean alergiaAlimento;
@@ -38,7 +38,7 @@ public class Anamnese {
     public Anamnese() {
     }
 
-    public Anamnese(boolean diabetes, boolean hipertensao, boolean hipotensao, boolean tabagismo, boolean epilepsia, boolean proteseDentaria, boolean problemasRespiratorios, String anotacoesProblemasRespiratorios, boolean cirurgias, String anotacoesCirurgias, boolean exerciciosFisicos, int frequenciaExercicios, boolean alcool, String frequenciaAlcool, boolean alergiaMedicacao, String anotacoesAlergiaMedicacao, boolean alergiaAlimento, String anotacoesAlergiaAlimento, boolean tratamentoMedicoAtual, String anotacoesTratamento, boolean marcaPasso, boolean medicamentoContinuo, String anotacoesMedicamentoContinuo) {
+    public Anamnese(boolean diabetes, boolean hipertensao, boolean hipotensao, boolean tabagismo, boolean epilepsia, boolean proteseDentaria, boolean problemasRespiratorios, String anotacoesProblemasRespiratorios, boolean cirurgias, String anotacoesCirurgias, boolean exerciciosFisicos, int frequenciaExercicios, boolean alcool, int frequenciaAlcool, boolean alergiaMedicacao, String anotacoesAlergiaMedicacao, boolean alergiaAlimento, String anotacoesAlergiaAlimento, boolean tratamentoMedicoAtual, String anotacoesTratamento, boolean marcaPasso, boolean medicamentoContinuo, String anotacoesMedicamentoContinuo) {
         this.diabetes = diabetes;
         this.hipertensao = hipertensao;
         this.hipotensao = hipotensao;
@@ -64,7 +64,7 @@ public class Anamnese {
         this.anotacoesMedicamentoContinuo = anotacoesMedicamentoContinuo;
     }
 
-    public Anamnese(int id, boolean diabetes, boolean hipertensao, boolean hipotensao, boolean tabagismo, boolean epilepsia, boolean proteseDentaria, boolean problemasRespiratorios, String anotacoesProblemasRespiratorios, boolean cirurgias, String anotacoesCirurgias, boolean exerciciosFisicos, int frequenciaExercicios, boolean alcool, String frequenciaAlcool, boolean alergiaMedicacao, String anotacoesAlergiaMedicacao, boolean alergiaAlimento, String anotacoesAlergiaAlimento, boolean tratamentoMedicoAtual, String anotacoesTratamento, boolean marcaPasso, boolean medicamentoContinuo, String anotacoesMedicamentoContinuo) {
+    public Anamnese(int id, boolean diabetes, boolean hipertensao, boolean hipotensao, boolean tabagismo, boolean epilepsia, boolean proteseDentaria, boolean problemasRespiratorios, String anotacoesProblemasRespiratorios, boolean cirurgias, String anotacoesCirurgias, boolean exerciciosFisicos, int frequenciaExercicios, boolean alcool, int frequenciaAlcool, boolean alergiaMedicacao, String anotacoesAlergiaMedicacao, boolean alergiaAlimento, String anotacoesAlergiaAlimento, boolean tratamentoMedicoAtual, String anotacoesTratamento, boolean marcaPasso, boolean medicamentoContinuo, String anotacoesMedicamentoContinuo) {
         this.id = id;
         this.diabetes = diabetes;
         this.hipertensao = hipertensao;
@@ -203,11 +203,11 @@ public class Anamnese {
         this.alcool = alcool;
     }
 
-    public String getFrequenciaAlcool() {
+    public int getFrequenciaAlcool() {
         return frequenciaAlcool;
     }
 
-    public void setFrequenciaAlcool(String frequenciaAlcool) {
+    public void setFrequenciaAlcool(int frequenciaAlcool) {
         this.frequenciaAlcool = frequenciaAlcool;
     }
 
@@ -287,7 +287,7 @@ public class Anamnese {
     public String toString() {
         return "Anamnese{" + "id=" + id + ", diabetes=" + diabetes + ", hipertensao=" + hipertensao + ", hipotensao=" + hipotensao + ", tabagismo=" + tabagismo + ", epilepsia=" + epilepsia + ", proteseDentaria=" + proteseDentaria + ", problemasRespiratorios=" + problemasRespiratorios + ", anotacoesProblemasRespiratorios=" + anotacoesProblemasRespiratorios + ", cirurgias=" + cirurgias + ", anotacoesCirurgias=" + anotacoesCirurgias + ", exerciciosFisicos=" + exerciciosFisicos + ", frequenciaExercicios=" + frequenciaExercicios + ", alcool=" + alcool + ", frequenciaAlcool=" + frequenciaAlcool + ", alergiaMedicacao=" + alergiaMedicacao + ", anotacoesAlergiaMedicacao=" + anotacoesAlergiaMedicacao + ", alergiaAlimento=" + alergiaAlimento + ", anotacoesAlergiaAlimento=" + anotacoesAlergiaAlimento + ", tratamentoMedicoAtual=" + tratamentoMedicoAtual + ", anotacoesTratamento=" + anotacoesTratamento + ", marcaPasso=" + marcaPasso + ", medicamentoContinuo=" + medicamentoContinuo + ", anotacoesMedicamentoContinuo=" + anotacoesMedicamentoContinuo + '}';
     }
-    
-    
+
+        
     
 }
