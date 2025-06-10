@@ -37,6 +37,7 @@ public class TelaInicialAdministrador extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         infoAdm = new javax.swing.JMenuItem();
+        logout = new javax.swing.JMenuItem();
         sair = new javax.swing.JMenuItem();
         gerenciar = new javax.swing.JMenu();
         leitos = new javax.swing.JMenu();
@@ -89,6 +90,14 @@ public class TelaInicialAdministrador extends javax.swing.JFrame {
             }
         });
         jMenu1.add(infoAdm);
+
+        logout.setText("Logout");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
+        jMenu1.add(logout);
 
         sair.setText("Sair");
         sair.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -431,6 +440,12 @@ public class TelaInicialAdministrador extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_solicitacoesCadastroActionPerformed
 
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        // TODO add your handling code here:
+        new TelaInicial(admHospital).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_logoutActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem alterarDadosEnfermeiro;
@@ -458,6 +473,7 @@ public class TelaInicialAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenuItem listaFarmaceuticos;
     private javax.swing.JMenuItem listaMedicos;
     private javax.swing.JMenuItem listaTecnicos;
+    private javax.swing.JMenuItem logout;
     private javax.swing.JMenu medicos;
     private javax.swing.JMenuItem novoEnfermeiro;
     private javax.swing.JMenuItem novoFarmaceutico;

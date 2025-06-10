@@ -4,7 +4,9 @@
  */
 package interfaces;
 
+import classes.Paciente;
 import gerenciamento.GerenciamentoHospitalar;
+import gerenciamento.GerenciamentoPaciente;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
@@ -182,20 +184,30 @@ public class TelaInicial extends javax.swing.JFrame {
         // TODO add your handling code here:
         char[] senhaConvertida = senha.getPassword();
         String senhaDigitada = new String(senhaConvertida);
-        if(usuario.getText().length() == 14){
-            usuarioParaCNPJ();
-            System.out.println("Digitado: " + usuario.getText() + " / " + senhaDigitada);
-            if(admHospital.verificaAcessoAdministracao(usuario.getText(), senhaDigitada)){
-                new TelaInicialAdministrador(admHospital).setVisible(true);
-                dispose();
-            } else {
-               JOptionPane.showMessageDialog(null, "Usuário/Senha incorretos. Por favor, tente novamente");
+        switch (usuario.getText().length()) {
+            case 14 -> {
+                usuarioParaCNPJ();
+                System.out.println("Digitado: " + usuario.getText() + " / " + senhaDigitada);
+                if(admHospital.verificaAcessoAdministracao(usuario.getText(), senhaDigitada)){
+                    new TelaInicialAdministrador(admHospital).setVisible(true);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Usuário/Senha incorretos. Por favor, tente novamente");
+                }
             }
-        } else if(usuario.getText().length() == 11){
-            usuarioParaCPF();
-        } else {
-            JOptionPane.showMessageDialog(null, "Quantidade de caracteres no usuário inesperado. Por favor,"
-                    + "verifique e tente novamente.");
+            case 11 -> {
+                usuarioParaCPF();
+                System.out.println("Digitaldo: " + usuario.getText() + " / " + senhaDigitada);
+                if(admHospital.verificaAcessoPaciente(usuario.getText(), senhaDigitada)){
+                    Paciente paciente = admHospital.retornaPaciente(usuario.getText());
+                    new TelaInicialPaciente(new GerenciamentoPaciente(paciente, admHospital)).setVisible(true);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Usuário/Senha incorretos. Por favor, tente novamente");
+                }
+            }
+            default -> JOptionPane.showMessageDialog(null, "Quantidade de caracteres no usuário inesperado. Por favor,"
+                        + "verifique e tente novamente.");
         }
         
         

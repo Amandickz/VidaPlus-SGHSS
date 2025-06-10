@@ -4,39 +4,37 @@
  */
 package classes;
 
+import enums.CicloMenstrual;
+import enums.TipoAnticoncepcional;
+
 /**
  *
  * @author Amanda
  */
 public class AnamneseFeminina extends Anamnese{
     
-    private int id;
     private boolean anticoncepcional;
-    private String anotacaoAnticoncepcional;
-    private int cicloMenstrual;
+    private TipoAnticoncepcional tipoAnticoncepcional;
+    private CicloMenstrual cicloMenstrual;
 
-    public AnamneseFeminina() {
-    }
-
-    public AnamneseFeminina(boolean anticoncepcional, String anotacaoAnticoncepcional, int cicloMenstrual) {
+    public AnamneseFeminina(boolean anticoncepcional, TipoAnticoncepcional tipoAnticoncepcional, CicloMenstrual cicloMenstrual) {
         this.anticoncepcional = anticoncepcional;
-        this.anotacaoAnticoncepcional = anotacaoAnticoncepcional;
+        this.tipoAnticoncepcional = tipoAnticoncepcional;
         this.cicloMenstrual = cicloMenstrual;
     }
 
-    public AnamneseFeminina(int id, boolean anticoncepcional, String anotacaoAnticoncepcional, int cicloMenstrual) {
-        this.id = id;
+    public AnamneseFeminina(boolean anticoncepcional, TipoAnticoncepcional tipoAnticoncepcional, CicloMenstrual cicloMenstrual, boolean diabetes, boolean hipertensao, boolean hipotensao, boolean tabagismo, boolean epilepsia, boolean proteseDentaria, boolean problemasRespiratorios, String anotacoesProblemasRespiratorios, boolean cirurgias, String anotacoesCirurgias, boolean exerciciosFisicos, int frequenciaExercicios, boolean alcool, int frequenciaAlcool, boolean alergiaMedicacao, String anotacoesAlergiaMedicacao, boolean alergiaAlimento, String anotacoesAlergiaAlimento, boolean tratamentoMedicoAtual, String anotacoesTratamento, boolean marcaPasso, boolean medicamentoContinuo, String anotacoesMedicamentoContinuo) {
+        super(diabetes, hipertensao, hipotensao, tabagismo, epilepsia, proteseDentaria, problemasRespiratorios, anotacoesProblemasRespiratorios, cirurgias, anotacoesCirurgias, exerciciosFisicos, frequenciaExercicios, alcool, frequenciaAlcool, alergiaMedicacao, anotacoesAlergiaMedicacao, alergiaAlimento, anotacoesAlergiaAlimento, tratamentoMedicoAtual, anotacoesTratamento, marcaPasso, medicamentoContinuo, anotacoesMedicamentoContinuo);
         this.anticoncepcional = anticoncepcional;
-        this.anotacaoAnticoncepcional = anotacaoAnticoncepcional;
+        this.tipoAnticoncepcional = tipoAnticoncepcional;
         this.cicloMenstrual = cicloMenstrual;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public AnamneseFeminina(boolean anticoncepcional, TipoAnticoncepcional tipoAnticoncepcional, CicloMenstrual cicloMenstrual, int id, boolean diabetes, boolean hipertensao, boolean hipotensao, boolean tabagismo, boolean epilepsia, boolean proteseDentaria, boolean problemasRespiratorios, String anotacoesProblemasRespiratorios, boolean cirurgias, String anotacoesCirurgias, boolean exerciciosFisicos, int frequenciaExercicios, boolean alcool, int frequenciaAlcool, boolean alergiaMedicacao, String anotacoesAlergiaMedicacao, boolean alergiaAlimento, String anotacoesAlergiaAlimento, boolean tratamentoMedicoAtual, String anotacoesTratamento, boolean marcaPasso, boolean medicamentoContinuo, String anotacoesMedicamentoContinuo) {
+        super(id, diabetes, hipertensao, hipotensao, tabagismo, epilepsia, proteseDentaria, problemasRespiratorios, anotacoesProblemasRespiratorios, cirurgias, anotacoesCirurgias, exerciciosFisicos, frequenciaExercicios, alcool, frequenciaAlcool, alergiaMedicacao, anotacoesAlergiaMedicacao, alergiaAlimento, anotacoesAlergiaAlimento, tratamentoMedicoAtual, anotacoesTratamento, marcaPasso, medicamentoContinuo, anotacoesMedicamentoContinuo);
+        this.anticoncepcional = anticoncepcional;
+        this.tipoAnticoncepcional = tipoAnticoncepcional;
+        this.cicloMenstrual = cicloMenstrual;
     }
 
     public boolean isAnticoncepcional() {
@@ -47,27 +45,27 @@ public class AnamneseFeminina extends Anamnese{
         this.anticoncepcional = anticoncepcional;
     }
 
-    public String getAnotacaoAnticoncepcional() {
-        return anotacaoAnticoncepcional;
+    public TipoAnticoncepcional getTipoAnticoncepcional() {
+        return tipoAnticoncepcional;
     }
 
-    public void setAnotacaoAnticoncepcional(String anotacaoAnticoncepcional) {
-        this.anotacaoAnticoncepcional = anotacaoAnticoncepcional;
+    public void setTipoAnticoncepcional(TipoAnticoncepcional tipoAnticoncepcional) {
+        this.tipoAnticoncepcional = tipoAnticoncepcional;
     }
 
-    public int getCicloMenstrual() {
+    public CicloMenstrual getCicloMenstrual() {
         return cicloMenstrual;
     }
 
-    public void setCicloMenstrual(int cicloMenstrual) {
+    public void setCicloMenstrual(CicloMenstrual cicloMenstrual) {
         this.cicloMenstrual = cicloMenstrual;
     }
 
     @Override
     public String toString() {
-        return "AnamneseFeminina{" + "id=" + id + ", anticoncepcional=" + anticoncepcional + ", anotacaoAnticoncepcional=" + anotacaoAnticoncepcional + ", cicloMenstrual=" + cicloMenstrual + '}';
+        return "AnamneseFeminina{" + "anticoncepcional=" + anticoncepcional + ", tipoAnticoncepcional=" + tipoAnticoncepcional + ", cicloMenstrual=" + cicloMenstrual + '}';
     }
+
     
-    
-    
+
 }

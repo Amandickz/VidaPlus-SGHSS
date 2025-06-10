@@ -124,7 +124,8 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
         statusCadastro = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        infoAdm = new javax.swing.JMenuItem();
+        logout = new javax.swing.JMenuItem();
         sair = new javax.swing.JMenuItem();
         gerenciar = new javax.swing.JMenu();
         leitos = new javax.swing.JMenu();
@@ -138,6 +139,9 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
         verificarSuprimentos = new javax.swing.JMenuItem();
         internacoes = new javax.swing.JMenu();
         verificarInternacoes = new javax.swing.JMenuItem();
+        pacientes = new javax.swing.JMenu();
+        solicitacoesCadastro = new javax.swing.JMenuItem();
+        verificarPacientes = new javax.swing.JMenuItem();
         recursosHumanos = new javax.swing.JMenu();
         medicos = new javax.swing.JMenu();
         novoMedico = new javax.swing.JMenuItem();
@@ -225,8 +229,21 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
 
         jMenu1.setText("Geral");
 
-        jMenuItem3.setText("Informações Administrativas");
-        jMenu1.add(jMenuItem3);
+        infoAdm.setText("Informações Administrativas");
+        infoAdm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                infoAdmActionPerformed(evt);
+            }
+        });
+        jMenu1.add(infoAdm);
+
+        logout.setText("Logout");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
+        jMenu1.add(logout);
 
         sair.setText("Sair");
         sair.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -305,6 +322,21 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
         internacoes.add(verificarInternacoes);
 
         gerenciar.add(internacoes);
+
+        pacientes.setText("Pacientes");
+
+        solicitacoesCadastro.setText("Solicitações de Cadastro");
+        solicitacoesCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solicitacoesCadastroActionPerformed(evt);
+            }
+        });
+        pacientes.add(solicitacoesCadastro);
+
+        verificarPacientes.setText("Verificar Pacientes");
+        pacientes.add(verificarPacientes);
+
+        gerenciar.add(pacientes);
 
         jMenuBar1.add(gerenciar);
 
@@ -524,6 +556,27 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_alterarStatusCadastroActionPerformed
 
+    private void tabelaPacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaPacientesMouseClicked
+        // TODO add your handling code here:
+        if(evt.getClickCount() == 1){
+            int linhaClicada = tabelaPacientes.getSelectedRow();
+            String cpfLinha = (String) tabelaPacientes.getValueAt(linhaClicada, 0);
+            exibeDados(cpfLinha);
+        }
+    }//GEN-LAST:event_tabelaPacientesMouseClicked
+
+    private void infoAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoAdmActionPerformed
+        // TODO add your handling code here:
+        new TelaInformacoesAdministrador(admHospital).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_infoAdmActionPerformed
+
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        // TODO add your handling code here:
+        new TelaInicial(admHospital).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_logoutActionPerformed
+
     private void sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_sairMouseClicked
@@ -535,7 +588,7 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
 
     private void cadastrarLeitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarLeitoActionPerformed
         // TODO add your handling code here:
-        new TelaAprovacaoPaciente(admHospital).setVisible(true);
+        new TelaCadastroLeito(admHospital).setVisible(true);
         dispose();
     }//GEN-LAST:event_cadastrarLeitoActionPerformed
 
@@ -562,6 +615,12 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
     private void alterarEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarEstoqueActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_alterarEstoqueActionPerformed
+
+    private void solicitacoesCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solicitacoesCadastroActionPerformed
+        // TODO add your handling code here:
+        new TelaAprovacaoPaciente(admHospital).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_solicitacoesCadastroActionPerformed
 
     private void novoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoMedicoActionPerformed
         // TODO add your handling code here:
@@ -631,15 +690,6 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_listaFarmaceuticosActionPerformed
 
-    private void tabelaPacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaPacientesMouseClicked
-        // TODO add your handling code here:
-        if(evt.getClickCount() == 1){
-            int linhaClicada = tabelaPacientes.getSelectedRow();
-            String cpfLinha = (String) tabelaPacientes.getValueAt(linhaClicada, 0);
-            exibeDados(cpfLinha);
-        }
-    }//GEN-LAST:event_tabelaPacientesMouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem alterarDadosEnfermeiro;
@@ -660,6 +710,7 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
     private javax.swing.JMenuItem especialidadeMedico;
     private javax.swing.JMenu farmaceuticos;
     private javax.swing.JMenu gerenciar;
+    private javax.swing.JMenuItem infoAdm;
     private javax.swing.JMenu internacoes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -671,7 +722,6 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JMenu leitos;
@@ -679,6 +729,7 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
     private javax.swing.JMenuItem listaFarmaceuticos;
     private javax.swing.JMenuItem listaMedicos;
     private javax.swing.JMenuItem listaTecnicos;
+    private javax.swing.JMenuItem logout;
     private javax.swing.JMenu medicos;
     private javax.swing.JTextField nomeCompleto;
     private javax.swing.JMenuItem novoEnfermeiro;
@@ -686,8 +737,10 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
     private javax.swing.JMenuItem novoMedico;
     private javax.swing.JMenuItem novoSuprimento;
     private javax.swing.JMenuItem novoTecnico;
+    private javax.swing.JMenu pacientes;
     private javax.swing.JMenu recursosHumanos;
     private javax.swing.JMenuItem sair;
+    private javax.swing.JMenuItem solicitacoesCadastro;
     private javax.swing.JComboBox<String> statusCadastro;
     private javax.swing.JMenu suprimentos;
     private javax.swing.JTable tabelaPacientes;
@@ -695,6 +748,7 @@ public class TelaAprovacaoPaciente extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField telefonePaciente;
     private javax.swing.JMenuItem verificarInternacoes;
     private javax.swing.JMenuItem verificarLeitos;
+    private javax.swing.JMenuItem verificarPacientes;
     private javax.swing.JMenuItem verificarSuprimentos;
     private javax.swing.JButton voltar;
     // End of variables declaration//GEN-END:variables
