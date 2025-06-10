@@ -17,6 +17,11 @@ import classes.ProfissionalSaude;
 import classes.Suprimento;
 import classes.Tecnico;
 import enums.CadastroPaciente;
+import enums.Estado;
+import enums.Matriz;
+import enums.Porte;
+import enums.SituacaoCadastral;
+import enums.TipoConta;
 import java.util.ArrayList;
 
 /**
@@ -39,6 +44,42 @@ public class GerenciamentoHospitalar {
     ArrayList<Suprimento> suprimentos = new ArrayList<>();
 
     public GerenciamentoHospitalar() {
+        Administracao administracao = new Administracao();
+        administracao.setId(1);
+        administracao.setCnpj("11.111.111/0001-11");
+        administracao.setDataDeAbertura("05/06/2025");
+        administracao.setRazaoSocial("Hospital da UNINTER LTDA");
+        administracao.setNomeFantasia("Hospital UNINTER Cuidados Básicos e Intensivos");
+        administracao.setPorte(Porte.TRES);
+        administracao.setEmail("hospital@uninter.com");
+        administracao.setTelefone("(11) 11111-1111");
+        administracao.setSituacaoCadastral(SituacaoCadastral.CINCO);
+        administracao.setDataDaSituacao("05/06/2025");
+        administracao.setIndicadorMatriz(Matriz.UM);
+        
+        Login login = new Login();
+        login.setUsuario(administracao.getCnpj());
+        login.setSenha("admin");
+        login.setTipoConta(TipoConta.A);
+        login = retornaLoginComID(login);
+        cadastraLogin(login);
+        
+        administracao.setIdLogin(login.getId());
+        
+        Endereco endereco = new Endereco();
+        endereco.setCep("11111-111");
+        endereco.setLogradouro("Rua Teste");
+        endereco.setNumero(111);
+        endereco.setComplemento("Prédio Verde");
+        endereco.setBairro("Divino");
+        endereco.setMunicipio("Palmas");
+        endereco.setUf(Estado.PARANÁ);
+        endereco = retornaEnderecoComID(endereco);
+        cadastraEndereco(endereco);
+        
+        administracao.setIdEndereco(endereco.getId());
+        
+        setAdministracao(administracao);
     }
 
     public Administracao getAdministracao() {
@@ -132,6 +173,39 @@ public class GerenciamentoHospitalar {
         }
         
         return true;
+    }
+    
+    public boolean verificaAcessoPaciente(String usuario, String senha){
+        Login login = new Login();
+        for(Login l : logins){
+            if(l.getUsuario().equals(usuario)){
+                login = l;
+            }
+        }
+        
+        System.out.println("Login localizado: " + login);
+        
+        if(login.getUsuario() == null){
+            return false;
+        } else if(login.getUsuario().equals(usuario)){
+            if(login.getSenha().equals(senha)){
+                return true;
+            }
+        } else {
+            return false;
+        }
+        
+        return false;
+    }
+    
+    public Paciente retornaPaciente(String cpf){
+        Paciente paciente = null;
+        for(Paciente p : pacientes){
+            if(p.getCpf().equals(cpf)){
+                paciente = p;
+            }
+        }
+        return paciente;
     }
     
     

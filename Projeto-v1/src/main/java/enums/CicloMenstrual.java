@@ -10,8 +10,9 @@ package enums;
  */
 public enum CicloMenstrual {
     
-    UM("REGULAR"),
-    DOIS("IRREGULAR");
+    UM("NÃO SEI"),
+    DOIS("REGULAR"),
+    DTRES("IRREGULAR");
     
     private String cicloMenstrual;
 

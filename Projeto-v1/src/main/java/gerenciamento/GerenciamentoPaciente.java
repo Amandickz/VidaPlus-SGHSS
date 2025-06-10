@@ -5,6 +5,7 @@
 package gerenciamento;
 
 import classes.Paciente;
+import enums.Sexo;
 
 /**
  *
@@ -21,6 +22,10 @@ public class GerenciamentoPaciente {
     public boolean novaAnamnese(){
         
         return true;
+    }
+    
+    public Sexo retornaSexo(){
+        return paciente.getSexo();
     }
     
 }

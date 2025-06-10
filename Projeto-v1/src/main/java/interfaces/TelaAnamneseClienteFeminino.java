@@ -4,6 +4,9 @@
  */
 package interfaces;
 
+import enums.CicloMenstrual;
+import enums.Sexo;
+import enums.TipoAnticoncepcional;
 import gerenciamento.GerenciamentoPaciente;
 
 /**
@@ -20,8 +23,37 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.gerenciamentoPaciente = gerenciamentoPaciente;
+        preencheListaCiclo();
+        preencheListaAnticoncepcional();
+        desativacaoCampos();
     }
     
+    
+    private void preencheListaCiclo(){
+        listaCiclo.removeAllItems();
+        for(CicloMenstrual cm : CicloMenstrual.values()){
+            listaCiclo.addItem(cm.getCicloMenstrual());
+        }
+    }
+    
+    private void preencheListaAnticoncepcional(){
+        listaAnticoncepcional.removeAllItems();
+        for(TipoAnticoncepcional ta : TipoAnticoncepcional.values()){
+            listaAnticoncepcional.addItem(ta.getTipoAnticoncepcional());
+        }
+    }
+    
+    private void desativacaoCampos(){
+        anotacoesRespiratorios.setEnabled(false);
+        anotacoesCirurgias.setEnabled(false);
+        exerciciosDias.setEnabled(false);
+        bebidaDias.setEnabled(false);
+        anotacoesAlergias.setEnabled(false);
+        anotacoesAlimentos.setEnabled(false);
+        descricaoTratamentoAtual.setEnabled(false);
+        descricaoMedicacoes.setEnabled(false);
+        listaAnticoncepcional.setEnabled(false);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,7 +78,7 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
         problemasRespiratorios = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
         anotacoesRespiratorios = new javax.swing.JTextField();
-        problemasRespiratorios1 = new javax.swing.JCheckBox();
+        cirurgias = new javax.swing.JCheckBox();
         jLabel5 = new javax.swing.JLabel();
         anotacoesCirurgias = new javax.swing.JTextField();
         exerciciosFisicos = new javax.swing.JCheckBox();
@@ -69,12 +101,12 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
         medicacaoContinuo = new javax.swing.JCheckBox();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        descricaoMedicacoes = new javax.swing.JTextArea();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel12 = new javax.swing.JLabel();
         listaCiclo = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        usoAnticoncepcional = new javax.swing.JCheckBox();
         jLabel14 = new javax.swing.JLabel();
         listaAnticoncepcional = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
@@ -110,19 +142,29 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
         proteseDentaria.setText("Prótese Dentária");
 
         problemasRespiratorios.setText("Problemas Respiratórios");
+        problemasRespiratorios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                problemasRespiratoriosActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Se sim, descreva quais:");
 
-        problemasRespiratorios1.setText("Cirurgias");
-        problemasRespiratorios1.addActionListener(new java.awt.event.ActionListener() {
+        cirurgias.setText("Cirurgias");
+        cirurgias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                problemasRespiratorios1ActionPerformed(evt);
+                cirurgiasActionPerformed(evt);
             }
         });
 
         jLabel5.setText("Se sim, descreva quais:");
 
         exerciciosFisicos.setText("Exercícios Físicos");
+        exerciciosFisicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exerciciosFisicosActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Quantas vezes por semana:");
 
@@ -136,6 +178,11 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
         jLabel7.setText("Quantas vezes por semana:");
 
         alergiaMedicamento.setText("Alergia a Medicamento(s)");
+        alergiaMedicamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alergiaMedicamentoActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Se sim, descreva quais:");
 
@@ -149,6 +196,11 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
         jLabel9.setText("Se sim, descreva quais:");
 
         tratamentoAtual.setText("Algum tratamento atual?");
+        tratamentoAtual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tratamentoAtualActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("Se sim, descreva sobre ele:");
 
@@ -159,12 +211,17 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
         marcaPasso.setText("Utiliza Marca Passo?");
 
         medicacaoContinuo.setText("Utiliza Medicação de uso Contínuo?");
+        medicacaoContinuo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                medicacaoContinuoActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("Se Sim, qual(is)?");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        descricaoMedicacoes.setColumns(20);
+        descricaoMedicacoes.setRows(5);
+        jScrollPane2.setViewportView(descricaoMedicacoes);
 
         jLabel12.setText("Ciclo Menstrual: ");
 
@@ -172,7 +229,12 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
 
         jLabel13.setText("Usa Anticoncepcional:");
 
-        jCheckBox1.setText("Sim");
+        usoAnticoncepcional.setText("Sim");
+        usoAnticoncepcional.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usoAnticoncepcionalActionPerformed(evt);
+            }
+        });
 
         jLabel14.setText("Se sim, qual?");
 
@@ -221,18 +283,18 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(alcool, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(exerciciosFisicos, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(exerciciosFisicos, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(exerciciosDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(exerciciosDias, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(alcool, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bebidaDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(bebidaDias)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(marcaPasso)
@@ -246,7 +308,7 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox1)
+                                .addComponent(usoAnticoncepcional)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -271,7 +333,7 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(anotacoesAlergias))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(problemasRespiratorios1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cirurgias, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -341,19 +403,23 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
                     .addComponent(anotacoesRespiratorios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(problemasRespiratorios1)
+                    .addComponent(cirurgias)
                     .addComponent(jLabel5)
                     .addComponent(anotacoesCirurgias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(exerciciosFisicos)
-                    .addComponent(jLabel6)
-                    .addComponent(exerciciosDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(alcool)
-                    .addComponent(jLabel7)
-                    .addComponent(bebidaDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(exerciciosFisicos)
+                        .addGap(18, 18, 18)
+                        .addComponent(alcool))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(exerciciosDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(bebidaDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(alergiaMedicamento)
@@ -385,7 +451,7 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(listaCiclo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
-                    .addComponent(jCheckBox1)
+                    .addComponent(usoAnticoncepcional)
                     .addComponent(jLabel14)
                     .addComponent(listaAnticoncepcional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -400,7 +466,7 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
 
     private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        dispose();
     }//GEN-LAST:event_sairActionPerformed
 
     private void meusDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meusDadosActionPerformed
@@ -411,17 +477,50 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_anamneseActionPerformed
 
-    private void problemasRespiratorios1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_problemasRespiratorios1ActionPerformed
+    private void cirurgiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cirurgiasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_problemasRespiratorios1ActionPerformed
+        anotacoesCirurgias.setEnabled(cirurgias.isSelected());
+    }//GEN-LAST:event_cirurgiasActionPerformed
 
     private void alcoolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alcoolActionPerformed
         // TODO add your handling code here:
+        bebidaDias.setEnabled(alcool.isSelected());
     }//GEN-LAST:event_alcoolActionPerformed
 
     private void alergiaAlimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alergiaAlimentosActionPerformed
         // TODO add your handling code here:
+        anotacoesAlimentos.setEnabled(alergiaAlimentos.isSelected());
     }//GEN-LAST:event_alergiaAlimentosActionPerformed
+
+    private void problemasRespiratoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_problemasRespiratoriosActionPerformed
+        // TODO add your handling code here:
+        anotacoesRespiratorios.setEnabled(problemasRespiratorios.isSelected());
+    }//GEN-LAST:event_problemasRespiratoriosActionPerformed
+
+    private void exerciciosFisicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exerciciosFisicosActionPerformed
+        // TODO add your handling code here:
+        exerciciosDias.setEnabled(exerciciosFisicos.isSelected());
+    }//GEN-LAST:event_exerciciosFisicosActionPerformed
+
+    private void alergiaMedicamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alergiaMedicamentoActionPerformed
+        // TODO add your handling code here:
+        anotacoesAlergias.setEnabled(alergiaMedicamento.isSelected());
+    }//GEN-LAST:event_alergiaMedicamentoActionPerformed
+
+    private void tratamentoAtualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tratamentoAtualActionPerformed
+        // TODO add your handling code here:
+        descricaoTratamentoAtual.setEnabled(tratamentoAtual.isSelected());
+    }//GEN-LAST:event_tratamentoAtualActionPerformed
+
+    private void medicacaoContinuoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medicacaoContinuoActionPerformed
+        // TODO add your handling code here:
+        descricaoMedicacoes.setEnabled(medicacaoContinuo.isSelected());
+    }//GEN-LAST:event_medicacaoContinuoActionPerformed
+
+    private void usoAnticoncepcionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usoAnticoncepcionalActionPerformed
+        // TODO add your handling code here:
+        listaAnticoncepcional.setEnabled(usoAnticoncepcional.isSelected());
+    }//GEN-LAST:event_usoAnticoncepcionalActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -434,7 +533,9 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
     private javax.swing.JTextField anotacoesCirurgias;
     private javax.swing.JTextField anotacoesRespiratorios;
     private javax.swing.JTextField bebidaDias;
+    private javax.swing.JCheckBox cirurgias;
     private javax.swing.JMenu consultas;
+    private javax.swing.JTextArea descricaoMedicacoes;
     private javax.swing.JTextArea descricaoTratamentoAtual;
     private javax.swing.JCheckBox diabetes;
     private javax.swing.JCheckBox epilepsia;
@@ -444,7 +545,6 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
     private javax.swing.JCheckBox hipotensao;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -465,17 +565,16 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JComboBox<String> listaAnticoncepcional;
     private javax.swing.JComboBox<String> listaCiclo;
     private javax.swing.JCheckBox marcaPasso;
     private javax.swing.JCheckBox medicacaoContinuo;
     private javax.swing.JMenu meusDados;
     private javax.swing.JCheckBox problemasRespiratorios;
-    private javax.swing.JCheckBox problemasRespiratorios1;
     private javax.swing.JCheckBox proteseDentaria;
     private javax.swing.JMenu sair;
     private javax.swing.JCheckBox tabagismo;
     private javax.swing.JCheckBox tratamentoAtual;
+    private javax.swing.JCheckBox usoAnticoncepcional;
     // End of variables declaration//GEN-END:variables
 }

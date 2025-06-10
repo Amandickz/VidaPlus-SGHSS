@@ -29,7 +29,7 @@ public class Main {
         
         GerenciamentoHospitalar admHospital = new GerenciamentoHospitalar();
         
-        Administracao administracao = new Administracao();
+        /*Administracao administracao = new Administracao();
         administracao.setId(1);
         administracao.setCnpj("11.111.111/0001-11");
         administracao.setDataDeAbertura("05/06/2025");
@@ -64,7 +64,7 @@ public class Main {
         
         administracao.setIdEndereco(endereco.getId());
         
-        admHospital.setAdministracao(administracao);
+        admHospital.setAdministracao(administracao);*/
         
         TelaInicial telaInicial = new TelaInicial(admHospital);
         telaInicial.setVisible(true);

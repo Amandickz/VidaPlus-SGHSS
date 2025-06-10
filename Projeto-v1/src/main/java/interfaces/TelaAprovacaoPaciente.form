@@ -14,10 +14,21 @@
             <Property name="text" type="java.lang.String" value="Geral"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+            <MenuItem class="javax.swing.JMenuItem" name="infoAdm">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Informa&#xe7;&#xf5;es Administrativas"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="infoAdmActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="logout">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Logout"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="sair">
               <Properties>
@@ -107,6 +118,26 @@
                 <MenuItem class="javax.swing.JMenuItem" name="verificarInternacoes">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Verificar Interna&#xe7;&#xf5;es"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <Menu class="javax.swing.JMenu" name="pacientes">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pacientes"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="solicitacoesCadastro">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Solicita&#xe7;&#xf5;es de Cadastro"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="solicitacoesCadastroActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="verificarPacientes">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Verificar Pacientes"/>
                   </Properties>
                 </MenuItem>
               </SubComponents>

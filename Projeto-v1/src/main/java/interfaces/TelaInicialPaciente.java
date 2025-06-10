@@ -4,6 +4,7 @@
  */
 package interfaces;
 
+import enums.Sexo;
 import gerenciamento.GerenciamentoPaciente;
 
 /**
@@ -98,7 +99,11 @@ public class TelaInicialPaciente extends javax.swing.JFrame {
 
     private void anamneseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anamneseActionPerformed
         // TODO add your handling code here:
-        new TelaAnamneseClienteFeminino(gerenciamentoPaciente).setVisible(true);
+        if(gerenciamentoPaciente.retornaSexo().equals(Sexo.F)){
+            new TelaAnamneseClienteFeminino(gerenciamentoPaciente).setVisible(true);
+        } else {
+            
+        }
         dispose();
     }//GEN-LAST:event_anamneseActionPerformed
 
