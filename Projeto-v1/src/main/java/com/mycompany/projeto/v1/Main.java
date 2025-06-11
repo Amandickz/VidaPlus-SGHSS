@@ -6,7 +6,6 @@ package com.mycompany.projeto.v1;
 
 import gerenciamento.GerenciamentoHospitalar;
 import interfaces.TelaInicial;
-import java.util.Scanner;
 
 /**
  *
@@ -16,6 +15,16 @@ public class Main {
 
     public static void main(String[] args) {
         
+        GerenciamentoHospitalar admHospital = new GerenciamentoHospitalar();
+
+        TelaInicial telaInicial = new TelaInicial(admHospital);
+        telaInicial.setVisible(true);
+      
+    }
+}
+
+/*
+        //Teste de geração de horários para o calendário de consulta
         
         Scanner scan = new Scanner(System.in);
         
@@ -32,12 +41,4 @@ public class Main {
             for(int j = 00; j < 60; j = j + intervalo){
                 System.out.println(i + ":" + j);
             }
-        }
-        
-        /*GerenciamentoHospitalar admHospital = new GerenciamentoHospitalar();
-
-        TelaInicial telaInicial = new TelaInicial(admHospital);
-        telaInicial.setVisible(true);*/
-      
-    }
-}
+        }*/
