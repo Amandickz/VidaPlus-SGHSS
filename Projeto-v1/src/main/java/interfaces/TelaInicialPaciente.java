@@ -46,6 +46,11 @@ public class TelaInicialPaciente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         sair.setText("Sair");
+        sair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sairMouseClicked(evt);
+            }
+        });
         sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sairActionPerformed(evt);
@@ -101,12 +106,17 @@ public class TelaInicialPaciente extends javax.swing.JFrame {
     private void anamneseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anamneseActionPerformed
         // TODO add your handling code here:
         if(gerenciamentoPaciente.retornaSexo().equals(Sexo.F)){
-            new TelaAnamneseClienteFeminino(gerenciamentoPaciente).setVisible(true);
+            new TelaAnamneseCliente(gerenciamentoPaciente).setVisible(true);
         } else {
             
         }
         dispose();
     }//GEN-LAST:event_anamneseActionPerformed
+
+    private void sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_sairMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

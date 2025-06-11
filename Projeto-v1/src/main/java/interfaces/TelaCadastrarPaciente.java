@@ -652,7 +652,7 @@ public class TelaCadastrarPaciente extends javax.swing.JFrame {
         pessoa = admHospital.retornaPessoaComID(pessoa);
         
         //Criar Objeto Paciente
-        Paciente paciente = new Paciente(numCartao, ocupacaoPaciente, CadastroPaciente.DOIS, 
+        Paciente paciente = new Paciente(numCartao, ocupacaoPaciente, CadastroPaciente.DOIS, null, 
                 pessoa.getId(), pessoa.getCpf(), pessoa.getNomeCompleto(), pessoa.getNomeSocial(), 
                 pessoa.getDataNascimento(), pessoa.getSexo(), pessoa.getNomeMae(), pessoa.getNomePai(), 
                 pessoa.getNaturalidade(), pessoa.getUf(), pessoa.getNacionalidade(), pessoa.getRaca(), 
@@ -682,6 +682,8 @@ public class TelaCadastrarPaciente extends javax.swing.JFrame {
 
     private void sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseClicked
         // TODO add your handling code here:
+        new TelaInicial(admHospital).setVisible(true);
+        dispose();
     }//GEN-LAST:event_sairMouseClicked
 
     private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
