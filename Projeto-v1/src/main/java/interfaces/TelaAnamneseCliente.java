@@ -16,19 +16,24 @@ import javax.swing.JOptionPane;
  *
  * @author Amanda
  */
-public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
+public class TelaAnamneseCliente extends javax.swing.JFrame {
 
     GerenciamentoPaciente gerenciamentoPaciente;
     /**
      * Creates new form TelaInicialAdministrador
      */
-    public TelaAnamneseClienteFeminino(GerenciamentoPaciente gerenciamentoPaciente){
+    public TelaAnamneseCliente(GerenciamentoPaciente gerenciamentoPaciente){
         initComponents();
         this.setLocationRelativeTo(null);
         this.gerenciamentoPaciente = gerenciamentoPaciente;
         preencheListaCiclo();
         preencheListaAnticoncepcional();
         desativacaoCampos();
+        if(gerenciamentoPaciente.retornaSexo().equals(Sexo.M)){
+            listaCiclo.setEnabled(false);
+            usoAnticoncepcional.setEnabled(false);
+            listaAnticoncepcional.setEnabled(false);
+        }
     }
     
     
@@ -554,6 +559,7 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
     private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
         // TODO add your handling code here:
         Anamnese anamnese = new Anamnese();
+        anamnese.setId(1);
         anamnese.setDiabetes(diabetes.isSelected());
         anamnese.setHipertensao(hipertensao.isSelected());
         anamnese.setHipotensao(hipotensao.isSelected());
@@ -598,25 +604,40 @@ public class TelaAnamneseClienteFeminino extends javax.swing.JFrame {
             anamnese.setAnotacoesMedicamentoContinuo(descricaoMedicacoes.getText());
         }
         
-        AnamneseFeminina anamneseFeminina = null;
+        boolean anticoncepcional = false;
+        TipoAnticoncepcional tipo = TipoAnticoncepcional.UM;
+        CicloMenstrual ciclo = CicloMenstrual.UM;
         if(gerenciamentoPaciente.retornaSexo().equals(Sexo.F)){
-            anamneseFeminina.setAnticoncepcional(usoAnticoncepcional.isSelected());
+            anticoncepcional = usoAnticoncepcional.isSelected();
             if(usoAnticoncepcional.isSelected()){
                 for(TipoAnticoncepcional ta : TipoAnticoncepcional.values()){
                     if(listaAnticoncepcional.getSelectedItem().toString().equals(ta.getTipoAnticoncepcional())){
-                        anamneseFeminina.setTipoAnticoncepcional(ta);
+                        tipo = ta;
                     }
                 }
             }
             for(CicloMenstrual cm : CicloMenstrual.values()){
                 if(listaCiclo.getSelectedItem().toString().equals(cm.getCicloMenstrual())){
-                    anamneseFeminina.setCicloMenstrual(cm);
+                    ciclo = cm;
                 }
             }
-        }
-        
-        if(gerenciamentoPaciente.novaAnamnese(anamnese, anamneseFeminina)){
-            JOptionPane.showMessageDialog(null, "Anamnese Realizada!");
+            AnamneseFeminina anamneseFeminina = new AnamneseFeminina(anticoncepcional, tipo, ciclo,
+                    anamnese.getId(), anamnese.isDiabetes(), anamnese.isHipertensao(), anamnese.isHipotensao(),
+                    anamnese.isTabagismo(), anamnese.isEpilepsia(), anamnese.isProteseDentaria(),
+                    anamnese.isProblemasRespiratorios(), anamnese.getAnotacoesProblemasRespiratorios(),
+                    anamnese.isCirurgias(), anamnese.getAnotacoesCirurgias(), anamnese.isExerciciosFisicos(),
+                    anamnese.getFrequenciaExercicios(), anamnese.isAlcool(), anamnese.getFrequenciaAlcool(),
+                    anamnese.isAlergiaMedicacao(), anamnese.getAnotacoesAlergiaMedicacao(), anamnese.isAlergiaAlimento(),
+                    anamnese.getAnotacoesAlergiaAlimento(), anamnese.isTratamentoMedicoAtual(), anamnese.getAnotacoesTratamento(),
+                    anamnese.isMarcaPasso(), anamnese.isMedicamentoContinuo(), anamnese.getAnotacoesMedicamentoContinuo());
+            
+            if(gerenciamentoPaciente.novaAnamnese(anamneseFeminina)){
+                JOptionPane.showMessageDialog(null, "Anamnese realizada!\n Obrigada por responder as perguntas.");
+            }
+        } else {
+            if(gerenciamentoPaciente.novaAnamnese(anamnese)){
+                JOptionPane.showMessageDialog(null, "Anamnese realizada!\n Obrigada por responder as perguntas.");
+            }
         }
         
         new TelaInicialPaciente(gerenciamentoPaciente).setVisible(true);

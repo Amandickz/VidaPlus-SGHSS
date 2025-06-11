@@ -11,16 +11,14 @@ import gerenciamento.GerenciamentoPaciente;
  *
  * @author Amanda
  */
-public class TelaInicialPaciente extends javax.swing.JFrame {
+public class TelaInicialMedico extends javax.swing.JFrame {
 
-    GerenciamentoPaciente gerenciamentoPaciente;
     /**
      * Creates new form TelaInicialAdministrador
      */
-    public TelaInicialPaciente(GerenciamentoPaciente gerenciamentoPaciente){
+    public TelaInicialMedico(){
         initComponents();
         this.setLocationRelativeTo(null);
-        this.gerenciamentoPaciente = gerenciamentoPaciente;
     }
     
 
@@ -36,9 +34,6 @@ public class TelaInicialPaciente extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuBar2 = new javax.swing.JMenuBar();
         sair = new javax.swing.JMenu();
-        consultas = new javax.swing.JMenu();
-        meusDados = new javax.swing.JMenu();
-        anamnese = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -56,26 +51,6 @@ public class TelaInicialPaciente extends javax.swing.JFrame {
             }
         });
         jMenuBar2.add(sair);
-
-        consultas.setText("Consultas");
-        jMenuBar2.add(consultas);
-
-        meusDados.setText("Meus Dados");
-        meusDados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                meusDadosActionPerformed(evt);
-            }
-        });
-
-        anamnese.setText("Anamnese");
-        anamnese.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                anamneseActionPerformed(evt);
-            }
-        });
-        meusDados.add(anamnese);
-
-        jMenuBar2.add(meusDados);
 
         setJMenuBar(jMenuBar2);
 
@@ -98,20 +73,6 @@ public class TelaInicialPaciente extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_sairActionPerformed
 
-    private void meusDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meusDadosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_meusDadosActionPerformed
-
-    private void anamneseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anamneseActionPerformed
-        // TODO add your handling code here:
-        if(gerenciamentoPaciente.retornaSexo().equals(Sexo.F)){
-            new TelaAnamneseCliente(gerenciamentoPaciente).setVisible(true);
-        } else {
-            
-        }
-        dispose();
-    }//GEN-LAST:event_anamneseActionPerformed
-
     private void sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseClicked
         // TODO add your handling code here:
         System.exit(0);
@@ -119,11 +80,8 @@ public class TelaInicialPaciente extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem anamnese;
-    private javax.swing.JMenu consultas;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenu meusDados;
     private javax.swing.JMenu sair;
     // End of variables declaration//GEN-END:variables
 }

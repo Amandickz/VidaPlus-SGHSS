@@ -19,25 +19,29 @@ public class Paciente extends Pessoa{
     private String cartaoSus;
     private String ocupacao;
     private CadastroPaciente cadastro;
+    private Anamnese anamnese;
 
-    public Paciente(String cartaoSus, String ocupacao, CadastroPaciente cadastro) {
+    public Paciente(String cartaoSus, String ocupacao, CadastroPaciente cadastro, Anamnese anamnese) {
         this.cartaoSus = cartaoSus;
         this.ocupacao = ocupacao;
         this.cadastro = cadastro;
+        this.anamnese = anamnese;
     }
 
-    public Paciente(String cartaoSus, String ocupacao, CadastroPaciente cadastro, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
+    public Paciente(String cartaoSus, String ocupacao, CadastroPaciente cadastro, Anamnese anamnese, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
         super(cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco, idLogin);
         this.cartaoSus = cartaoSus;
         this.ocupacao = ocupacao;
         this.cadastro = cadastro;
+        this.anamnese = anamnese;
     }
 
-    public Paciente(String cartaoSus, String ocupacao, CadastroPaciente cadastro, int id, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
+    public Paciente(String cartaoSus, String ocupacao, CadastroPaciente cadastro, Anamnese anamnese, int id, String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, Sexo sexo, String nomeMae, String nomePai, String naturalidade, Estado uf, Nacionalidade nacionalidade, RacaCorEtnia raca, String telefone, String email, int idEndereco, int idLogin) {
         super(id, cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, nomeMae, nomePai, naturalidade, uf, nacionalidade, raca, telefone, email, idEndereco, idLogin);
         this.cartaoSus = cartaoSus;
         this.ocupacao = ocupacao;
         this.cadastro = cadastro;
+        this.anamnese = anamnese;
     }
 
     public String getCartaoSus() {
@@ -64,9 +68,16 @@ public class Paciente extends Pessoa{
         this.cadastro = cadastro;
     }
 
+    public Anamnese getAnamnese() {
+        return anamnese;
+    }
+
+    public void setAnamnese(Anamnese anamnese) {
+        this.anamnese = anamnese;
+    }
+
     @Override
     public String toString() {
-        return "Paciente{" + "cartaoSus=" + cartaoSus + ", ocupacao=" + ocupacao + ", cadastro=" + cadastro + '}';
+        return "Paciente{" + "cartaoSus=" + cartaoSus + ", ocupacao=" + ocupacao + ", cadastro=" + cadastro + ", anamnese=" + anamnese + '}';
     }
-    
 }

@@ -22,3 +22,23 @@ public class Main {
       
     }
 }
+
+/*
+        //Teste de geração de horários para o calendário de consulta
+        
+        Scanner scan = new Scanner(System.in);
+        
+        System.out.println("Digite o horário inicial:");
+        int inicial = scan.nextInt();
+        System.out.println("Digite o horário final:");
+        int hfinal = scan.nextInt();
+        System.out.println("Digite o intervalo de minutos entre uma consulta e outra:");
+        int intervalo = scan.nextInt();
+        
+        System.out.println();
+        System.out.println("---- Tabela de Horas ----");
+        for(int i = inicial; i <= hfinal; i++){
+            for(int j = 00; j < 60; j = j + intervalo){
+                System.out.println(i + ":" + j);
+            }
+        }*/

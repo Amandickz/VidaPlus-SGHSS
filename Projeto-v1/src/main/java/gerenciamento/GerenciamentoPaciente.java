@@ -17,16 +17,18 @@ public class GerenciamentoPaciente {
     
     Paciente paciente;
     GerenciamentoHospitalar admHospitalar;
-    Anamnese anamnese;
-    AnamneseFeminina anamneseFeminina;
 
     public GerenciamentoPaciente(Paciente paciente, GerenciamentoHospitalar admHospitalar) {
         this.paciente = paciente;
         this.admHospitalar = admHospitalar;
     }
     
-    public boolean novaAnamnese(Anamnese anamnese, AnamneseFeminina anamneseFeminina){
-        
+    public boolean novaAnamnese(Anamnese anamnese){
+        System.out.println();
+        System.out.println("----- Anamnese Cadastrada -----");
+        paciente.setAnamnese(anamnese);
+        System.out.println(paciente.getAnamnese());
+        System.out.println();
         return true;
     }
     
