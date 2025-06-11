@@ -5,7 +5,6 @@
 package interfaces;
 
 import enums.Sexo;
-import gerenciamento.GerenciamentoHospitalar;
 import gerenciamento.GerenciamentoPaciente;
 
 /**
