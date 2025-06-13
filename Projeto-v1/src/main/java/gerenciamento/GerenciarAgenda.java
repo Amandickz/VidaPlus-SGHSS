@@ -23,8 +23,21 @@ public class GerenciarAgenda {
         return datasDisponiveis;
     }
     
-    public ArrayList<Agenda> gerarNovasConsultas(String data, String hora, IntervaloConsultas intervalo){
-        
+    public ArrayList<Agenda> gerarNovasConsultas(String horaInicial, String horaFinal, IntervaloConsultas intervalo){
+        String[] quebraInicio = horaInicial.split(":");
+        String[] quebraFim = horaFinal.split(":");
+        System.out.println();
+        System.out.println("inicio parte 1: " + quebraInicio[0]);
+        System.out.println("inicio parte 2: " + quebraInicio[1]);
+        for(int i = Integer.parseInt(quebraInicio[0]); i < Integer.parseInt(quebraFim[0]); i++){//Contagem Hora
+            for(int j = Integer.parseInt(quebraInicio[1]); j < 60; j = j + 15){//Contagem Minutos
+                if(j < 9){
+                    System.out.println(i + ":" + j + "0");
+                } else {
+                    System.out.println(i + ":" + j);
+                }
+            }
+        }
         return null;
     }
     

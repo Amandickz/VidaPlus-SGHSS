@@ -289,7 +289,7 @@ public class TelaCadastroDatasConsultas extends javax.swing.JFrame {
     private void criarConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarConsultasActionPerformed
         // TODO add your handling code here:
         
-                
+        agendaMedica.gerarNovasConsultas("12:00", "13:00", IntervaloConsultas.TRES);
         
     }//GEN-LAST:event_criarConsultasActionPerformed
 
