@@ -13,18 +13,18 @@ public class Agenda {
     private int id;
     private String data;
     private String hora;
-    private int status;
+    private boolean status;
 
     public Agenda() {
     }
 
-    public Agenda(String data, String hora, int status) {
+    public Agenda(String data, String hora, boolean status) {
         this.data = data;
         this.hora = hora;
         this.status = status;
     }
 
-    public Agenda(int id, String data, String hora, int status) {
+    public Agenda(int id, String data, String hora, boolean status) {
         this.id = id;
         this.data = data;
         this.hora = hora;
@@ -55,17 +55,19 @@ public class Agenda {
         this.hora = hora;
     }
 
-    public int getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 
     @Override
     public String toString() {
         return "Agenda{" + "id=" + id + ", data=" + data + ", hora=" + hora + ", status=" + status + '}';
-    }    
+    }
+
+    
     
 }

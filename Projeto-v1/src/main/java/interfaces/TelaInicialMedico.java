@@ -4,8 +4,7 @@
  */
 package interfaces;
 
-import enums.Sexo;
-import gerenciamento.GerenciamentoPaciente;
+import gerenciamento.GerenciarAgenda;
 
 /**
  *
@@ -13,12 +12,15 @@ import gerenciamento.GerenciamentoPaciente;
  */
 public class TelaInicialMedico extends javax.swing.JFrame {
 
+    GerenciarAgenda agendaMedica = new GerenciarAgenda();
+    
     /**
      * Creates new form TelaInicialAdministrador
      */
-    public TelaInicialMedico(){
+    public TelaInicialMedico(GerenciarAgenda agendaMedica){
         initComponents();
         this.setLocationRelativeTo(null);
+        this.agendaMedica = agendaMedica;
     }
     
 
@@ -34,6 +36,8 @@ public class TelaInicialMedico extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuBar2 = new javax.swing.JMenuBar();
         sair = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
+        addNovasDatas = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -51,6 +55,18 @@ public class TelaInicialMedico extends javax.swing.JFrame {
             }
         });
         jMenuBar2.add(sair);
+
+        jMenu1.setText("Minha Agenda");
+
+        addNovasDatas.setText("Adicionar Novas Datas");
+        addNovasDatas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addNovasDatasActionPerformed(evt);
+            }
+        });
+        jMenu1.add(addNovasDatas);
+
+        jMenuBar2.add(jMenu1);
 
         setJMenuBar(jMenuBar2);
 
@@ -78,8 +94,16 @@ public class TelaInicialMedico extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_sairMouseClicked
 
+    private void addNovasDatasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNovasDatasActionPerformed
+        // TODO add your handling code here:
+        new TelaNovasDatas(agendaMedica).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_addNovasDatasActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem addNovasDatas;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu sair;
