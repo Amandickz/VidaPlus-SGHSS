@@ -4,10 +4,24 @@
  */
 package gerenciamento;
 
+import classes.Consulta;
+import java.util.ArrayList;
+
 /**
  *
  * @author Amanda
  */
 public class GerenciarConsulta {
+    
+    ArrayList<Consulta> consultasMarcadas = new ArrayList<>();
+
+    public GerenciarConsulta() {
+    }
+
+    public ArrayList<Consulta> getConsultasMarcadas() {
+        return consultasMarcadas;
+    }
+    
+    
     
 }
