@@ -5,6 +5,8 @@
 package com.mycompany.projeto.v1;
 
 import gerenciamento.GerenciamentoHospitalar;
+import gerenciamento.GerenciarAgenda;
+import interfaces.TelaCadastroDatasConsultas;
 import interfaces.TelaInicial;
 
 /**
@@ -15,11 +17,13 @@ public class Main {
 
     public static void main(String[] args) {
         
-        GerenciamentoHospitalar admHospital = new GerenciamentoHospitalar();
+        /*GerenciamentoHospitalar admHospital = new GerenciamentoHospitalar();
 
         TelaInicial telaInicial = new TelaInicial(admHospital);
-        telaInicial.setVisible(true);
-      
+        telaInicial.setVisible(true);*/
+        
+        new TelaCadastroDatasConsultas(new GerenciarAgenda()).setVisible(true);
+
     }
 }
 

@@ -10,7 +10,7 @@ package enums;
  */
 public enum IntervaloConsultas {
     
-    UM("A CADA 10 MIN"),
+    UM("A CADA 10 MINUTOS"),
     DOIS("A CADA 15 MINUTOS"),
     TRES("A CADA 30 MINUTOS"),
     QUATRO("A CADA 45 MINUTOS"),

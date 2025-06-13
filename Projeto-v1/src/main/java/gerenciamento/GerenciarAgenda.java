@@ -5,6 +5,7 @@
 package gerenciamento;
 
 import classes.Agenda;
+import enums.IntervaloConsultas;
 import java.util.ArrayList;
 
 /**
@@ -22,8 +23,9 @@ public class GerenciarAgenda {
         return datasDisponiveis;
     }
     
-    public boolean addNovaData(String data, String hora){
-        return true;
+    public ArrayList<Agenda> gerarNovasConsultas(String data, String hora, IntervaloConsultas intervalo){
+        
+        return null;
     }
     
 }
