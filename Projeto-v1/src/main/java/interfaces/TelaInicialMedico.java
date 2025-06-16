@@ -6,6 +6,8 @@ package interfaces;
 
 import classes.Medico;
 import gerenciamento.GerenciarAgenda;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -24,6 +26,10 @@ public class TelaInicialMedico extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.agendaMedica = agendaMedica;
         this.medico = medico;
+        LocalDate hoje = LocalDate.now();
+        DateTimeFormatter formataData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String dataAtual = hoje.format(formataData);
+        this.dataAtual.setText("Data: " + dataAtual);
     }
     
 
@@ -37,6 +43,10 @@ public class TelaInicialMedico extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        consultasDia = new javax.swing.JTable();
+        dataAtual = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         sair = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
@@ -45,6 +55,35 @@ public class TelaInicialMedico extends javax.swing.JFrame {
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("Minhas Consultas do Dia");
+
+        consultasDia.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Horário", "Paciente"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        consultasDia.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(consultasDia);
+        if (consultasDia.getColumnModel().getColumnCount() > 0) {
+            consultasDia.getColumnModel().getColumn(0).setPreferredWidth(15);
+        }
+
+        dataAtual.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        dataAtual.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        dataAtual.setText("Label da Data Atual");
 
         sair.setText("Sair");
         sair.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -77,11 +116,25 @@ public class TelaInicialMedico extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 835, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 262, Short.MAX_VALUE)
+                .addComponent(dataAtual, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 751, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(dataAtual))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(244, Short.MAX_VALUE))
         );
 
         pack();
@@ -106,9 +159,13 @@ public class TelaInicialMedico extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addNovasDatas;
+    private javax.swing.JTable consultasDia;
+    private javax.swing.JLabel dataAtual;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenu sair;
     // End of variables declaration//GEN-END:variables
 }
