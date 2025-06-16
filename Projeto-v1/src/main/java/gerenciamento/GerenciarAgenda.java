@@ -14,31 +14,69 @@ import java.util.ArrayList;
  */
 public class GerenciarAgenda {
     
-    ArrayList<Agenda> datasDisponiveis = new ArrayList<>();
+    ArrayList<Agenda> agendaCompleta = new ArrayList<>();
 
     public GerenciarAgenda() {
     }
 
-    public ArrayList<Agenda> getDatasDisponiveis() {
-        return datasDisponiveis;
+    public ArrayList<Agenda> getAgendaCompleta() {
+        return agendaCompleta;
     }
     
-    public ArrayList<Agenda> gerarNovasConsultas(String horaInicial, String horaFinal, IntervaloConsultas intervalo){
+    public ArrayList<Agenda> gerarNovasConsultas(String data, String horaInicial, String horaFinal, IntervaloConsultas intervalo){
+        ArrayList<Agenda> listaHorarios = new ArrayList<>();
+        int tempo = 0, cont = 0;
+        switch (intervalo) {
+            case UM -> {
+                tempo = 10;
+            }
+            case DOIS -> {
+                tempo = 15;
+            }
+            case TRES -> {
+                tempo = 30;
+            }
+            case QUATRO -> {
+                tempo = 45;
+            }
+            case CINCO -> {
+                tempo = 60; 
+            }
+            default -> throw new AssertionError();
+        }
         String[] quebraInicio = horaInicial.split(":");
         String[] quebraFim = horaFinal.split(":");
-        System.out.println();
-        System.out.println("inicio parte 1: " + quebraInicio[0]);
-        System.out.println("inicio parte 2: " + quebraInicio[1]);
         for(int i = Integer.parseInt(quebraInicio[0]); i < Integer.parseInt(quebraFim[0]); i++){//Contagem Hora
-            for(int j = Integer.parseInt(quebraInicio[1]); j < 60; j = j + 15){//Contagem Minutos
+            for(int j = Integer.parseInt(quebraInicio[1]); j < 60; j = j + tempo){//Contagem Minutos
+                Agenda consulta = new Agenda();
+                consulta.setId(cont);
+                consulta.setData(data);
                 if(j < 9){
-                    System.out.println(i + ":" + j + "0");
+                    consulta.setHora(i + ":" + j + "0");
                 } else {
-                    System.out.println(i + ":" + j);
+                    consulta.setHora(i + ":" + j);
                 }
+                consulta.setStatus(true);
+                listaHorarios.add(consulta);
+                cont++;
             }
         }
-        return null;
+        return listaHorarios;
+    }
+    
+    public boolean adicionarAgenda(ArrayList<Agenda> novosHorarios){
+        for(Agenda a : novosHorarios){
+            a.setId(agendaCompleta.size() + 1);
+            agendaCompleta.add(a);
+        }
+        
+        System.out.println();
+        System.out.println("--- Agenda Médica ---");
+        for(Agenda a : agendaCompleta){
+            System.out.println(a);
+        }
+        
+        return true;
     }
     
 }

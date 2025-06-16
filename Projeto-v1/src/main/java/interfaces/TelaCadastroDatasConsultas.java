@@ -4,8 +4,12 @@
  */
 package interfaces;
 
+import classes.Agenda;
+import classes.Medico;
 import enums.IntervaloConsultas;
 import gerenciamento.GerenciarAgenda;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -14,16 +18,19 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaCadastroDatasConsultas extends javax.swing.JFrame {
 
-    GerenciarAgenda agendaMedica = new GerenciarAgenda();
+    GerenciarAgenda agendaMedica;
     DefaultTableModel consultas;
+    Medico medico;
+    ArrayList<Agenda> todosHorarios = new ArrayList<>();
     
     /**
      * Creates new form TelaInicialAdministrador
      */
-    public TelaCadastroDatasConsultas(GerenciarAgenda agendaMedica){
+    public TelaCadastroDatasConsultas(GerenciarAgenda agendaMedica, Medico medico){
         initComponents();
         this.setLocationRelativeTo(null);
         this.agendaMedica = agendaMedica;
+        this.medico = medico;
         preencheListaTempo();
         
         consultas = (DefaultTableModel) consultasCriadas.getModel();
@@ -34,6 +41,20 @@ public class TelaCadastroDatasConsultas extends javax.swing.JFrame {
         for(IntervaloConsultas ic : IntervaloConsultas.values()){
             tempoConsulta.addItem(ic.getIntervaloConsultas());
         }
+    }
+    
+    private void atualizaTabela(){
+        consultas.setRowCount(0);
+        for(Agenda a : todosHorarios){
+            consultas.addRow(new Object[]{a.getData(), a.getHora(), a.isStatus()});
+        }
+    }
+    
+    private void limpaCampos(){
+        dataConsulta.setText("");
+        horaInicial.setText("");
+        horaFinal.setText("");
+        preencheListaTempo();
     }
     
 
@@ -139,6 +160,11 @@ public class TelaCadastroDatasConsultas extends javax.swing.JFrame {
         jScrollPane1.setViewportView(consultasCriadas);
 
         finalizar.setText("Finalizar");
+        finalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finalizarActionPerformed(evt);
+            }
+        });
 
         cancelar.setText("Cancelar");
         cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -148,6 +174,11 @@ public class TelaCadastroDatasConsultas extends javax.swing.JFrame {
         });
 
         remover.setText("Remover Consulta");
+        remover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removerActionPerformed(evt);
+            }
+        });
 
         sair.setText("Sair");
         sair.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -195,24 +226,23 @@ public class TelaCadastroDatasConsultas extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)
                             .addComponent(jSeparator1)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(tempoConsulta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(dataConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(horaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(horaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tempoConsulta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dataConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(horaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(horaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jSeparator2)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -282,16 +312,61 @@ public class TelaCadastroDatasConsultas extends javax.swing.JFrame {
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         // TODO add your handling code here:
-        new TelaInicialMedico(agendaMedica).setVisible(true);
+        new TelaInicialMedico(agendaMedica, medico).setVisible(true);
         dispose();
     }//GEN-LAST:event_cancelarActionPerformed
 
     private void criarConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarConsultasActionPerformed
         // TODO add your handling code here:
         
-        agendaMedica.gerarNovasConsultas("12:00", "13:00", IntervaloConsultas.TRES);
+        String data = dataConsulta.getText();
+        String horarioInicial = horaInicial.getText();
+        String horarioFinal = horaFinal.getText();
         
+        IntervaloConsultas intervalo = null;
+        
+        for(IntervaloConsultas ic : IntervaloConsultas.values()){
+            if(tempoConsulta.getSelectedItem().toString().equals(ic.getIntervaloConsultas())){
+                intervalo = ic;
+            }
+        }
+        
+        ArrayList<Agenda> consultasGeradas = agendaMedica.gerarNovasConsultas(data, horarioInicial, horarioFinal, intervalo);
+                
+        for(Agenda a : consultasGeradas){
+            a.setId(todosHorarios.size() + 1);
+            todosHorarios.add(a);
+        }
+        
+        atualizaTabela();
+        limpaCampos();
     }//GEN-LAST:event_criarConsultasActionPerformed
+
+    private void removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerActionPerformed
+        // TODO add your handling code here:
+        int linhaSelecionada = consultasCriadas.getSelectedRow();
+        if(linhaSelecionada != -1){
+            Agenda a = todosHorarios.get(linhaSelecionada);
+            int escolha = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja remover esta consulta?\n"
+                    + "Data: " + a.getData() + "\nHorário: " + a.getHora(),
+                    "Confirmar Remoção" + a.getHora(), JOptionPane.YES_NO_OPTION);
+            if(escolha == JOptionPane.YES_OPTION){
+                todosHorarios.remove(linhaSelecionada);
+                atualizaTabela();
+                limpaCampos();
+                JOptionPane.showMessageDialog(null, "Consulta removida!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhuma consulta selecionada!");
+        }
+    }//GEN-LAST:event_removerActionPerformed
+
+    private void finalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarActionPerformed
+        // TODO add your handling code here:
+        agendaMedica.adicionarAgenda(todosHorarios);
+        new TelaInicialMedico(agendaMedica, medico).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_finalizarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
