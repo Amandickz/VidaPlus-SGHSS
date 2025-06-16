@@ -4,9 +4,13 @@
  */
 package interfaces;
 
+import classes.Login;
+import classes.Medico;
 import classes.Paciente;
+import enums.TipoConta;
 import gerenciamento.GerenciamentoHospitalar;
 import gerenciamento.GerenciamentoPaciente;
+import gerenciamento.GerenciarAgenda;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
@@ -24,6 +28,7 @@ public class TelaInicial extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.admHospital = admHospital;
+        this.admHospital.imprimiLogins();
     }
     
     private void usuarioParaCNPJ(){
@@ -48,6 +53,11 @@ public class TelaInicial extends javax.swing.JFrame {
         }catch(Exception e){
             System.out.println("Erro ao converter CNPJ");
         }
+    }
+    
+    private void limparCampos(){
+        usuario.setText("");
+        senha.setText("");
     }
 
     /**
@@ -184,33 +194,54 @@ public class TelaInicial extends javax.swing.JFrame {
         // TODO add your handling code here:
         char[] senhaConvertida = senha.getPassword();
         String senhaDigitada = new String(senhaConvertida);
+        System.out.println("Digitado: " + usuario.getText() + " / " + senhaDigitada);
         switch (usuario.getText().length()) {
             case 14 -> {
                 usuarioParaCNPJ();
-                System.out.println("Digitado: " + usuario.getText() + " / " + senhaDigitada);
                 if(admHospital.verificaAcessoAdministracao(usuario.getText(), senhaDigitada)){
                     new TelaInicialAdministrador(admHospital).setVisible(true);
                     dispose();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Usuário/Senha incorretos. Por favor, tente novamente");
+                    JOptionPane.showMessageDialog(null, "Usuário/Senha incorretos. Por favor, tente novamente.");
                 }
             }
             case 11 -> {
                 usuarioParaCPF();
-                System.out.println("Digitaldo: " + usuario.getText() + " / " + senhaDigitada);
-                if(admHospital.verificaAcessoPaciente(usuario.getText(), senhaDigitada)){
-                    Paciente paciente = admHospital.retornaPaciente(usuario.getText());
-                    new TelaInicialPaciente(new GerenciamentoPaciente(paciente, admHospital)).setVisible(true);
-                    dispose();
+                Login login = admHospital.buscaLogin(usuario.getText(), senhaDigitada);
+                System.out.println("Login Localizado: " + login);
+                if(login == null){
+                    JOptionPane.showMessageDialog(null, "Usuário/Senha incorretos. Por favor, tente novamente.");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Usuário/Senha incorretos. Por favor, tente novamente");
+                    TipoConta conta = login.getTipoConta();
+                    
+                    switch (conta) {
+                        case P -> {
+                            Paciente paciente = admHospital.buscaPacientePorLogin(login.getId());
+                            if(paciente != null){
+                                new TelaInicialPaciente(new GerenciamentoPaciente(paciente, admHospital)).setVisible(true);
+                                dispose();
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Erro ao recuperar informações!");
+                            }
+                        }
+                        case M -> {
+                            Medico medico = admHospital.buscaMedicoPorLogin(login.getId());
+                            if(medico != null){
+                                new TelaInicialMedico(new GerenciarAgenda(), medico).setVisible(true);
+                                dispose();
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Erro ao recuperar informações!");
+                            }
+                        }
+                        default -> throw new AssertionError();
+                    }
                 }
             }
             default -> JOptionPane.showMessageDialog(null, "Quantidade de caracteres no usuário inesperado. Por favor,"
                         + "verifique e tente novamente.");
         }
         
-        
+        limparCampos();
     }//GEN-LAST:event_entrarActionPerformed
 
     private void sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseClicked

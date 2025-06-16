@@ -44,6 +44,13 @@ public class GerenciamentoHospitalar {
     ArrayList<Suprimento> suprimentos = new ArrayList<>();
 
     public GerenciamentoHospitalar() {
+    }
+
+    public Administracao getAdministracao() {
+        return administracao;
+    }
+
+    public void setAdministracao() {
         Administracao administracao = new Administracao();
         administracao.setId(1);
         administracao.setCnpj("11.111.111/0001-11");
@@ -79,14 +86,6 @@ public class GerenciamentoHospitalar {
         
         administracao.setIdEndereco(endereco.getId());
         
-        setAdministracao(administracao);
-    }
-
-    public Administracao getAdministracao() {
-        return administracao;
-    }
-
-    public void setAdministracao(Administracao administracao) {
         this.administracao = administracao;
     }
     
@@ -147,6 +146,15 @@ public class GerenciamentoHospitalar {
         return true;
     }
     
+    public Paciente buscaPacientePorLogin(int idLogin){
+        for(Paciente p : pacientes){
+            if(p.getIdLogin() == idLogin){
+                return p;
+            }
+        }
+        return null;
+    }
+    
     public Paciente buscaPacientePorCPF(String cpf){
         Paciente paciente = null;
         for(Paciente p : pacientes){
@@ -173,29 +181,6 @@ public class GerenciamentoHospitalar {
         }
         
         return true;
-    }
-    
-    public boolean verificaAcessoPaciente(String usuario, String senha){
-        Login login = new Login();
-        for(Login l : logins){
-            if(l.getUsuario().equals(usuario)){
-                login = l;
-            }
-        }
-        
-        System.out.println("Login localizado: " + login);
-        
-        if(login.getUsuario() == null){
-            return false;
-        } else if(login.getUsuario().equals(usuario)){
-            if(login.getSenha().equals(senha)){
-                return true;
-            }
-        } else {
-            return false;
-        }
-        
-        return false;
     }
     
     public Paciente retornaPaciente(String cpf){
@@ -234,6 +219,15 @@ public class GerenciamentoHospitalar {
         System.out.println(medico);
         System.out.println();
         return true;
+    }
+    
+    public Medico buscaMedicoPorLogin(int idLogin){
+        for(Medico m : medicos){
+            if(m.getIdLogin() == idLogin){
+                return m;
+            }
+        }
+        return null;
     }
     
     //Gerenciamento do Profissional de Saúde - Enfermeiro
@@ -326,6 +320,29 @@ public class GerenciamentoHospitalar {
     public boolean cadastraLogin(Login login){
         logins.add(login);
         return true;
+    }
+    
+    public Login buscaLogin(String usuario, String senha){
+        Login login = new Login();
+        for(Login l : logins){
+            System.out.println("Login: " + l);
+            if(l.getUsuario().equals(usuario)){
+                if(l.getSenha().equals(senha)){
+                    login.setId(l.getId());
+                    login.setUsuario(l.getUsuario());
+                    login.setSenha(l.getSenha());
+                    login.setTipoConta(l.getTipoConta());
+                    return login;
+                }
+            }
+        }
+        return null;
+    }
+    
+    public void imprimiLogins(){
+        for(Login l : logins){
+            System.out.println(l);
+        }
     }
     
     //Gerenciamento de Endereço

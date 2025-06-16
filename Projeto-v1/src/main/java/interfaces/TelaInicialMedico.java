@@ -4,6 +4,7 @@
  */
 package interfaces;
 
+import classes.Medico;
 import gerenciamento.GerenciarAgenda;
 
 /**
@@ -12,15 +13,17 @@ import gerenciamento.GerenciarAgenda;
  */
 public class TelaInicialMedico extends javax.swing.JFrame {
 
-    GerenciarAgenda agendaMedica = new GerenciarAgenda();
+    GerenciarAgenda agendaMedica;
+    Medico medico;
     
     /**
      * Creates new form TelaInicialAdministrador
      */
-    public TelaInicialMedico(GerenciarAgenda agendaMedica){
+    public TelaInicialMedico(GerenciarAgenda agendaMedica, Medico medico){
         initComponents();
         this.setLocationRelativeTo(null);
         this.agendaMedica = agendaMedica;
+        this.medico = medico;
     }
     
 
@@ -96,7 +99,7 @@ public class TelaInicialMedico extends javax.swing.JFrame {
 
     private void addNovasDatasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNovasDatasActionPerformed
         // TODO add your handling code here:
-        new TelaCadastroDatasConsultas(agendaMedica).setVisible(true);
+        new TelaCadastroDatasConsultas(agendaMedica, medico).setVisible(true);
         dispose();
     }//GEN-LAST:event_addNovasDatasActionPerformed
 
