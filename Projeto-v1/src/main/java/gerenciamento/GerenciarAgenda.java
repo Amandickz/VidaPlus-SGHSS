@@ -56,7 +56,7 @@ public class GerenciarAgenda {
                 } else {
                     consulta.setHora(i + ":" + j);
                 }
-                consulta.setStatus(false);
+                consulta.setStatus(true);
                 listaHorarios.add(consulta);
                 cont++;
             }

@@ -18,6 +18,7 @@ public class TelaCadastroDatasConsultas extends javax.swing.JFrame {
 
     GerenciarAgenda agendaMedica = new GerenciarAgenda();
     DefaultTableModel consultas;
+    ArrayList<Agenda> todosHorarios = new ArrayList<>();
     
     /**
      * Creates new form TelaInicialAdministrador
@@ -36,6 +37,20 @@ public class TelaCadastroDatasConsultas extends javax.swing.JFrame {
         for(IntervaloConsultas ic : IntervaloConsultas.values()){
             tempoConsulta.addItem(ic.getIntervaloConsultas());
         }
+    }
+    
+    private void atualizaTabela(){
+        consultas.setRowCount(0);
+        for(Agenda a : todosHorarios){
+            consultas.addRow(new Object[]{a.getData(), a.getHora(), a.isStatus()});
+        }
+    }
+    
+    private void limpaCampos(){
+        dataConsulta.setText("");
+        horaInicial.setText("");
+        horaFinal.setText("");
+        preencheListaTempo();
     }
     
 
@@ -307,8 +322,13 @@ public class TelaCadastroDatasConsultas extends javax.swing.JFrame {
         System.out.println("----- Consultas Geradas -----");
         
         for(Agenda a : consultasGeradas){
+            a.setId(todosHorarios.size() + 1);
             System.out.println(a);
+            todosHorarios.add(a);
         }
+        
+        atualizaTabela();
+        limpaCampos();
         
     }//GEN-LAST:event_criarConsultasActionPerformed
 
