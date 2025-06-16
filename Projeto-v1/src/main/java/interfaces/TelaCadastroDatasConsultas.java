@@ -157,6 +157,11 @@ public class TelaCadastroDatasConsultas extends javax.swing.JFrame {
         jScrollPane1.setViewportView(consultasCriadas);
 
         finalizar.setText("Finalizar");
+        finalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finalizarActionPerformed(evt);
+            }
+        });
 
         cancelar.setText("Cancelar");
         cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -324,12 +329,9 @@ public class TelaCadastroDatasConsultas extends javax.swing.JFrame {
         }
         
         ArrayList<Agenda> consultasGeradas = agendaMedica.gerarNovasConsultas(data, horarioInicial, horarioFinal, intervalo);
-        
-        System.out.println("----- Consultas Geradas -----");
-        
+                
         for(Agenda a : consultasGeradas){
             a.setId(todosHorarios.size() + 1);
-            System.out.println(a);
             todosHorarios.add(a);
         }
         
@@ -340,7 +342,6 @@ public class TelaCadastroDatasConsultas extends javax.swing.JFrame {
     private void removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerActionPerformed
         // TODO add your handling code here:
         int linhaSelecionada = consultasCriadas.getSelectedRow();
-        System.out.println(linhaSelecionada);
         if(linhaSelecionada != -1){
             Agenda a = todosHorarios.get(linhaSelecionada);
             int escolha = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja remover esta consulta?\n"
@@ -356,6 +357,13 @@ public class TelaCadastroDatasConsultas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Nenhuma consulta selecionada!");
         }
     }//GEN-LAST:event_removerActionPerformed
+
+    private void finalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarActionPerformed
+        // TODO add your handling code here:
+        agendaMedica.adicionarAgenda(todosHorarios);
+        new TelaInicialMedico(agendaMedica).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_finalizarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
