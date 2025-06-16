@@ -8,6 +8,7 @@ import classes.Agenda;
 import enums.IntervaloConsultas;
 import gerenciamento.GerenciarAgenda;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -165,6 +166,11 @@ public class TelaCadastroDatasConsultas extends javax.swing.JFrame {
         });
 
         remover.setText("Remover Consulta");
+        remover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removerActionPerformed(evt);
+            }
+        });
 
         sair.setText("Sair");
         sair.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -329,8 +335,27 @@ public class TelaCadastroDatasConsultas extends javax.swing.JFrame {
         
         atualizaTabela();
         limpaCampos();
-        
     }//GEN-LAST:event_criarConsultasActionPerformed
+
+    private void removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerActionPerformed
+        // TODO add your handling code here:
+        int linhaSelecionada = consultasCriadas.getSelectedRow();
+        System.out.println(linhaSelecionada);
+        if(linhaSelecionada != -1){
+            Agenda a = todosHorarios.get(linhaSelecionada);
+            int escolha = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja remover esta consulta?\n"
+                    + "Data: " + a.getData() + "\nHorário: " + a.getHora(),
+                    "Confirmar Remoção" + a.getHora(), JOptionPane.YES_NO_OPTION);
+            if(escolha == JOptionPane.YES_OPTION){
+                todosHorarios.remove(linhaSelecionada);
+                atualizaTabela();
+                limpaCampos();
+                JOptionPane.showMessageDialog(null, "Consulta removida!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhuma consulta selecionada!");
+        }
+    }//GEN-LAST:event_removerActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
