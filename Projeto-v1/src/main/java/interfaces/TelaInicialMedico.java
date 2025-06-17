@@ -4,10 +4,13 @@
  */
 package interfaces;
 
-import classes.Medico;
-import gerenciamento.GerenciarAgenda;
+import classes.Agenda;
+import gerenciamento.GerenciamentoMedico;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,21 +18,37 @@ import java.time.format.DateTimeFormatter;
  */
 public class TelaInicialMedico extends javax.swing.JFrame {
 
-    GerenciarAgenda agendaMedica;
-    Medico medico;
+    GerenciamentoMedico gerenciamentoMedico;
+    DefaultTableModel listaConsultasDia;
+    String dataConvertida;
     
     /**
      * Creates new form TelaInicialAdministrador
      */
-    public TelaInicialMedico(GerenciarAgenda agendaMedica, Medico medico){
+    public TelaInicialMedico(GerenciamentoMedico agendaMedica){
         initComponents();
         this.setLocationRelativeTo(null);
-        this.agendaMedica = agendaMedica;
-        this.medico = medico;
+        this.gerenciamentoMedico = agendaMedica;
         LocalDate hoje = LocalDate.now();
         DateTimeFormatter formataData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String dataAtual = hoje.format(formataData);
-        this.dataAtual.setText("Data: " + dataAtual);
+        dataConvertida = hoje.format(formataData);
+        this.dataAtual.setText("Data: " + dataConvertida);
+        
+        listaConsultasDia = (DefaultTableModel) consultasDia.getModel();
+        preencheTabela();
+    }
+    
+    private void preencheTabela(){
+        listaConsultasDia.setRowCount(0);
+        ArrayList<Agenda> listaConsultas = gerenciamentoMedico.consultasDia(dataConvertida);
+        if(listaConsultas.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Olá Dr(a). " + gerenciamentoMedico.getMedico().getNomeCompleto()
+            + "\nHoje não há consultas agendadas.");
+        } else {
+            for(Agenda a : listaConsultas){
+                listaConsultasDia.addRow(new Object[]{a.getHora(), "Teste " + a.getId()});
+            }
+        }
     }
     
 
@@ -152,7 +171,7 @@ public class TelaInicialMedico extends javax.swing.JFrame {
 
     private void addNovasDatasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNovasDatasActionPerformed
         // TODO add your handling code here:
-        new TelaCadastroDatasConsultas(agendaMedica, medico).setVisible(true);
+        new TelaCadastroDatasConsultas(gerenciamentoMedico).setVisible(true);
         dispose();
     }//GEN-LAST:event_addNovasDatasActionPerformed
 

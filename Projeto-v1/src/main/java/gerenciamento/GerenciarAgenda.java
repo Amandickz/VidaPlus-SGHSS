@@ -13,14 +13,8 @@ import java.util.ArrayList;
  * @author Amanda
  */
 public class GerenciarAgenda {
-    
-    ArrayList<Agenda> agendaCompleta = new ArrayList<>();
 
     public GerenciarAgenda() {
-    }
-
-    public ArrayList<Agenda> getAgendaCompleta() {
-        return agendaCompleta;
     }
     
     public ArrayList<Agenda> gerarNovasConsultas(String data, String horaInicial, String horaFinal, IntervaloConsultas intervalo){
@@ -64,19 +58,26 @@ public class GerenciarAgenda {
         return listaHorarios;
     }
     
-    public boolean adicionarAgenda(ArrayList<Agenda> novosHorarios){
-        for(Agenda a : novosHorarios){
-            a.setId(agendaCompleta.size() + 1);
-            agendaCompleta.add(a);
+    public ArrayList<Agenda> adicionarAgenda(ArrayList<Agenda> agendaAtual, ArrayList<Agenda> novosHorarios){
+        if(agendaAtual == null){
+            agendaAtual = new ArrayList<>();
+            for(Agenda a : novosHorarios){
+                agendaAtual.add(a);
+            }
+        } else {
+            for(Agenda a : novosHorarios){
+                a.setId(agendaAtual.size() + 1);
+                agendaAtual.add(a);
+            }
         }
         
         System.out.println();
         System.out.println("--- Agenda Médica ---");
-        for(Agenda a : agendaCompleta){
+        for(Agenda a : agendaAtual){
             System.out.println(a);
         }
         
-        return true;
+        return agendaAtual;
     }
     
 }

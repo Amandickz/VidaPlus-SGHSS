@@ -5,9 +5,8 @@
 package interfaces;
 
 import classes.Agenda;
-import classes.Medico;
 import enums.IntervaloConsultas;
-import gerenciamento.GerenciarAgenda;
+import gerenciamento.GerenciamentoMedico;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -18,19 +17,17 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaCadastroDatasConsultas extends javax.swing.JFrame {
 
-    GerenciarAgenda agendaMedica;
+    GerenciamentoMedico gerenciamentoMedico;
     DefaultTableModel consultas;
-    Medico medico;
     ArrayList<Agenda> todosHorarios = new ArrayList<>();
     
     /**
      * Creates new form TelaInicialAdministrador
      */
-    public TelaCadastroDatasConsultas(GerenciarAgenda agendaMedica, Medico medico){
+    public TelaCadastroDatasConsultas(GerenciamentoMedico gerenciamentoMedico){
         initComponents();
         this.setLocationRelativeTo(null);
-        this.agendaMedica = agendaMedica;
-        this.medico = medico;
+        this.gerenciamentoMedico = gerenciamentoMedico;
         preencheListaTempo();
         
         consultas = (DefaultTableModel) consultasCriadas.getModel();
@@ -312,7 +309,7 @@ public class TelaCadastroDatasConsultas extends javax.swing.JFrame {
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         // TODO add your handling code here:
-        new TelaInicialMedico(agendaMedica, medico).setVisible(true);
+        new TelaInicialMedico(gerenciamentoMedico).setVisible(true);
         dispose();
     }//GEN-LAST:event_cancelarActionPerformed
 
@@ -331,7 +328,7 @@ public class TelaCadastroDatasConsultas extends javax.swing.JFrame {
             }
         }
         
-        ArrayList<Agenda> consultasGeradas = agendaMedica.gerarNovasConsultas(data, horarioInicial, horarioFinal, intervalo);
+        ArrayList<Agenda> consultasGeradas = gerenciamentoMedico.criaNovasDatas(data, horarioInicial, horarioFinal, intervalo);
                 
         for(Agenda a : consultasGeradas){
             a.setId(todosHorarios.size() + 1);
@@ -363,8 +360,8 @@ public class TelaCadastroDatasConsultas extends javax.swing.JFrame {
 
     private void finalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarActionPerformed
         // TODO add your handling code here:
-        agendaMedica.adicionarAgenda(todosHorarios);
-        new TelaInicialMedico(agendaMedica, medico).setVisible(true);
+        gerenciamentoMedico.addNovasDatas(todosHorarios);
+        new TelaInicialMedico(gerenciamentoMedico).setVisible(true);
         dispose();
     }//GEN-LAST:event_finalizarActionPerformed
 
