@@ -15,16 +15,18 @@ public class Consulta {
     private String sintomas;
     private String historicoMedico;
     private String historicoFamiliar;
+    private int idAgenda;
 
     public Consulta() {
     }
 
-    public Consulta(int tipo, String queixaPrincipal, String sintomas, String historicoMedico, String historicoFamiliar) {
+    public Consulta(int tipo, String queixaPrincipal, String sintomas, String historicoMedico, String historicoFamiliar, int idAgenda) {
         this.tipo = tipo;
         this.queixaPrincipal = queixaPrincipal;
         this.sintomas = sintomas;
         this.historicoMedico = historicoMedico;
         this.historicoFamiliar = historicoFamiliar;
+        this.idAgenda = idAgenda;
     }
 
     public int getTipo() {
@@ -67,11 +69,18 @@ public class Consulta {
         this.historicoFamiliar = historicoFamiliar;
     }
 
+    public int getIdAgenda() {
+        return idAgenda;
+    }
+
+    public void setIdAgenda(int idAgenda) {
+        this.idAgenda = idAgenda;
+    }
+
     @Override
     public String toString() {
-        return "Consulta{" + "tipo=" + tipo + ", queixaPrincipal=" + queixaPrincipal + ", sintomas=" + sintomas + ", historicoMedico=" + historicoMedico + ", historicoFamiliar=" + historicoFamiliar + '}';
+        return "Consulta{" + "tipo=" + tipo + ", queixaPrincipal=" + queixaPrincipal + ", sintomas=" + sintomas + ", historicoMedico=" + historicoMedico + ", historicoFamiliar=" + historicoFamiliar + ", idAgenda=" + idAgenda + '}';
     }
-    
     
     
 }

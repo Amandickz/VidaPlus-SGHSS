@@ -4,7 +4,15 @@
 
 package com.mycompany.projeto.v1;
 
+import classes.Medico;
+import enums.Especialidades;
+import enums.Estado;
+import enums.Nacionalidade;
+import enums.RacaCorEtnia;
+import enums.Sexo;
+import enums.TipoSanguineo;
 import gerenciamento.GerenciamentoHospitalar;
+import gerenciamento.GerenciamentoMedico;
 import gerenciamento.GerenciarAgenda;
 import interfaces.TelaInicial;
 import interfaces.TelaInicialMedico;
@@ -22,7 +30,9 @@ public class Main {
         
         new TelaInicial(admHospitalar).setVisible(true);*/
         
-        new TelaInicialMedico(new GerenciarAgenda(), null).setVisible(true);
+        Medico medico = new Medico("12345678-9", Estado.ACRE, "", Especialidades.UM, TipoSanguineo.A1, "", "", "", "Amanda", "", "", Sexo.F, "", "", "", Estado.ACRE, Nacionalidade.DOIS, RacaCorEtnia.UM, "", "", 0, 0);
+        
+        new TelaInicialMedico(new GerenciamentoMedico(medico)).setVisible(true);
 
     }
 }

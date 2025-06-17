@@ -9,6 +9,7 @@ import classes.Medico;
 import classes.Paciente;
 import enums.TipoConta;
 import gerenciamento.GerenciamentoHospitalar;
+import gerenciamento.GerenciamentoMedico;
 import gerenciamento.GerenciamentoPaciente;
 import gerenciamento.GerenciarAgenda;
 import javax.swing.JOptionPane;
@@ -227,7 +228,7 @@ public class TelaInicial extends javax.swing.JFrame {
                         case M -> {
                             Medico medico = admHospital.buscaMedicoPorLogin(login.getId());
                             if(medico != null){
-                                new TelaInicialMedico(new GerenciarAgenda(), medico).setVisible(true);
+                                new TelaInicialMedico(new GerenciamentoMedico(medico)).setVisible(true);
                                 dispose();
                             } else {
                                 JOptionPane.showMessageDialog(null, "Erro ao recuperar informações!");
