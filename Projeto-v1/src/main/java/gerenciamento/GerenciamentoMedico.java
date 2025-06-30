@@ -16,6 +16,7 @@ import java.util.ArrayList;
  */
 public class GerenciamentoMedico {
     
+    boolean loginCheck = false;
     Medico medico;
     GerenciarAgenda gerenciarAgenda = new GerenciarAgenda();
     GerenciarConsulta gerenciarConsulta = new GerenciarConsulta();
@@ -34,6 +35,14 @@ public class GerenciamentoMedico {
         }*/
     }
 
+    public boolean isLoginCheck() {
+        return loginCheck;
+    }
+
+    public void setLoginCheck(boolean loginCheck) {
+        this.loginCheck = loginCheck;
+    }
+    
     public ArrayList<Agenda> getAgenda() {
         return agenda;
     }

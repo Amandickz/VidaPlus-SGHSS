@@ -43,7 +43,7 @@ public class TelaCadastroDatasConsultas extends javax.swing.JFrame {
     private void atualizaTabela(){
         consultas.setRowCount(0);
         for(Agenda a : todosHorarios){
-            consultas.addRow(new Object[]{a.getData(), a.getHora(), a.isStatus()});
+            consultas.addRow(new Object[]{a.getData(), a.getHora(), a.getStatus()});
         }
     }
     

@@ -22,6 +22,26 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Consultas"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="agendarConsulta">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Agendar Nova Consulta"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agendarConsultaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="consultasMarcadas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Consultas Marcadas"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="consultasAnteriores">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Consultas Anteriores"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="meusDados">
           <Properties>
@@ -38,6 +58,11 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="anamneseActionPerformed"/>
               </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Meu Perfil"/>
+              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
