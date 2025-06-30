@@ -37,8 +37,12 @@ public class TelaInicialPaciente extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         sair = new javax.swing.JMenu();
         consultas = new javax.swing.JMenu();
+        agendarConsulta = new javax.swing.JMenuItem();
+        consultasMarcadas = new javax.swing.JMenuItem();
+        consultasAnteriores = new javax.swing.JMenuItem();
         meusDados = new javax.swing.JMenu();
         anamnese = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -58,6 +62,21 @@ public class TelaInicialPaciente extends javax.swing.JFrame {
         jMenuBar2.add(sair);
 
         consultas.setText("Consultas");
+
+        agendarConsulta.setText("Agendar Nova Consulta");
+        agendarConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agendarConsultaActionPerformed(evt);
+            }
+        });
+        consultas.add(agendarConsulta);
+
+        consultasMarcadas.setText("Consultas Marcadas");
+        consultas.add(consultasMarcadas);
+
+        consultasAnteriores.setText("Consultas Anteriores");
+        consultas.add(consultasAnteriores);
+
         jMenuBar2.add(consultas);
 
         meusDados.setText("Meus Dados");
@@ -74,6 +93,9 @@ public class TelaInicialPaciente extends javax.swing.JFrame {
             }
         });
         meusDados.add(anamnese);
+
+        jMenuItem2.setText("Meu Perfil");
+        meusDados.add(jMenuItem2);
 
         jMenuBar2.add(meusDados);
 
@@ -117,12 +139,20 @@ public class TelaInicialPaciente extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_sairMouseClicked
 
+    private void agendarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agendarConsultaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_agendarConsultaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem agendarConsulta;
     private javax.swing.JMenuItem anamnese;
     private javax.swing.JMenu consultas;
+    private javax.swing.JMenuItem consultasAnteriores;
+    private javax.swing.JMenuItem consultasMarcadas;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu meusDados;
     private javax.swing.JMenu sair;
     // End of variables declaration//GEN-END:variables

@@ -11,10 +11,7 @@ import enums.Nacionalidade;
 import enums.RacaCorEtnia;
 import enums.Sexo;
 import enums.TipoSanguineo;
-import gerenciamento.GerenciamentoHospitalar;
 import gerenciamento.GerenciamentoMedico;
-import gerenciamento.GerenciarAgenda;
-import interfaces.TelaInicial;
 import interfaces.TelaInicialMedico;
 
 /**

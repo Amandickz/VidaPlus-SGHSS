@@ -54,6 +54,13 @@ public class Agenda {
     public void setHora(String hora) {
         this.hora = hora;
     }
+    
+    public String getStatus(){
+        if(status){
+            return "Disponível";
+        }
+        return "Agendado";
+    }
 
     public boolean isStatus() {
         return status;
